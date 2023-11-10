@@ -15,7 +15,6 @@ public class AtributosModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "codatributo")
     private Integer codAtributo;
 

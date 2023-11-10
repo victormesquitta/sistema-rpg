@@ -19,7 +19,6 @@ public class CampanhaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "codcampanha")
     private Integer codCampanha;
 

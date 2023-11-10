@@ -15,7 +15,6 @@ public class MoedasModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "codMoeda")
     private Integer codMoeda;
 

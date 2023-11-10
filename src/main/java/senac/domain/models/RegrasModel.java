@@ -16,7 +16,6 @@ import java.sql.Timestamp;
 public class RegrasModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "codregras")
     private Integer codregras;
 

@@ -15,7 +15,6 @@ public class MagiaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "codmagia")
     private Integer codMagia;
 

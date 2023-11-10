@@ -15,7 +15,6 @@ public class PericiasModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "codpericia")
     private Integer codPericia;
 

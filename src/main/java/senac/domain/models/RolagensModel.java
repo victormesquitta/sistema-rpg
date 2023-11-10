@@ -16,7 +16,6 @@ public class RolagensModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "codrolagem")
     private Integer codrolagem;
 

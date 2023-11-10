@@ -16,7 +16,6 @@ public class OutraProficienciaModel {
     @Id
     @Column(name = "codoutraproficiencia")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "native", strategy = "native")
     private int codOutraProficiencia;
 
     @Comment("idioma, armas, armadura ou outros")

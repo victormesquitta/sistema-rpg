@@ -1,10 +1,10 @@
-package senac.domain.controller;
+package senac.domain.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import senac.domain.model.Usuario;
-import senac.domain.repository.UsuarioRepository;
+import senac.domain.models.UsuarioModel;
+import senac.domain.repositories.UsuarioRepository;
 
 import java.util.List;
 
@@ -20,37 +20,37 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuario> getAllUsers(){
+    public List<UsuarioModel> getAllUsers(){
         return repository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Usuario findUserByID(@PathVariable Integer id){
+    public UsuarioModel findUserByID(@PathVariable Integer id){
         return repository.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não encontrado"));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Usuario save(@RequestBody Usuario usuario){
-        return repository.save(usuario);
+    public UsuarioModel save(@RequestBody UsuarioModel usuarioModel){
+        return repository.save(usuarioModel);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete( @PathVariable Integer id ) {
-        repository.findById(id).map(usuario -> {
-            repository.delete(usuario);
-            return usuario;
+        repository.findById(id).map(usuarioModel -> {
+            repository.delete(usuarioModel);
+            return usuarioModel;
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuario não encontrado"));
     }
 
     @PutMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update( @PathVariable Integer id,@RequestBody Usuario usuario){
+    public void update( @PathVariable Integer id,@RequestBody UsuarioModel usuarioModel){
         repository.findById(id).map(existingClient -> {
-            usuario.setCodusuario(existingClient.getCodusuario());
-            repository.save(usuario);
+            usuarioModel.setCodusuario(existingClient.getCodusuario());
+            repository.save(usuarioModel);
             return existingClient;}).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND,"Usuario não encontrado") );
     }

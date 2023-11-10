@@ -15,7 +15,6 @@ public class MestreModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "codmestre")
     private Integer codmestre;
 

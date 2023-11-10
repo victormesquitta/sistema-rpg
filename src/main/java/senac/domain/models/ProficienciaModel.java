@@ -15,7 +15,6 @@ public class ProficienciaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "codproficiencia")
     private int codProficiencia;
 
