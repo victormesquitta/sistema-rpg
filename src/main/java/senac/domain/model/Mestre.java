@@ -10,16 +10,18 @@ import org.hibernate.annotations.GenericGenerator;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "mestre")
+@Table(name="tb_mestre")
 public class Mestre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "codmestre")
     private Integer codmestre;
 
     @ManyToOne
-    @JoinColumn(name = "participante_codparticipante")
+    @JoinColumn(name = "codparticipante", referencedColumnName = "codparticipante",
+            foreignKey = @ForeignKey(name = "fk_mestre_participante1"))
     private Participante participante;
 
 }

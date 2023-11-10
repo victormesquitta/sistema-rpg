@@ -14,6 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="tb_campanha")
 public class Campanha {
 
     @Id
@@ -28,8 +29,8 @@ public class Campanha {
     @Column(name = "qtdplayers", nullable = false)
     private Integer qtdPlayers;
 
-    //@Column(name = "imagem", nullable = false, length = 40)
-    //private Blob imagem
+    //@Column(name = "imagem", columnDefinition = "BLOB")
+    //private byte[] imagem;
 
     @Column(name = "data", nullable = false)
     private Date data;

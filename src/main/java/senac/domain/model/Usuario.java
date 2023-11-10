@@ -13,25 +13,28 @@ import java.sql.Time;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="tb_usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "codusuario")
     private Integer codusuario;
 
-    @Column(nullable = false, unique = true)
+    @Column(name="usuario", nullable = false, unique = true)
     private String usuario;
 
-    @Column(nullable = false, unique = true, length = 300)
+    @Column(name="email",nullable = false, unique = true, length = 300)
     private String email;
 
-    @Column(nullable = false, length = 30)
+    @Column(name="senha",nullable = false, length = 30)
     private String senha;
 
+    @Column(name="datacriacao", nullable = false)
     private Date datacriacao;
 
 //    private Blob imagem;
-
+    @Column(name="horasjogadas", nullable = false)
     private Time horasjogadas;
 }

@@ -12,6 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="tb_ataquesconj")
 public class AtaquesConj {
 
     @Id
@@ -20,28 +21,29 @@ public class AtaquesConj {
     @Column(name = "codataquesconj")
     private Integer codAtaquesConj;
 
-    @Column(name = "nome", length = 300)
+    @Column(name = "nome", length = 300, nullable = false)
     private String nome;
 
-    @Column(name = "bonusataque")
+    @Column(name = "bonusataque", nullable = false)
     private Integer bonusAtaque;
 
-    @Column(name = "dano")
-    private Integer dano;
+    // passar o dado a ser rolado. ex: 3d20
+    @Column(name = "dano", length = 20, nullable = false)
+    private String dano;
 
-    @Column(name = "tipodano", length = 45)
+    @Column(name = "tipodano", length = 45, nullable = false)
     private String tipoDano;
 
-    @Column(name = "origem", length = 45)
+    @Column(name = "origem", length = 45, nullable = false)
     private String origem; // se é ataque ou conjuração
 
     @ManyToOne
-    @JoinColumn(name = "equipamentos_codequipamento", referencedColumnName = "codequipamento",
-            foreignKey = @ForeignKey(name = "fk_ataquesconj_equipamentos1"))
+    @JoinColumn(name = "codequipamento", referencedColumnName = "codequipamento",
+            foreignKey = @ForeignKey(name = "fk_ataquesconj_equipamento1"))
     private Equipamento equipamento;
 
     @ManyToOne
-    @JoinColumn(name = "magias_codmagia", referencedColumnName = "codmagia",
+    @JoinColumn(name = "codmagia", referencedColumnName = "codmagia",
             foreignKey = @ForeignKey(name = "fk_ataquesconj_magias1"))
     private Magia magia;
 }

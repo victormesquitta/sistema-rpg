@@ -1,21 +1,29 @@
 package senac.domain.model;
 
 import jakarta.persistence.*;
+import jakarta.servlet.http.Part;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "personagem")
+@Table(name="tb_personagem")
 public class Personagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "codpersonagem")
     private Integer codPersonagem;
+
+    @ManyToOne
+    @JoinColumn(name = "codparticipante", referencedColumnName = "codparticipante",
+            foreignKey = @ForeignKey(name = "fk_personagem_participante1"))
+    private Participante participante;
 
     @Column(name = "nome")
     private String nome;
@@ -113,9 +121,6 @@ public class Personagem {
     @JoinColumn(name = "atributos_codatributo")
     private Atributos atributos;
 
-    @ManyToOne
-    @JoinColumn(name = "participante_codparticipante")
-    private Participante participante;
 
     @ManyToOne
     @JoinColumn(name = "pericias_codpericia")

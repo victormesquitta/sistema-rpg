@@ -10,12 +10,19 @@ import org.hibernate.annotations.GenericGenerator;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="tb_participante")
 public class Participante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "codparticipante")
     private Integer codparticipante;
+
+    @ManyToOne
+    @JoinColumn(name = "codusuario", referencedColumnName = "codusuario",
+            foreignKey = @ForeignKey(name = "fk_participante_usuario1"))
+    private Usuario usuario;
 
     // pegar imagem padrão no do envio da foto ser nulo
     @Lob

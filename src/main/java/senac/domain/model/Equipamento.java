@@ -10,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="tb_equipamento")
 public class Equipamento {
 
     @Id
@@ -19,16 +20,16 @@ public class Equipamento {
     private Integer codEquipamento;
 
     @ManyToOne
-    @JoinColumn(name = "personagem_codpersonagem", referencedColumnName = "codpersonagem",
-            foreignKey = @ForeignKey(name = "fk_equipamentos_personagem1"))
+    @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
+            foreignKey = @ForeignKey(name = "fk_equipamento_personagem1"))
     private Personagem personagem;
 
-    @Column(name = "nome", length = 100)
+    @Column(name = "nome", length = 100, nullable = false   )
     private String nome;
 
-    @Column(name = "qtd")
+    @Column(name = "qtd", nullable = false)
     private Integer quantidade;
 
-    @Column(name = "peso")
+    @Column(name = "peso", nullable = false)
     private Float peso;
 }
