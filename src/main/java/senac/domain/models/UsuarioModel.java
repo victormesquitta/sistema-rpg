@@ -4,10 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
-import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
@@ -24,16 +22,16 @@ public class UsuarioModel {
     @Column(name="usuario", nullable = false, unique = true)
     private String usuario;
 
-    @Column(name="email",nullable = false, unique = true, length = 300)
+    @Column(name="email",nullable = false, unique = true, length = 255)
     private String email;
 
     @Column(name="senha",nullable = false, length = 30)
     private String senha;
 
     @Column(name="datacriacao", nullable = false)
-    private Date datacriacao;
+    private LocalDate datacriacao;
 
 //    private Blob imagem;
     @Column(name="horasjogadas", nullable = false)
-    private Time horasjogadas;
+    private LocalTime horasjogadas;
 }
