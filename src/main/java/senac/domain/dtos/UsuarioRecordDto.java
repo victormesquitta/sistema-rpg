@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -23,6 +25,7 @@ public record UsuarioRecordDto(
         String senha,
 
         @NotNull(message = "O campo 'datacriacao' não pode ser nulo")
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         LocalDate datacriacao,
 
         @NotNull(message = "O campo 'horasjogadas' não pode ser nulo")
