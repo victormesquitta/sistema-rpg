@@ -18,19 +18,19 @@ public class MoedasModel {
     private Integer codMoeda;
 
     @Column(name = "po", columnDefinition = "INT COMMENT 'peças de ouro'", nullable = false)
-    private String po;
+    private Integer po;
 
     @Column(name = "pp", columnDefinition = "INT COMMENT 'peças de prata'", nullable = false)
-    private String pp;
+    private Integer pp;
 
     @Column(name = "pc", columnDefinition = "INT COMMENT 'peças de cobre'", nullable = false)
-    private String pc;
+    private Integer pc;
 
     @Column(name = "pl", columnDefinition = "INT COMMENT 'peças de platina'", nullable = false)
     private Integer pl;
 
     @Column(name = "da", columnDefinition = "INT COMMENT 'diamante astral'", nullable = false)
-    private String da;
+    private Integer da;
 
     @OneToOne
     @PrimaryKeyJoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem")

@@ -29,13 +29,13 @@ public class PersonagemModel {
     @Column(name = "foto")
     private byte[] foto;
 
-    @Column(name = "classe")
+    @Column(name = "classe", length = 20)
     private String classe;
 
-    @Column(name = "raca")
+    @Column(name = "raca", length = 20)
     private String raca;
 
-    @Column(name = "antecedente")
+    @Column(name = "antecedente", length = 20)
     private String antecedente;
 
     @Column(name = "nivel")
@@ -47,10 +47,10 @@ public class PersonagemModel {
     @Column(name = "bonusproficiencia")
     private Integer bonusProficiencia;
 
-    @Column(name = "inspiracao")
+    @Column(name = "inspiracao", length = 45)
     private String inspiracao;
 
-    @Column(name = "sabedoria_passiva")
+    @Column(name = "sabedoria_passiva", length = 45)
     private String sabedoriaPassiva;
 
     @Column(name = "ca")
@@ -80,19 +80,19 @@ public class PersonagemModel {
     @Column(name = "fraquezas", length = 200)
     private String fraquezas;
 
-    @Column(name = "corolhos")
+    @Column(name = "corolhos", length = 20)
     private String corOlhos;
 
-    @Column(name = "altura")
-    private Float altura;
+    @Column(name = "altura", length = 20)
+    private String altura;
 
-    @Column(name = "peso")
-    private Float peso;
+    @Column(name = "peso", length = 20)
+    private String peso;
 
-    @Column(name = "pele")
+    @Column(name = "pele", length = 20)
     private String pele;
 
-    @Column(name = "cabelos")
+    @Column(name = "cabelos", length = 30)
     private String cabelos;
 
     @Column(name = "aparencia", length = 200)
@@ -104,22 +104,18 @@ public class PersonagemModel {
     @Column(name = "outrascarac", length = 1000)
     private String outrasCaracteristicas;
 
-    @Column(name = "historia", length = 45)
+    @Column(name = "historia", length = 10000)
     private String historia;
 
-    @Column(name = "tesouro", length = 45)
+    @Column(name = "tesouro", length = 1000)
     private String tesouro;
 
-    @ManyToOne
-    @JoinColumn(name = "modas-codMoeda")
-    private MoedasModel moedasModel;
+    @Column(name = "habilidadeconjuracao", length = 15)
+    private String habilidadeConjuracao;
 
-    @ManyToOne
-    @JoinColumn(name = "atributos_codatributo")
-    private AtributosModel atributosModel;
+    @Column(name = "cdresistmagia")
+    private Integer cdResistMagia;
 
-
-    @ManyToOne
-    @JoinColumn(name = "pericias_codpericia")
-    private PericiasModel periciasModel;
+    @Column(name = "bonusataquemagia")
+    private Integer bonusAtaqueMagia;
 }
