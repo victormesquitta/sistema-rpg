@@ -1,4 +1,4 @@
-package senac.domain.services;
+package senac.domain.services.interfaces;
 
 import senac.domain.dtos.CampanhaRecordDto;
 import senac.domain.models.CampanhaModel;

@@ -6,13 +6,14 @@ import org.springframework.stereotype.Service;
 import senac.domain.dtos.CampanhaRecordDto;
 import senac.domain.models.CampanhaModel;
 import senac.domain.repositories.CampanhaRepository;
+import senac.domain.services.interfaces.CampanhaServiceInterface;
 
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CampanhaService implements CampanhaServiceInterface{
+public class CampanhaService implements CampanhaServiceInterface {
 
     @Autowired
     private CampanhaRepository campanhaRepository;
