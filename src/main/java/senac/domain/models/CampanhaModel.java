@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 @Data
@@ -30,11 +30,8 @@ public class CampanhaModel {
     //@Column(name = "imagem", columnDefinition = "BLOB")
     //private byte[] imagem;
 
-    @Column(name = "data", nullable = false)
-    private Date data;
-
-    @Column(name = "players", nullable = false)
-    private Integer players;
+    @Column(name = "datacriacao", nullable = false)
+    private LocalDate dataCriacao;
 
     @Column(name = "senha", nullable = false, length = 40)
     private String senha;

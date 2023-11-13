@@ -1,15 +1,18 @@
 package senac.domain.services;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import senac.domain.dtos.CampanhaRecordDto;
+import senac.domain.dtos.CampanhaDto;
+import senac.domain.mappers.CampanhaMapper;
 import senac.domain.models.CampanhaModel;
 import senac.domain.repositories.CampanhaRepository;
 import senac.domain.services.interfaces.CampanhaServiceInterface;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,33 +23,45 @@ public class CampanhaService implements CampanhaServiceInterface {
 
     @Autowired
     private ModelMapper modelMapper;
-    @Override
-    public List<CampanhaRecordDto> listarCampanhas() {
-        List<CampanhaModel> campanhas = campanhaRepository.findAll();
 
-        // Converte a lista de modelos de campanha para uma lista de DTOs usando o ModelMapper
+    private final CampanhaMapper campanhaMapper;
+
+    @Autowired
+    public CampanhaService(CampanhaMapper campanhaMapper) {
+        this.campanhaMapper = campanhaMapper;
+    }
+
+    @Override
+    public List<CampanhaDto> listarCampanhas() {
+        List<CampanhaModel> campanhas = campanhaRepository.findAll();
         return campanhas.stream()
-                .map(campanha -> modelMapper.map(campanha, CampanhaRecordDto.class))
+                .map(campanhaMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public CampanhaRecordDto obterCampanhaPorId(Integer id) {
-        CampanhaModel campanha = campanhaRepository.findById(id).orElse(null);
-        return (campanha != null) ? modelMapper.map(campanha, CampanhaRecordDto.class) : null;
+    public CampanhaDto obterCampanhaPorId(Integer id) {
+        Optional<CampanhaModel> campanhaOptional = campanhaRepository.findById(id);
+        if (campanhaOptional.isPresent()) {
+            CampanhaModel campanha = campanhaOptional.get();
+            return modelMapper.map(campanha, CampanhaDto.class);
+        } else {
+            return null; // Ou lançar uma exceção, dependendo do seu requisito.
+        }
     }
 
     @Override
-    public void criarCampanha(CampanhaRecordDto campanhaRecordDto) {
-        CampanhaModel campanha = modelMapper.map(campanhaRecordDto, CampanhaModel.class);
-        campanhaRepository.save(campanha);
+    public void criarCampanha(CampanhaDto campanhaDto) {
+        var campanhaModel = new CampanhaModel();
+        BeanUtils.copyProperties(campanhaDto, campanhaModel);
+        campanhaRepository.save(campanhaModel);
     }
 
     @Override
-    public void atualizarCampanha(Integer id, CampanhaRecordDto campanhaRecordDto) {
+    public void atualizarCampanha(Integer id, CampanhaDto campanhaDto) {
         CampanhaModel campanhaExistente = campanhaRepository.findById(id).orElse(null);
         if (campanhaExistente != null) {
-            modelMapper.map(campanhaRecordDto, campanhaExistente);
+            modelMapper.map(campanhaDto, campanhaExistente);
             campanhaRepository.save(campanhaExistente);
         }
     }

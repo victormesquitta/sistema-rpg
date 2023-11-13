@@ -1,15 +1,14 @@
 package senac.domain.services.interfaces;
 
-import senac.domain.dtos.CampanhaRecordDto;
-import senac.domain.models.CampanhaModel;
+import senac.domain.dtos.CampanhaDto;
 
 import java.util.List;
 
 public interface CampanhaServiceInterface {
-        List<CampanhaRecordDto> listarCampanhas();
-        CampanhaRecordDto obterCampanhaPorId(Integer id);
-        void criarCampanha(CampanhaRecordDto campanha);
-        void atualizarCampanha(Integer id, CampanhaRecordDto campanha);
+        List<CampanhaDto> listarCampanhas();
+        CampanhaDto obterCampanhaPorId(Integer id);
+        void criarCampanha(CampanhaDto campanha);
+        void atualizarCampanha(Integer id, CampanhaDto campanha);
         void excluirCampanha(Integer id);
         void entrarNaCampanha();
 }
