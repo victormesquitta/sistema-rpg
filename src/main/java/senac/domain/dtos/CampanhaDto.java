@@ -1,12 +1,18 @@
 package senac.domain.dtos;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-
+@Data
 public class CampanhaDto {
-
+//        @Getter
+//        @Setter
+        private Integer codCampanha;
         @NotBlank(message = "O campo 'nome' não pode estar em branco")
         @Size(max = 255, message = "O campo 'nome' deve ter no máximo 255 caracteres")
         String nome;
@@ -31,43 +37,6 @@ public class CampanhaDto {
         @NotNull(message = "O campo 'qtdPlayersOffline' não pode ser nulo")
         @Min(value = 0, message = "A quantidade mínima de players offline é 0")
         Integer qtdPlayersOffline;
-
-        public CampanhaDto(String nome, LocalDate dataCriacao, Integer qtdPlayers,
-                           String senha, Integer qtdPlayersOnline, Integer qtdPlayersOffline) {
-                this.nome = nome;
-                this.dataCriacao = dataCriacao;
-                this.qtdPlayers = qtdPlayers;
-                this.senha = senha;
-                this.qtdPlayersOnline = qtdPlayersOnline;
-                this.qtdPlayersOffline = qtdPlayersOffline;
-        }
-
-        public CampanhaDto() {
-        }
-
-        public String getNome() {
-                return nome;
-        }
-
-        public LocalDate getDataCriacao() {
-                return dataCriacao;
-        }
-
-        public Integer getQtdPlayers() {
-                return qtdPlayers;
-        }
-
-        public String getSenha() {
-                return senha;
-        }
-
-        public Integer getQtdPlayersOnline() {
-                return qtdPlayersOnline;
-        }
-
-        public Integer getQtdPlayersOffline() {
-                return qtdPlayersOffline;
-        }
 
         @Override
         public String toString() {

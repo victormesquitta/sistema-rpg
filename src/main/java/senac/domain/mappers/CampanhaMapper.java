@@ -14,9 +14,7 @@ public class CampanhaMapper {
 
     public CampanhaDto toDto(CampanhaModel campanhaModel) {
         CampanhaDto campanhaDto = modelMapper.map(campanhaModel, CampanhaDto.class);
-        // Adicione logs para verificar os valores mapeados
-        System.out.println("CampanhaModel: " + campanhaModel);
-        System.out.println("CampanhaDto: " + campanhaDto);
+        campanhaDto.setCodCampanha(campanhaModel.getCodCampanha());
         return campanhaDto;
     }
 
