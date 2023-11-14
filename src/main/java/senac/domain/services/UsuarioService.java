@@ -1,7 +1,6 @@
 package senac.domain.services;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -62,7 +61,7 @@ public class UsuarioService implements UsuarioServiceInterface {
     }
 
     private void validarDadosDuplicados(UsuarioDto usuarioDto, Integer id) {
-        for(UsuarioDto usuario : listarUsuarios()){
+        for(UsuarioModel usuario : usuarioRepository.findAll()){
             if(!(id.equals(usuario.getCodUsuario()))){
                 if(usuario.getUsuario().equals(usuarioDto.getUsuario())){
                     throw new DataIntegrityViolationException("Nome de usuário já em uso.");
@@ -74,7 +73,7 @@ public class UsuarioService implements UsuarioServiceInterface {
         }
     }
     private void validarDadosDuplicados(UsuarioDto usuarioDto) {
-        for(UsuarioDto usuario : listarUsuarios()){
+        for(UsuarioModel usuario : usuarioRepository.findAll()){
             if(usuario.getUsuario().equals(usuarioDto.getUsuario())){
                 throw new DataIntegrityViolationException("Nome de usuário já em uso.");
             }
