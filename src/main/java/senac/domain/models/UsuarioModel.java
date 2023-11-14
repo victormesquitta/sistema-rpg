@@ -19,7 +19,7 @@ public class UsuarioModel {
     @Column(name = "codusuario")
     private Integer codUsuario;
 
-    @Column(name="usuario", nullable = false, unique = true)
+    @Column(name="usuario", nullable = false, unique = true, length = 50)
     private String usuario;
 
     @Column(name="email", nullable = false, unique = true, length = 255)

@@ -21,31 +21,24 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<Object> criarUsuario(@RequestBody @Valid UsuarioDto usuarioDto) {
         usuarioService.criarUsuario(usuarioDto);
-        return new ResponseEntity<>("Usuário criado com sucesso.",HttpStatus.CREATED);
+        return new ResponseEntity<>("Usuário criado com sucesso.", HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<Object> listarUsuarios() {
         List<UsuarioDto> listaUsuarios = usuarioService.listarUsuarios();
-        if (listaUsuarios != null) {
-            return ResponseEntity.ok(listaUsuarios);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhum usuário cadastrado na base de dados.");
-        }
+        return ResponseEntity.ok(listaUsuarios);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Object> obterUsuarioPorId(@PathVariable Integer id) {
         UsuarioDto usuarioDto = usuarioService.obterUsuarioPorId(id);
-        if (usuarioDto != null) {
-            return ResponseEntity.ok(usuarioDto);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhum usuário encontrado para o ID fornecido.");
-        }
+        return ResponseEntity.ok(usuarioDto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> atualizarUsuario(@PathVariable Integer id, @RequestBody UsuarioDto usuarioDTO) {
+        UsuarioDto usuario = usuarioService.obterUsuarioPorId(id);
         usuarioService.atualizarUsuario(id, usuarioDTO);
         return new ResponseEntity<>("Usuário atualizado com sucesso.", HttpStatus.OK);
     }
@@ -53,9 +46,6 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> excluirUsuario(@PathVariable Integer id) {
         UsuarioDto usuario = usuarioService.obterUsuarioPorId(id);
-        if (usuario == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado.");
-        }
         usuarioService.excluirUsuario(id);
         return new ResponseEntity<>("Usuário excluído com sucesso.", HttpStatus.OK);
     }
