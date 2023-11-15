@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 @Service
 public class UsuarioService implements UsuarioServiceInterface {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
 
     @Autowired
-    public UsuarioService(UsuarioMapper usuarioMapper) {
+    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper) {
+        this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
     }
 
@@ -36,6 +36,7 @@ public class UsuarioService implements UsuarioServiceInterface {
     }
 
     public UsuarioDto obterUsuarioPorId(Integer id) {
+        listarUsuarios();
         Optional<UsuarioModel> usuarioOptional = usuarioRepository.findById(id);
         usuarioOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum usuário encontrado para o ID fornecido."));
         return usuarioOptional.map(usuarioMapper::toDto).orElse(null);
