@@ -15,26 +15,30 @@ public class ParticipanteModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codparticipante")
-    private Integer codparticipante;
+    private Integer codParticipante;
 
-    @ManyToOne
-    @JoinColumn(name = "codusuario", referencedColumnName = "codusuario",
-            foreignKey = @ForeignKey(name = "fk_participante_usuario1"))
+    @OneToOne
+//    @PrimaryKeyJoinColumn(name = "codusuario", referencedColumnName = "codusuario")
+    @JoinColumn(name = "codusuario", referencedColumnName = "codusuario")
     private UsuarioModel usuarioModel;
 
-    // pegar imagem padrão no do envio da foto ser nulo
-    @Lob
-    @Column(nullable = true)
-    private Byte[] imagem;
+    @ManyToOne
+    @JoinColumn(name = "codcampanha", referencedColumnName = "codcampanha")
+    private CampanhaModel campanhaModel;
 
-    @Column(nullable = false, unique = true, length = 100)
+    // pegar imagem padrão no do envio da foto ser nulo
+//    @Lob
+//    @Column(nullable = true)
+//    private Byte[] imagem;
+
+    @Column(nullable = false, length = 100)
     private String nome;
 
     @Column(nullable = false, length = 30)
     private String cargo;
 
     @Column(nullable = false)
-    private boolean Adm;
+    private boolean adm;
 
     //ver como ficaria a questão da foto
 }
