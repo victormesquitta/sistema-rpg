@@ -8,7 +8,11 @@ import senac.domain.models.UsuarioModel;
 @Component
 public class UsuarioMapper {
     @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+
+    public UsuarioMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     public UsuarioDto toDto(UsuarioModel usuarioModel) {
         UsuarioDto usuarioDto = modelMapper.map(usuarioModel, UsuarioDto.class);
