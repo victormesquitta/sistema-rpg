@@ -3,7 +3,8 @@ package senac.domain.mappers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import senac.domain.dtos.CampanhaDto;
+import senac.domain.dtos.CampanhaDTO;
+import senac.domain.dtos.CampanhaRespostaDTO;
 import senac.domain.models.CampanhaModel;
 
 @Component
@@ -12,14 +13,16 @@ public class CampanhaMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    public CampanhaDto toDto(CampanhaModel campanhaModel) {
-        CampanhaDto campanhaDto = modelMapper.map(campanhaModel, CampanhaDto.class);
-        campanhaDto.setCodCampanha(campanhaModel.getCodCampanha());
-        return campanhaDto;
+    public CampanhaRespostaDTO toRespostaDto(CampanhaModel campanhaModel) {
+        CampanhaRespostaDTO campanharRespostaDto = modelMapper.map(campanhaModel, CampanhaRespostaDTO.class);
+        return campanharRespostaDto;
     }
 
-    public CampanhaModel toEntity(CampanhaDto campanhaDto) {
+    public CampanhaModel toEntity(CampanhaDTO campanhaDto) {
         return modelMapper.map(campanhaDto, CampanhaModel.class);
+    }
+    public CampanhaModel toEntity(CampanhaRespostaDTO campanhaRespostaDto) {
+        return modelMapper.map(campanhaRespostaDto, CampanhaModel.class);
     }
 }
 
