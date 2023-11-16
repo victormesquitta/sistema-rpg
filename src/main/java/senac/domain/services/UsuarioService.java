@@ -4,17 +4,17 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import senac.domain.dtos.UsuarioDto;
+import senac.domain.dtos.UsuarioDTO;
+import senac.domain.dtos.UsuarioRespostaDTO;
 import senac.domain.mappers.UsuarioMapper;
 import senac.domain.models.UsuarioModel;
 import senac.domain.repositories.UsuarioRepository;
-import senac.domain.services.interfaces.UsuarioServiceInterface;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 @Service
-public class UsuarioService implements UsuarioServiceInterface {
+public class UsuarioService{
 
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
@@ -25,30 +25,30 @@ public class UsuarioService implements UsuarioServiceInterface {
         this.usuarioMapper = usuarioMapper;
     }
 
-    public List<UsuarioDto> listarUsuarios() {
+    public List<UsuarioRespostaDTO> listarUsuarios() {
         List<UsuarioModel> usuarios = usuarioRepository.findAll();
         if (usuarios.isEmpty()) {
             throw new EntityNotFoundException("Nenhum usuário cadastrado ainda.");
         }
         return usuarios.stream()
-                .map(usuarioMapper::toDto)
+                .map(usuarioMapper::toRespostaDto)
                 .collect(Collectors.toList());
     }
 
-    public UsuarioDto obterUsuarioPorId(Integer id) {
+    public UsuarioRespostaDTO obterUsuarioPorId(Integer id) {
         listarUsuarios();
         Optional<UsuarioModel> usuarioOptional = usuarioRepository.findById(id);
         usuarioOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum usuário encontrado para o ID fornecido."));
-        return usuarioOptional.map(usuarioMapper::toDto).orElse(null);
+        return usuarioOptional.map(usuarioMapper::toRespostaDto).orElse(null);
     }
 
-    public void criarUsuario(UsuarioDto usuarioDto) {
+    public void criarUsuario(UsuarioDTO usuarioDto) {
         validarDadosDuplicados(usuarioDto);
         UsuarioModel usuarioModel = usuarioMapper.toEntity(usuarioDto);
         usuarioRepository.save(usuarioModel);
     }
 
-    public void atualizarUsuario(Integer id, UsuarioDto usuarioDto) {
+    public void atualizarUsuario(Integer id, UsuarioDTO usuarioDto) {
         obterUsuarioPorId(id);
         validarDadosDuplicados(usuarioDto, id);
         UsuarioModel usuarioAtualizado = usuarioMapper.toEntity(usuarioDto);
@@ -61,7 +61,7 @@ public class UsuarioService implements UsuarioServiceInterface {
         usuarioRepository.deleteById(id);
     }
 
-    private void validarDadosDuplicados(UsuarioDto usuarioDto, Integer id) {
+    private void validarDadosDuplicados(UsuarioDTO usuarioDto, Integer id) {
         for(UsuarioModel usuario : usuarioRepository.findAll()){
             if(!(id.equals(usuario.getCodUsuario()))){
                 if(usuario.getUsuario().equals(usuarioDto.getUsuario())){
@@ -73,7 +73,7 @@ public class UsuarioService implements UsuarioServiceInterface {
             }
         }
     }
-    private void validarDadosDuplicados(UsuarioDto usuarioDto) {
+    private void validarDadosDuplicados(UsuarioDTO usuarioDto) {
         for(UsuarioModel usuario : usuarioRepository.findAll()){
             if(usuario.getUsuario().equals(usuarioDto.getUsuario())){
                 throw new DataIntegrityViolationException("Nome de usuário já em uso.");

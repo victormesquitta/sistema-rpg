@@ -12,18 +12,18 @@ import java.time.LocalTime;
 
 // responsável por fazer a validação das informações antes de serem salvas no banco de dados via model/controller
 @Data
-public class UsuarioDto{
+public class UsuarioDTO {
 
         private Integer codUsuario;
 
         @NotBlank(message = "O campo 'usuario' não pode estar em branco")
         @Size(max = 255, message = "O campo 'usuario' deve ter no máximo 255 caracteres")
-        String usuario;
+        private String usuario;
 
         @NotBlank(message = "O campo 'email' não pode estar em branco")
         @Email(message = "O campo 'email' deve ser um endereço de e-mail válido")
         @Size(max = 255, message = "O campo 'email' deve ter no máximo 255 caracteres")
-        String email;
+        private String email;
 
         @NotBlank(message = "O campo 'senha' não pode estar em branco")
         @Size(max = 30, message = "O campo 'senha' deve ter no máximo 30 caracteres")
@@ -31,10 +31,10 @@ public class UsuarioDto{
 
         @NotNull(message = "O campo 'datacriacao' não pode ser nulo")
         @DateTimeFormat(pattern = "yyyy-MM-dd")
-        LocalDate dataCriacao;
+        private LocalDate dataCriacao;
 
         @NotNull(message = "O campo 'horasjogadas' não pode ser nulo")
-        LocalTime horasJogadas;
+        private LocalTime horasJogadas;
 }
 
 
