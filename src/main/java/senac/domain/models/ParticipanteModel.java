@@ -17,12 +17,12 @@ public class ParticipanteModel {
     @Column(name = "codparticipante")
     private Integer codParticipante;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
 //    @PrimaryKeyJoinColumn(name = "codusuario", referencedColumnName = "codusuario")
     @JoinColumn(name = "codusuario", referencedColumnName = "codusuario")
     private UsuarioModel usuarioModel;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codcampanha", referencedColumnName = "codcampanha")
     private CampanhaModel campanhaModel;
 
@@ -39,6 +39,9 @@ public class ParticipanteModel {
 
     @Column(nullable = false)
     private boolean adm;
+
+    @Column(nullable = false)
+    private boolean admMaster;
 
     //ver como ficaria a questão da foto
 }

@@ -4,8 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import senac.domain.dtos.UsuarioDTO;
-import senac.domain.dtos.UsuarioRespostaDTO;
+import senac.domain.dtos.requests.UsuarioRequestDTO;
+import senac.domain.dtos.responses.UsuarioResponseDTO;
 import senac.domain.mappers.UsuarioMapper;
 import senac.domain.models.UsuarioModel;
 import senac.domain.repositories.UsuarioRepository;
@@ -25,60 +25,77 @@ public class UsuarioService{
         this.usuarioMapper = usuarioMapper;
     }
 
-    public List<UsuarioRespostaDTO> listarUsuarios() {
+    public List<UsuarioResponseDTO> listarUsuariosResponse() {
         List<UsuarioModel> usuarios = usuarioRepository.findAll();
         if (usuarios.isEmpty()) {
             throw new EntityNotFoundException("Nenhum usuário cadastrado ainda.");
         }
-        return usuarios.stream()
-                .map(usuarioMapper::toRespostaDto)
-                .collect(Collectors.toList());
+            return usuarios.stream()
+                    .map(usuarioMapper::toResponseDto)
+                    .collect(Collectors.toList());
     }
 
-    public UsuarioRespostaDTO obterUsuarioPorId(Integer id) {
-        listarUsuarios();
+    public List<Object> listarUsuariosRequest() {
+        List<UsuarioModel> usuarios = usuarioRepository.findAll();
+        if (usuarios.isEmpty()) {
+            throw new EntityNotFoundException("Nenhum usuário cadastrado ainda.");
+        }
+            return usuarios.stream()
+                    .map(usuarioMapper::toRequestDto)
+                    .collect(Collectors.toList());
+    }
+
+    public UsuarioResponseDTO obterUsuarioPorIdResponse(Integer id) {
+        listarUsuariosResponse();
         Optional<UsuarioModel> usuarioOptional = usuarioRepository.findById(id);
         usuarioOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum usuário encontrado para o ID fornecido."));
-        return usuarioOptional.map(usuarioMapper::toRespostaDto).orElse(null);
+            return usuarioOptional.map(usuarioMapper::toResponseDto).orElse(null);
     }
 
-    public void criarUsuario(UsuarioDTO usuarioDto) {
-        validarDadosDuplicados(usuarioDto);
-        UsuarioModel usuarioModel = usuarioMapper.toEntity(usuarioDto);
+    public UsuarioRequestDTO obterUsuarioPorIdRequest(Integer id) {
+        listarUsuariosResponse();
+        Optional<UsuarioModel> usuarioOptional = usuarioRepository.findById(id);
+        usuarioOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum usuário encontrado para o ID fornecido."));
+            return usuarioOptional.map(usuarioMapper::toRequestDto).orElse(null);
+    }
+
+    public void criarUsuario(UsuarioRequestDTO usuarioRequestDto) {
+        validarDadosDuplicados(usuarioRequestDto);
+        UsuarioModel usuarioModel = usuarioMapper.toEntity(usuarioRequestDto);
         usuarioRepository.save(usuarioModel);
     }
 
-    public void atualizarUsuario(Integer id, UsuarioDTO usuarioDto) {
-        obterUsuarioPorId(id);
-        validarDadosDuplicados(usuarioDto, id);
-        UsuarioModel usuarioAtualizado = usuarioMapper.toEntity(usuarioDto);
+    public void atualizarUsuario(Integer id, UsuarioRequestDTO usuarioRequestDto) {
+        obterUsuarioPorIdRequest(id);
+        validarDadosDuplicados(usuarioRequestDto, id);
+        UsuarioModel usuarioAtualizado = usuarioMapper.toEntity(usuarioRequestDto);
         usuarioAtualizado.setCodUsuario(id);
         usuarioRepository.save(usuarioAtualizado);
     }
 
     public void excluirUsuario(Integer id) {
-        obterUsuarioPorId(id);
+        obterUsuarioPorIdRequest(id);
         usuarioRepository.deleteById(id);
     }
 
-    private void validarDadosDuplicados(UsuarioDTO usuarioDto, Integer id) {
+    private void validarDadosDuplicados(UsuarioRequestDTO usuarioRequestDto, Integer id) {
         for(UsuarioModel usuario : usuarioRepository.findAll()){
             if(!(id.equals(usuario.getCodUsuario()))){
-                if(usuario.getUsuario().equals(usuarioDto.getUsuario())){
+                if(usuario.getUsuario().equals(usuarioRequestDto.getUsuario())){
                     throw new DataIntegrityViolationException("Nome de usuário já em uso.");
                 }
-                else if(usuario.getEmail().equals(usuarioDto.getEmail())){
+                else if(usuario.getEmail().equals(usuarioRequestDto.getEmail())){
                     throw new DataIntegrityViolationException("Endereço de e-mail já em uso.");
                 }
             }
         }
     }
-    private void validarDadosDuplicados(UsuarioDTO usuarioDto) {
+    private void validarDadosDuplicados(UsuarioRequestDTO usuarioRequestDto) {
         for(UsuarioModel usuario : usuarioRepository.findAll()){
-            if(usuario.getUsuario().equals(usuarioDto.getUsuario())){
+            if(usuario.getUsuario().equals(usuarioRequestDto.getUsuario())){
                 throw new DataIntegrityViolationException("Nome de usuário já em uso.");
             }
-            else if(usuario.getEmail().equals(usuarioDto.getEmail())){
+            else if(usuario.getEmail().equals(usuarioRequestDto.getEmail())){
                 throw new DataIntegrityViolationException("Endereço de e-mail já em uso.");
             }
         }

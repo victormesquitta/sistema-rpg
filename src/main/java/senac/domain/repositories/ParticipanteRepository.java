@@ -6,4 +6,6 @@ import senac.domain.models.ParticipanteModel;
 
 @Repository
 public interface ParticipanteRepository extends JpaRepository<ParticipanteModel, Integer> {
+    boolean existsByUsuarioModel_CodUsuarioAndCampanhaModel_CodCampanha(Integer codUsuario, Integer codCampanha);
+
 }

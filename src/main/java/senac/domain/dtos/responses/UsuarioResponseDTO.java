@@ -1,4 +1,4 @@
-package senac.domain.dtos;
+package senac.domain.dtos.responses;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 @Data
-public class UsuarioRespostaDTO {
+public class UsuarioResponseDTO {
 //    private Integer codUsuario;
     @NotBlank(message = "O campo 'usuario' não pode estar em branco")
     @Size(max = 255, message = "O campo 'usuario' deve ter no máximo 255 caracteres")

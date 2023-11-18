@@ -3,7 +3,8 @@ package senac.domain.mappers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import senac.domain.dtos.ParticipanteDto;
+import senac.domain.dtos.requests.ParticipanteRequestDTO;
+import senac.domain.dtos.responses.ParticipanteResponseDTO;
 import senac.domain.models.ParticipanteModel;
 
 @Component
@@ -15,14 +16,18 @@ public class ParticipanteMapper {
     private UsuarioMapper usuarioMapper;  // Adicione o mapeador de usuário
 
 
-    public ParticipanteDto toDto(ParticipanteModel participanteModel) {
-        ParticipanteDto participanteDto = modelMapper.map(participanteModel, ParticipanteDto.class);
-        if (participanteModel.getUsuarioModel() != null) {
-            participanteDto.setCodUsuario(participanteModel.getUsuarioModel().getCodUsuario());
-        }        return participanteDto;
+    public ParticipanteRequestDTO toRequestDto(ParticipanteModel participanteModel) {
+        return modelMapper.map(participanteModel, ParticipanteRequestDTO.class);
+        /*if (participanteModel.getUsuarioModel() != null) {
+            participanteRequestDto.setCodUsuario(participanteModel.getUsuarioModel().getCodUsuario());
+        }        return participanteRequestDto;*/
     }
 
-    public ParticipanteModel toEntity(ParticipanteDto participanteDto) {
-        return modelMapper.map(participanteDto, ParticipanteModel.class);
+    public ParticipanteModel toEntity(ParticipanteRequestDTO participanteRequestDto) {
+        return modelMapper.map(participanteRequestDto, ParticipanteModel.class);
+    }
+
+    public ParticipanteResponseDTO toResponseDto(ParticipanteModel participanteModel) {
+        return modelMapper.map(participanteModel, ParticipanteResponseDTO.class);
     }
 }

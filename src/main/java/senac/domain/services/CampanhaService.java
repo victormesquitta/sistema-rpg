@@ -3,12 +3,11 @@ package senac.domain.services;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import senac.domain.dtos.CampanhaDTO;
-import senac.domain.dtos.CampanhaRespostaDTO;
+import senac.domain.dtos.requests.CampanhaRequestDTO;
+import senac.domain.dtos.responses.CampanhaResponseDTO;
 import senac.domain.mappers.CampanhaMapper;
 import senac.domain.models.CampanhaModel;
 import senac.domain.repositories.CampanhaRepository;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -16,20 +15,18 @@ import java.util.stream.Collectors;
 
 @Service
 public class CampanhaService{
-    private final UsuarioService usuarioService;
 
     private final CampanhaRepository campanhaRepository;
 
     private final CampanhaMapper campanhaMapper;
 
     @Autowired
-    public CampanhaService(UsuarioService usuarioService, CampanhaRepository campanhaRepository, CampanhaMapper campanhaMapper) {
-        this.usuarioService = usuarioService;
+    public CampanhaService(CampanhaRepository campanhaRepository, CampanhaMapper campanhaMapper) {
         this.campanhaRepository = campanhaRepository;
         this.campanhaMapper = campanhaMapper;
     }
 
-    public List<CampanhaRespostaDTO> listarCampanhas() {
+    public List<CampanhaResponseDTO> listarCampanhasResponse() {
         List<CampanhaModel> campanhas = campanhaRepository.findAll();
         if(campanhas.isEmpty()){
            throw new EntityNotFoundException("Nenhuma campanha cadastrada ainda.");
@@ -40,28 +37,46 @@ public class CampanhaService{
     }
 
 
-    public CampanhaRespostaDTO obterCampanhaPorId(Integer id) {
-        listarCampanhas();
+    public List<CampanhaRequestDTO> listarCampanhasRequest() {
+        List<CampanhaModel> campanhas = campanhaRepository.findAll();
+        if(campanhas.isEmpty()){
+            throw new EntityNotFoundException("Nenhuma campanha cadastrada ainda.");
+        }
+        return campanhas.stream()
+                .map(campanhaMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+
+    public CampanhaResponseDTO obterCampanhaPorIdResponse(Integer id) {
+        listarCampanhasResponse();
         Optional<CampanhaModel> campanhaOptional = campanhaRepository.findById(id);
         campanhaOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma campanha encontrada para o ID fornecido."));
         return campanhaOptional.map(campanhaMapper::toRespostaDto).orElse(null);
     }
 
-    public void criarCampanha(CampanhaDTO campanhaDto) {
-        CampanhaModel campanhaModel = campanhaMapper.toEntity(campanhaDto);
-
-        campanhaRepository.save(campanhaModel);
+    public CampanhaRequestDTO obterCampanhaPorIdRequest(Integer id) {
+        listarCampanhasResponse();
+        Optional<CampanhaModel> campanhaOptional = campanhaRepository.findById(id);
+        campanhaOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma campanha encontrada para o ID fornecido."));
+        return campanhaOptional.map(campanhaMapper::toDto).orElse(null);
     }
 
-    public void atualizarCampanha(Integer id, CampanhaDTO campanhaDto) {
-        obterCampanhaPorId(id);
-        CampanhaModel campanhaAtualizada = campanhaMapper.toEntity(campanhaDto);
+    public Integer criarCampanha(CampanhaRequestDTO campanhaRequestDto) {
+        CampanhaModel campanhaModel = campanhaMapper.toEntity(campanhaRequestDto);
+        campanhaRepository.save(campanhaModel);
+        return campanhaModel.getCodCampanha();
+    }
+
+    public void atualizarCampanha(Integer id, CampanhaRequestDTO campanhaRequestDto) {
+        obterCampanhaPorIdResponse(id);
+        CampanhaModel campanhaAtualizada = campanhaMapper.toEntity(campanhaRequestDto);
         campanhaAtualizada.setCodCampanha(id);
         campanhaRepository.save(campanhaAtualizada);
     }
 
     public void excluirCampanha(Integer id) {
-        obterCampanhaPorId(id);
+        obterCampanhaPorIdResponse(id);
         campanhaRepository.deleteById(id);
     }
 

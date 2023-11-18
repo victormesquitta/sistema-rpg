@@ -1,4 +1,4 @@
-package senac.domain.dtos;
+package senac.domain.dtos.requests;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -12,7 +12,7 @@ import java.time.LocalTime;
 
 // responsável por fazer a validação das informações antes de serem salvas no banco de dados via model/controller
 @Data
-public class UsuarioDTO {
+public class UsuarioRequestDTO {
 
         private Integer codUsuario;
 
