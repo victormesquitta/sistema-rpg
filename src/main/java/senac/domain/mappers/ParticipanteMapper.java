@@ -12,14 +12,11 @@ public class ParticipanteMapper {
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
-    private UsuarioMapper usuarioMapper;  // Adicione o mapeador de usuário
+    private UsuarioMapper usuarioMapper;
 
 
     public ParticipanteDTO toDto(ParticipanteModel participanteModel) {
         return modelMapper.map(participanteModel, ParticipanteDTO.class);
-        /*if (participanteModel.getUsuarioModel() != null) {
-            participanteRequestDto.setCodUsuario(participanteModel.getUsuarioModel().getCodUsuario());
-        }        return participanteRequestDto;*/
     }
 
     public ParticipanteModel toEntity(ParticipanteDTO participanteDto) {

@@ -47,7 +47,7 @@ public class ParticipanteService {
 //                .collect(Collectors.toList());
 //    }
 
-    public List<ParticipanteDTO> listarParticipantesRequest() {
+    public List<ParticipanteDTO> listarParticipantes() {
         List<ParticipanteModel> participantes = participanteRepository.findAll();
         if(participantes.isEmpty()){
             throw new EntityNotFoundException("Nenhum participante cadastrado.");
@@ -65,8 +65,8 @@ public class ParticipanteService {
 //        return participanteOptional.map(participanteMapper::toResponseDto).orElse(null);
 //    }
 
-    public ParticipanteDTO obterParticipantePorIdRequest(Integer codParticipante) {
-        listarParticipantesRequest();
+    public ParticipanteDTO obterParticipantePorId(Integer codParticipante) {
+        listarParticipantes();
         Optional<ParticipanteModel> participanteOptional = participanteRepository.findById(codParticipante);
         participanteOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum participante encontrado para o ID fornecido."));
         return participanteOptional.map(participanteMapper::toDto).orElse(null);
@@ -131,17 +131,33 @@ public class ParticipanteService {
     public void atualizarParticipante(Integer id, ParticipanteDTO participanteDto) {
 //        if(!(id.equals(participanteDto.getCodUsuario()))){
 //            throw new RuntimeException("Não é possível alterar o codigo de usuário.");
+
+
 //        }
-        ParticipanteDTO participanteExistente = obterParticipantePorIdRequest(id);
+        ParticipanteDTO participanteExistente = obterParticipantePorId(id);
+
+        Integer codUsuario = participanteExistente.getCodUsuario();
+        Integer codCampanha = participanteExistente.getCodCampanha();
+
+        UsuarioModel usuarioExistente =  usuarioMapper.toEntity(usuarioService.obterUsuarioPorIdRequest(codUsuario));
+        CampanhaModel campanhaExistente = campanhaMapper.toEntity(campanhaService.obterCampanhaPorIdRequest(codCampanha));
+
+        if(!(usuarioExistente.getCodUsuario().equals(participanteDto.getCodUsuario()))){
+            throw new RuntimeException("Não é possível desvincular um participante de um usuário.");
+        }
+        else if(!(campanhaExistente.getCodCampanha().equals(participanteDto.getCodCampanha()))){
+            throw new RuntimeException("Não é possível desvincular um participante de uma campanha.");
+
+        }
+
+
         if(!(participanteExistente.isAdm() || participanteExistente.isAdmMaster())){
             participanteDto.setAdm(false);
             participanteDto.setAdmMaster(false);
             participanteDto.setCargo(participanteExistente.getCargo());
         }
-        Integer codUsuario = participanteExistente.getCodUsuario();
-        Integer codCampanha = participanteExistente.getCodCampanha();
-        UsuarioModel usuarioExistente =  usuarioMapper.toEntity(usuarioService.obterUsuarioPorIdRequest(codUsuario));
-        CampanhaModel campanhaExistente = campanhaMapper.toEntity(campanhaService.obterCampanhaPorIdRequest(codCampanha));
+
+
         //System.out.println(participanteRepository.existsByUsuarioModel_CodUsuarioAndCampanhaModel_CodCampanha(codUsuario, codCampanha));
         ParticipanteModel participanteAtualizado = participanteMapper.toEntity(participanteDto);
         participanteAtualizado.setCodParticipante(id);
@@ -153,7 +169,7 @@ public class ParticipanteService {
 
 
     public void excluirParticipante(Integer id) {
-        obterParticipantePorIdRequest(id);
+        obterParticipantePorId(id);
         participanteRepository.deleteById(id);
     }
     

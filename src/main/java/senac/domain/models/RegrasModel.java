@@ -28,11 +28,6 @@ public class RegrasModel {
     private String descricao;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "codcampanha", referencedColumnName = "codcampanha",
-            foreignKey = @ForeignKey(name = "fk_regras_campanha1"))
-    private CampanhaModel campanhaModel;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codparticipante", referencedColumnName = "codparticipante",
             foreignKey = @ForeignKey(name = "fk_regras_participante1"))
     private ParticipanteModel participanteModel;

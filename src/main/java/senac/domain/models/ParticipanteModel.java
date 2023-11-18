@@ -19,11 +19,13 @@ public class ParticipanteModel {
 
     @ManyToOne(cascade = CascadeType.MERGE)
 //    @PrimaryKeyJoinColumn(name = "codusuario", referencedColumnName = "codusuario")
-    @JoinColumn(name = "codusuario", referencedColumnName = "codusuario")
+    @JoinColumn(name = "codusuario", referencedColumnName = "codusuario",
+            foreignKey = @ForeignKey(name = "fk_participante_usuario1"))
     private UsuarioModel usuarioModel;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "codcampanha", referencedColumnName = "codcampanha")
+    @JoinColumn(name = "codcampanha", referencedColumnName = "codcampanha",
+            foreignKey = @ForeignKey(name = "fk_participante_campanha1"))
     private CampanhaModel campanhaModel;
 
     // pegar imagem padrão no do envio da foto ser nulo

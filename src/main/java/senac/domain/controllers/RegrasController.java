@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import senac.domain.dtos.ambos.RegrasDTO;
-import senac.domain.models.RegrasModel;
 import senac.domain.services.RegrasService;
 
 import java.util.List;
