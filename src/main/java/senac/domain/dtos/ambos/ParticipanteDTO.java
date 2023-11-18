@@ -1,10 +1,10 @@
-package senac.domain.dtos.requests;
+package senac.domain.dtos.ambos;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-public class ParticipanteRequestDTO {
+public class ParticipanteDTO {
     private Integer codParticipante;
     @NotNull(message = "O código do usuário não pode ser nulo")
     private Integer codUsuario;
