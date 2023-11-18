@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -16,11 +15,11 @@ public class RegrasModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codregras")
-    private Integer codregras;
+    private Integer codRegras;
 
     // conferir se o tipo está certo para a conversão
     @Column(name = "data")
-    private Timestamp data;
+    private LocalDate data;
 
     @Column(name = "nome", nullable = false, length = 200)
     private String nome;
@@ -28,14 +27,13 @@ public class RegrasModel {
     @Column(name = "descricao", nullable = false, length = 2000)
     private String descricao;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codcampanha", referencedColumnName = "codcampanha",
             foreignKey = @ForeignKey(name = "fk_regras_campanha1"))
     private CampanhaModel campanhaModel;
 
-    @ManyToOne
-    @JoinColumn(name = "codmestre", referencedColumnName = "codmestre",
-            foreignKey = @ForeignKey(name = "fk_regras_mestre1"))
-    private MestreModel mestreModel;
-
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "codparticipante", referencedColumnName = "codparticipante",
+            foreignKey = @ForeignKey(name = "fk_regras_participante1"))
+    private ParticipanteModel participanteModel;
 }
