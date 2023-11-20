@@ -43,14 +43,12 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> atualizarUsuario(@PathVariable Integer id, @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
-        usuarioService.obterUsuarioPorIdResponse(id);
         usuarioService.atualizarUsuario(id, usuarioRequestDTO);
         return new ResponseEntity<>("Usuário atualizado com sucesso.", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> excluirUsuario(@PathVariable Integer id) {
-        usuarioService.obterUsuarioPorIdResponse(id);
         usuarioService.excluirUsuario(id);
         return new ResponseEntity<>("Usuário excluído com sucesso.", HttpStatus.OK);
     }

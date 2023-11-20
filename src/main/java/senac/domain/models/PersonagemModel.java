@@ -110,6 +110,7 @@ public class PersonagemModel {
     @Column(name = "tesouro", length = 1000)
     private String tesouro;
 
+    // inteligencia, destreza, ...
     @Column(name = "habilidadeconjuracao", length = 15)
     private String habilidadeConjuracao;
 

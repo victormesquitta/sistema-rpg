@@ -37,14 +37,12 @@ public class PersonagemController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> atualizarPersonagem(@PathVariable Integer id, @RequestBody PersonagemDTO PersonagemDTO) {
-        personagemService.obterPersonagemPorId(id);
         personagemService.atualizarPersonagem(id, PersonagemDTO);
         return new ResponseEntity<>("Personagem atualizado com sucesso.", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> excluirPersonagem(@PathVariable Integer id) {
-        personagemService.obterPersonagemPorId(id);
         personagemService.excluirPersonagem(id);
         return new ResponseEntity<>("Personagem excluído com sucesso.", HttpStatus.OK);
     }

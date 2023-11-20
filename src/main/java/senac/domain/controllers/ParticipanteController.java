@@ -38,14 +38,12 @@ public class ParticipanteController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> atualizarParticipante(@PathVariable Integer id, @RequestBody ParticipanteDTO participanteDTO) {
-        participanteService.obterParticipantePorId(id);
         participanteService.atualizarParticipante(id, participanteDTO);
         return new ResponseEntity<>("Participante atualizado com sucesso.", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> excluirParticipante(@PathVariable Integer id) {
-        participanteService.obterParticipantePorId(id);
         participanteService.excluirParticipante(id);
         return new ResponseEntity<>("Participante excluído com sucesso.", HttpStatus.OK);
     }

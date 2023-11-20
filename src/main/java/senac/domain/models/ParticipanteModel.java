@@ -42,7 +42,7 @@ public class ParticipanteModel {
     @Column(nullable = false)
     private boolean adm;
 
-    @Column(nullable = false)
+    @Column(name = "admmaster", nullable = false)
     private boolean admMaster;
 
     //ver como ficaria a questão da foto

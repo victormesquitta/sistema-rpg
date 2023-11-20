@@ -10,34 +10,29 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="tb_rolagens")
-public class RolagensModel {
+@Table(name="tb_rolagem")
+public class RolagemModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codrolagem")
-    private Integer codrolagem;
-
-    @ManyToOne
-    @JoinColumn(name = "codcampanha", referencedColumnName = "codcampanha",
-            foreignKey = @ForeignKey(name = "fk_rolagens_campanhas1"))
-    private CampanhaModel campanhaModel;
+    private Integer codRolagem;
 
     @ManyToOne
     @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
-            foreignKey = @ForeignKey(name = "fk_rolagens_personagem1"))
+            foreignKey = @ForeignKey(name = "fk_rolagem_personagem1"))
     private PersonagemModel personagemModel;
 
     @Column(name = "resultrolagem", nullable = false)
-    private Integer resultrolagem;
+    private Integer resultRolagem;
 
     @Column(name = "tipodado", nullable = false)
-    private String tipodado ;
+    private String tipoDado ;
 
     @Column(name = "data", nullable = false)
     private Timestamp data ;
 
     @Column(name = "tiporolagem", nullable = false)
-    private String tiporolagem ;
+    private String tipoRolagem ;
 
 }

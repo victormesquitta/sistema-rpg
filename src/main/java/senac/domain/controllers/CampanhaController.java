@@ -56,7 +56,6 @@ public class CampanhaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> excluirCampanha(@PathVariable Integer id) {
-        campanhaService.obterCampanhaPorIdResponse(id);
         campanhaService.excluirCampanha(id);
         return new ResponseEntity<>("Campanha excluída com sucesso.", HttpStatus.OK);
     }

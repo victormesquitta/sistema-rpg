@@ -11,8 +11,6 @@ public class ParticipanteMapper {
 
     @Autowired
     private ModelMapper modelMapper;
-    @Autowired
-    private UsuarioMapper usuarioMapper;
 
 
     public ParticipanteDTO toDto(ParticipanteModel participanteModel) {

@@ -41,14 +41,12 @@ public class RegrasController {
 
     @PutMapping("{id}")
     public ResponseEntity<Object> atualizarRegras(@PathVariable Integer id, @RequestBody RegrasDTO regrasDto) {
-        regrasService.obterRegrasPorId(id);
         regrasService.atualizarRegras(id, regrasDto);
         return new ResponseEntity<>("Regras atualizadas com sucesso.", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> excluirRegras(@PathVariable Integer id) {
-        regrasService.obterRegrasPorId(id);
         regrasService.excluirRegras(id);
         return new ResponseEntity<>("Regras excluídas com sucesso.", HttpStatus.OK);
     }

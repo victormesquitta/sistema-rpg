@@ -70,6 +70,7 @@ public class PersonagemService {
         PersonagemModel personagemAtualizado = personagemMapper.toEntity(personagemDTO);
         ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDto);
         personagemAtualizado.setParticipanteModel(participanteModel);
+        personagemAtualizado.setCodPersonagem(codPersonagem);
         personagemRepository.save(personagemAtualizado);
     }
     public void excluirPersonagem(Integer codPersonagem) {
