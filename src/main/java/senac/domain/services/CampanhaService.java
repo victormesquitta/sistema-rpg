@@ -32,7 +32,7 @@ public class CampanhaService{
            throw new EntityNotFoundException("Nenhuma campanha cadastrada ainda.");
         }
         return campanhas.stream()
-                .map(campanhaMapper::toRespostaDto)
+                .map(campanhaMapper::toResponseDto)
                 .collect(Collectors.toList());
     }
 
@@ -43,7 +43,7 @@ public class CampanhaService{
             throw new EntityNotFoundException("Nenhuma campanha cadastrada ainda.");
         }
         return campanhas.stream()
-                .map(campanhaMapper::toDto)
+                .map(campanhaMapper::toRequestDto)
                 .collect(Collectors.toList());
     }
 
@@ -52,20 +52,20 @@ public class CampanhaService{
         listarCampanhasResponse();
         Optional<CampanhaModel> campanhaOptional = campanhaRepository.findById(id);
         campanhaOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma campanha encontrada para o ID fornecido."));
-        return campanhaOptional.map(campanhaMapper::toRespostaDto).orElse(null);
+        return campanhaOptional.map(campanhaMapper::toResponseDto).orElse(null);
     }
 
     public CampanhaRequestDTO obterCampanhaPorIdRequest(Integer id) {
         listarCampanhasResponse();
         Optional<CampanhaModel> campanhaOptional = campanhaRepository.findById(id);
         campanhaOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma campanha encontrada para o ID fornecido."));
-        return campanhaOptional.map(campanhaMapper::toDto).orElse(null);
+        return campanhaOptional.map(campanhaMapper::toRequestDto).orElse(null);
     }
 
-    public Integer criarCampanha(CampanhaRequestDTO campanhaRequestDto) {
+    public CampanhaModel criarCampanha(CampanhaRequestDTO campanhaRequestDto) {
         CampanhaModel campanhaModel = campanhaMapper.toEntity(campanhaRequestDto);
         campanhaRepository.save(campanhaModel);
-        return campanhaModel.getCodCampanha();
+        return campanhaModel;
     }
 
     public void atualizarCampanha(Integer id, CampanhaRequestDTO campanhaRequestDto) {

@@ -23,7 +23,7 @@ public class ParticipanteModel {
             foreignKey = @ForeignKey(name = "fk_participante_usuario1"))
     private UsuarioModel usuarioModel;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "codcampanha", referencedColumnName = "codcampanha",
             foreignKey = @ForeignKey(name = "fk_participante_campanha1"))
     private CampanhaModel campanhaModel;

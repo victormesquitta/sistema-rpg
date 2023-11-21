@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 @Data
 public class UsuarioResponseDTO {
-//    private Integer codUsuario;
+    private Integer codUsuario;
     @NotBlank(message = "O campo 'usuario' não pode estar em branco")
     @Size(max = 255, message = "O campo 'usuario' deve ter no máximo 255 caracteres")
     private String usuario;

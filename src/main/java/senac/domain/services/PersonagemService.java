@@ -3,8 +3,9 @@ package senac.domain.services;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import senac.domain.dtos.ambos.ParticipanteDTO;
-import senac.domain.dtos.ambos.PersonagemDTO;
+import senac.domain.dtos.requests.PersonagemRequestDTO;
+import senac.domain.dtos.responses.ParticipanteResponseDTO;
+import senac.domain.dtos.responses.PersonagemResponseDTO;
 import senac.domain.mappers.ParticipanteMapper;
 import senac.domain.mappers.PersonagemMapper;
 import senac.domain.models.ParticipanteModel;
@@ -32,26 +33,43 @@ public class PersonagemService {
 
 
 
-    public List<PersonagemDTO> listarPersonagens() {
+    public List<PersonagemResponseDTO> listarPersonagensResponse() {
         List<PersonagemModel> personagens = personagemRepository.findAll();
         if(personagens.isEmpty()){
             throw new EntityNotFoundException("Nenhum personagem cadastrado.");
         }
         return personagens.stream()
-                .map(personagemMapper::toDto)
+                .map(personagemMapper::toResponseDto)
                 .collect(Collectors.toList());
     }
 
-    public PersonagemDTO obterPersonagemPorId(Integer codPersonagem) {
-        listarPersonagens();
-        Optional<PersonagemModel> personagemOptional = personagemRepository.findById(codPersonagem);
-        personagemOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum personagem encontrado para o ID fornecido."));
-        return personagemOptional.map(personagemMapper::toDto).orElse(null);
+    public List<PersonagemRequestDTO> listarPersonagensRequest() {
+        List<PersonagemModel> personagens = personagemRepository.findAll();
+        if(personagens.isEmpty()){
+            throw new EntityNotFoundException("Nenhum personagem cadastrado.");
+        }
+        return personagens.stream()
+                .map(personagemMapper::toRequestDto)
+                .collect(Collectors.toList());
     }
 
-    public void criarPersonagem(PersonagemDTO personagemDTO) {
+    public PersonagemResponseDTO obterPersonagemPorIdResponse(Integer codPersonagem) {
+        listarPersonagensResponse();
+        Optional<PersonagemModel> personagemOptional = personagemRepository.findById(codPersonagem);
+        personagemOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum personagem encontrado para o ID fornecido."));
+        return personagemOptional.map(personagemMapper::toResponseDto).orElse(null);
+    }
 
-        ParticipanteModel participanteExistente = participanteMapper.toEntity(participanteService.obterParticipantePorId(personagemDTO.getCodParticipante()));
+    public PersonagemRequestDTO obterPersonagemPorIdRequest(Integer codPersonagem) {
+        listarPersonagensResponse();
+        Optional<PersonagemModel> personagemOptional = personagemRepository.findById(codPersonagem);
+        personagemOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum personagem encontrado para o ID fornecido."));
+        return personagemOptional.map(personagemMapper::toRequestDto).orElse(null);
+    }
+
+    public void criarPersonagem(PersonagemRequestDTO personagemDTO) {
+
+        ParticipanteModel participanteExistente = participanteMapper.toEntity(participanteService.obterParticipantePorIdResponse(personagemDTO.getCodParticipante()));
 
         PersonagemModel personagemModel = personagemMapper.toEntity(personagemDTO);
         personagemModel.setParticipanteModel(participanteExistente);
@@ -59,22 +77,22 @@ public class PersonagemService {
         personagemRepository.save(personagemModel);
     }
 
-    public void atualizarPersonagem(Integer codPersonagem, PersonagemDTO personagemDTO) {
+    public void atualizarPersonagem(Integer codPersonagem, PersonagemRequestDTO personagemRequestDTO) {
 
-        PersonagemDTO personagemExistente = obterPersonagemPorId(codPersonagem);
-        ParticipanteDTO participanteDto = participanteService.obterParticipantePorId(personagemExistente.getCodParticipante());
+        PersonagemResponseDTO personagemExistente = obterPersonagemPorIdResponse(codPersonagem);
+        ParticipanteResponseDTO participanteResponseDTO = participanteService.obterParticipantePorIdResponse(personagemExistente.getCodParticipante());
 
-        if(!(participanteDto.getCodParticipante().equals(personagemDTO.getCodParticipante()))){
+        if(!(participanteResponseDTO.getCodParticipante().equals(personagemRequestDTO.getCodParticipante()))){
             throw new RuntimeException("Personagem não pode alterar de participante.");
         }
-        PersonagemModel personagemAtualizado = personagemMapper.toEntity(personagemDTO);
-        ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDto);
+        PersonagemModel personagemAtualizado = personagemMapper.toEntity(personagemExistente);
+        ParticipanteModel participanteModel = participanteMapper.toEntity(participanteResponseDTO);
         personagemAtualizado.setParticipanteModel(participanteModel);
         personagemAtualizado.setCodPersonagem(codPersonagem);
         personagemRepository.save(personagemAtualizado);
     }
     public void excluirPersonagem(Integer codPersonagem) {
-        obterPersonagemPorId(codPersonagem);
+        obterPersonagemPorIdResponse(codPersonagem);
         personagemRepository.deleteById(codPersonagem);
     }
 }

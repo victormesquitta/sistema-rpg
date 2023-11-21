@@ -1,4 +1,4 @@
-package senac.domain.dtos.ambos;
+package senac.domain.dtos.responses;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class ProficienciaDTO {
+public class ProficienciaResponseDTO {
 
     private int codProficiencia;
 
@@ -23,7 +23,7 @@ public class ProficienciaDTO {
     private String atributoRelacionado;
 
     @Size(max = 45, message = "O modificador deve ter no máximo 45 caracteres")
-    private String modificador;
+    private Integer modificador;
 
     @NotNull(message = "O código do personagem não pode ser nulo")
     private Integer codPersonagem;

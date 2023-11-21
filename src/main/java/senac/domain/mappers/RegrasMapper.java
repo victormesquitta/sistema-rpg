@@ -3,7 +3,8 @@ package senac.domain.mappers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import senac.domain.dtos.ambos.RegrasDTO;
+import senac.domain.dtos.requests.RegrasRequestDTO;
+import senac.domain.dtos.responses.RegrasResponseDTO;
 import senac.domain.models.RegrasModel;
 
 @Component
@@ -16,11 +17,19 @@ public class RegrasMapper {
         this.modelMapper = modelMapper;
     }
 
-    public RegrasDTO toRequestDto(RegrasModel regrasModel) {
-        return modelMapper.map(regrasModel, RegrasDTO.class);
+    public RegrasResponseDTO toResponseDto(RegrasModel regrasModel) {
+        return modelMapper.map(regrasModel, RegrasResponseDTO.class);
     }
 
-    public RegrasModel toEntity(RegrasDTO regrasDto) {
-        return modelMapper.map(regrasDto, RegrasModel.class);
+    public RegrasRequestDTO toRequestDto(RegrasModel regrasModel) {
+        return modelMapper.map(regrasModel, RegrasRequestDTO.class);
+    }
+
+    public RegrasModel toEntity(RegrasResponseDTO regrasResponseDTO) {
+        return modelMapper.map(regrasResponseDTO, RegrasModel.class);
+    }
+
+    public RegrasModel toEntity(RegrasRequestDTO regrasRequestDTO) {
+        return modelMapper.map(regrasRequestDTO, RegrasModel.class);
     }
 }

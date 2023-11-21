@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import senac.domain.dtos.ambos.RolagemDTO;
+import senac.domain.dtos.requests.RolagemRequestDTO;
+import senac.domain.dtos.responses.RolagemResponseDTO;
 import senac.domain.services.RolagemService;
 
 import java.util.List;
@@ -18,26 +19,26 @@ public class RolagemController {
     private RolagemService rolagemService;
 
     @PostMapping
-    public ResponseEntity<Object> criarRolagem(@RequestBody @Valid RolagemDTO rolagemDTO) {
-        rolagemService.criarRolagem(rolagemDTO);
+    public ResponseEntity<Object> criarRolagem(@RequestBody @Valid RolagemRequestDTO rolagemRequestDTO) {
+        rolagemService.criarRolagem(rolagemRequestDTO);
         return new ResponseEntity<>("Rolagem criada com sucesso.", HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<RolagemDTO>> listarRolagens() {
-        List<RolagemDTO> listarRolagens = rolagemService.listarRolagens();
+    public ResponseEntity<List<RolagemResponseDTO>> listarRolagens() {
+        List<RolagemResponseDTO> listarRolagens = rolagemService.listarRolagensResponse();
         return ResponseEntity.ok(listarRolagens);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<RolagemDTO> obterRolagemPorId(@PathVariable Integer id) {
-        RolagemDTO rolagemDTO = rolagemService.obterRolagemPorId(id);
+    public ResponseEntity<RolagemResponseDTO> obterRolagemPorId(@PathVariable Integer id) {
+        RolagemResponseDTO rolagemDTO = rolagemService.obterRolagemPorIdResponse(id);
         return ResponseEntity.ok(rolagemDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> atualizarRolagem(@PathVariable Integer id, @RequestBody RolagemDTO rolagemDTO) {
-        rolagemService.atualizarRolagem(id, rolagemDTO);
+    public ResponseEntity<Object> atualizarRolagem(@PathVariable Integer id, @RequestBody RolagemRequestDTO rolagemRequestDTO) {
+        rolagemService.atualizarRolagem(id, rolagemRequestDTO);
         return new ResponseEntity<>("Rolagem atualizada com sucesso.", HttpStatus.OK);
     }
 

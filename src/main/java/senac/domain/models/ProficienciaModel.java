@@ -20,14 +20,14 @@ public class ProficienciaModel {
     @Column(name = "ferramenta", length = 45, nullable = false)
     private String ferramenta;
 
-    @Column(name = "proficiencia", length = 45, nullable = false)
+    @Column(name = "tipoproficiencia", length = 45, nullable = false)
     private String tipoProficiencia;
 
-    @Column(name = "atributo", length = 45, nullable = false)
+    @Column(name = "atributorelacionado", length = 45, nullable = false)
     private String atributoRelacionado;
 
     @Column(name = "modificador", length = 45)
-    private String modificador;
+    private Integer modificador;
 
     @ManyToOne
     @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",

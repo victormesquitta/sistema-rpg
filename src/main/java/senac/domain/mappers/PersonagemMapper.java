@@ -3,7 +3,8 @@ package senac.domain.mappers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import senac.domain.dtos.ambos.PersonagemDTO;
+import senac.domain.dtos.requests.PersonagemRequestDTO;
+import senac.domain.dtos.responses.PersonagemResponseDTO;
 import senac.domain.models.PersonagemModel;
 @Component
 public class PersonagemMapper {
@@ -13,11 +14,19 @@ public class PersonagemMapper {
     private UsuarioMapper personagemMapper;
 
 
-    public PersonagemDTO toDto(PersonagemModel personagemModel) {
-        return modelMapper.map(personagemModel, PersonagemDTO.class);
+    public PersonagemResponseDTO toResponseDto(PersonagemModel personagemModel) {
+        return modelMapper.map(personagemModel, PersonagemResponseDTO.class);
     }
 
-    public PersonagemModel toEntity(PersonagemDTO personagemDTO) {
-        return modelMapper.map(personagemDTO, PersonagemModel.class);
+    public PersonagemRequestDTO toRequestDto(PersonagemModel personagemModel) {
+        return modelMapper.map(personagemModel, PersonagemRequestDTO.class);
+    }
+
+    public PersonagemModel toEntity(PersonagemResponseDTO personagemResponseDTO) {
+        return modelMapper.map(personagemResponseDTO, PersonagemModel.class);
+    }
+
+    public PersonagemModel toEntity(PersonagemRequestDTO personagemRequestDTO) {
+        return modelMapper.map(personagemRequestDTO, PersonagemModel.class);
     }
 }

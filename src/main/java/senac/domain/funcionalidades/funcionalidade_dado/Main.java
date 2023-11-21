@@ -5,7 +5,6 @@ public class Main {
 
 
         /*
-
         *  Na interface visual, vai ter uma área/botão para cada tipo de dado
         *  Terá os seguintes tipos de dados: D4, D6, D8, D12, D20, D100 e Dado Especial
         *  O jogador precisará apenas informar

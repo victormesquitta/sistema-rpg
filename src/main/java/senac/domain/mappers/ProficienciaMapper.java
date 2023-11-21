@@ -3,7 +3,8 @@ package senac.domain.mappers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import senac.domain.dtos.ambos.ProficienciaDTO;
+import senac.domain.dtos.requests.ProficienciaRequestDTO;
+import senac.domain.dtos.responses.ProficienciaResponseDTO;
 import senac.domain.models.ProficienciaModel;
 @Component
 public class ProficienciaMapper {
@@ -11,12 +12,20 @@ public class ProficienciaMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    public ProficienciaDTO toDto(ProficienciaModel proficienciaModel) {
-        return modelMapper.map(proficienciaModel, ProficienciaDTO.class);
+    public ProficienciaResponseDTO toResponseDto(ProficienciaModel proficienciaModel) {
+        return modelMapper.map(proficienciaModel, ProficienciaResponseDTO.class);
     }
 
-    public ProficienciaModel toEntity(ProficienciaDTO proficienciaDTO) {
-        return modelMapper.map(proficienciaDTO, ProficienciaModel.class);
+    public ProficienciaRequestDTO toRequestDto(ProficienciaModel proficienciaModel) {
+        return modelMapper.map(proficienciaModel, ProficienciaRequestDTO.class);
+    }
+
+    public ProficienciaModel toEntity(ProficienciaResponseDTO proficienciaResponseDTO) {
+        return modelMapper.map(proficienciaResponseDTO, ProficienciaModel.class);
+    }
+
+    public ProficienciaModel toEntity(ProficienciaRequestDTO proficienciaRequestDTO) {
+        return modelMapper.map(proficienciaRequestDTO, ProficienciaModel.class);
     }
 
 }

@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import senac.domain.dtos.ambos.ParticipanteDTO;
+import senac.domain.dtos.requests.ParticipanteRequestDTO;
+import senac.domain.dtos.responses.ParticipanteResponseDTO;
 import senac.domain.services.ParticipanteService;
 
 import java.util.List;
@@ -19,26 +20,26 @@ public class ParticipanteController {
     private ParticipanteService participanteService;
 
     @PostMapping
-    public ResponseEntity<Object> criarParticipante(@RequestBody @Valid ParticipanteDTO participanteDto) {
-        participanteService.criarParticipante(participanteDto);
+    public ResponseEntity<Object> criarParticipante(@RequestBody @Valid ParticipanteRequestDTO participanteRequestDTO) {
+        participanteService.criarParticipante(participanteRequestDTO);
         return new ResponseEntity<>("Participante criado com sucesso.",HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<ParticipanteDTO>> listarParticipantes() {
-        List<ParticipanteDTO> listarParticipantes = participanteService.listarParticipantes();
+    public ResponseEntity<List<ParticipanteResponseDTO>> listarParticipantes() {
+        List<ParticipanteResponseDTO> listarParticipantes = participanteService.listarParticipantesResponse();
         return ResponseEntity.ok(listarParticipantes);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<ParticipanteDTO> obterParticipantePorId(@PathVariable Integer id) {
-        ParticipanteDTO participanteDto = participanteService.obterParticipantePorId(id);
-        return ResponseEntity.ok(participanteDto);
+    public ResponseEntity<ParticipanteResponseDTO> obterParticipantePorId(@PathVariable Integer id) {
+        ParticipanteResponseDTO participanteResponseDTO = participanteService.obterParticipantePorIdResponse(id);
+        return ResponseEntity.ok(participanteResponseDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> atualizarParticipante(@PathVariable Integer id, @RequestBody ParticipanteDTO participanteDTO) {
-        participanteService.atualizarParticipante(id, participanteDTO);
+    public ResponseEntity<Object> atualizarParticipante(@PathVariable Integer id, @RequestBody ParticipanteRequestDTO participanteRequestDTO) {
+        participanteService.atualizarParticipante(id, participanteRequestDTO);
         return new ResponseEntity<>("Participante atualizado com sucesso.", HttpStatus.OK);
     }
 

@@ -1,12 +1,15 @@
-package senac.domain.dtos.ambos;
-import jakarta.validation.constraints.*;
+package senac.domain.dtos.requests;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+
 @Data
-public class RegrasDTO {
-    private Integer codRegras;
+public class RegrasRequestDTO {
     @NotNull(message = "A data não pode ser nula")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate data;

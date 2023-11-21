@@ -1,4 +1,4 @@
-package senac.domain.dtos.ambos;
+package senac.domain.dtos.requests;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -6,9 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class OutraProficienciaDTO {
-    private int codOutraProficiencia;
-
+public class OutraProficienciaRequestDTO {
     @NotBlank(message = "O tipo não pode estar em branco")
     @Size(max = 45, message = "O tipo deve ter no máximo 45 caracteres")
     private String tipo;

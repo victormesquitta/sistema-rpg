@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import senac.domain.dtos.ambos.ProficienciaDTO;
+import senac.domain.dtos.requests.ProficienciaRequestDTO;
+import senac.domain.dtos.responses.ProficienciaResponseDTO;
 import senac.domain.services.ProficienciaService;
 
 import java.util.List;
@@ -18,26 +19,26 @@ public class ProficienciaController {
     private ProficienciaService proficienciaService;
 
     @PostMapping
-    public ResponseEntity<Object> criarProficiencia(@RequestBody @Valid ProficienciaDTO proficienciaDTO) {
-        proficienciaService.criarProficiencia(proficienciaDTO);
+    public ResponseEntity<Object> criarProficiencia(@RequestBody @Valid ProficienciaRequestDTO proficienciaRequestDTO) {
+        proficienciaService.criarProficiencia(proficienciaRequestDTO);
         return new ResponseEntity<>("Proficiência criada com sucesso.", HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<ProficienciaDTO>> listarProficiencias() {
-        List<ProficienciaDTO> listarProficiencias = proficienciaService.listarProficiencias();
+    public ResponseEntity<List<ProficienciaResponseDTO>> listarProficiencias() {
+        List<ProficienciaResponseDTO> listarProficiencias = proficienciaService.listarProficienciasResponse();
         return ResponseEntity.ok(listarProficiencias);
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<ProficienciaDTO> obterProficienciaPorId(@PathVariable int id) {
-        ProficienciaDTO proficienciaDTO = proficienciaService.obterProficienciaPorId(id);
+    public ResponseEntity<ProficienciaResponseDTO> obterProficienciaPorId(@PathVariable int id) {
+        ProficienciaResponseDTO proficienciaDTO = proficienciaService.obterProficienciaPorIdResponse(id);
         return ResponseEntity.ok(proficienciaDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> atualizarProficiencia(@PathVariable int id, @RequestBody ProficienciaDTO proficienciaDTO) {
-        proficienciaService.atualizarProficiencia(id, proficienciaDTO);
+    public ResponseEntity<Object> atualizarProficiencia(@PathVariable int id, @RequestBody ProficienciaRequestDTO proficienciaRequestDTO) {
+        proficienciaService.atualizarProficiencia(id, proficienciaRequestDTO);
         return new ResponseEntity<>("Proficiência atualizada com sucesso.", HttpStatus.OK);
     }
 

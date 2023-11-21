@@ -35,4 +35,7 @@ public class RolagemModel {
     @Column(name = "tiporolagem", nullable = false)
     private String tipoRolagem ;
 
+    @Column(name = "qtdrolagens", nullable = false)
+    private Integer qtdRolagens;
+
 }

@@ -1,4 +1,4 @@
-package senac.domain.dtos.ambos;
+package senac.domain.dtos.responses;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -7,7 +7,7 @@ import lombok.Data;
 import java.sql.Timestamp;
 
 @Data
-public class RolagemDTO {
+public class RolagemResponseDTO {
 
     private Integer codRolagem;
 
@@ -25,5 +25,8 @@ public class RolagemDTO {
 
     @NotBlank(message = "O tipo de rolagem não pode estar em branco")
     private String tipoRolagem;
+
+    @NotNull(message = "A quantidade de rolagens não pode ser nula")
+    private Integer qtdRolagens;
 
 }

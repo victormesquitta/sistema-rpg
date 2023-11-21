@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import senac.domain.dtos.ambos.RegrasDTO;
+import senac.domain.dtos.requests.RegrasRequestDTO;
+import senac.domain.dtos.responses.RegrasResponseDTO;
 import senac.domain.services.RegrasService;
 
 import java.util.List;
@@ -22,26 +23,26 @@ public class RegrasController {
     }
 
     @PostMapping()
-    public ResponseEntity<Object> criarRegras(@RequestBody @Valid RegrasDTO regrasDto) {
-        regrasService.criarRegras(regrasDto);
+    public ResponseEntity<Object> criarRegras(@RequestBody @Valid RegrasRequestDTO regrasRequestDTO) {
+        regrasService.criarRegras(regrasRequestDTO);
         return new ResponseEntity<>("Regras criadas com sucesso.", HttpStatus.CREATED);
     }
 
     @GetMapping()
-    public ResponseEntity<List<RegrasDTO>> obterTodasRegras() {
-        List<RegrasDTO> todasRegras = regrasService.listarRegras();
+    public ResponseEntity<List<RegrasResponseDTO>> obterTodasRegras() {
+        List<RegrasResponseDTO> todasRegras = regrasService.listarRegrasResponse();
         return ResponseEntity.ok(todasRegras);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RegrasDTO> obterRegrasPorId(@PathVariable Integer id) {
-        RegrasDTO regrasDTO = regrasService.obterRegrasPorId(id);
+    public ResponseEntity<RegrasResponseDTO> obterRegrasPorId(@PathVariable Integer id) {
+        RegrasResponseDTO regrasDTO = regrasService.obterRegrasPorIdResponse(id);
         return ResponseEntity.ok(regrasDTO);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Object> atualizarRegras(@PathVariable Integer id, @RequestBody RegrasDTO regrasDto) {
-        regrasService.atualizarRegras(id, regrasDto);
+    public ResponseEntity<Object> atualizarRegras(@PathVariable Integer id, @RequestBody RegrasRequestDTO regrasRequestDTO) {
+        regrasService.atualizarRegras(id, regrasRequestDTO);
         return new ResponseEntity<>("Regras atualizadas com sucesso.", HttpStatus.OK);
     }
 

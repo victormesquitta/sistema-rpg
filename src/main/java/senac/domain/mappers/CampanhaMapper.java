@@ -17,25 +17,19 @@ public class CampanhaMapper {
     @Autowired
     private CampanhaRepository campanhaRepository;
 
-    public CampanhaResponseDTO toRespostaDto(CampanhaModel campanhaModel) {
+    public CampanhaResponseDTO toResponseDto(CampanhaModel campanhaModel) {
         return modelMapper.map(campanhaModel, CampanhaResponseDTO.class);
     }
 
-    public senac.domain.dtos.requests.CampanhaRequestDTO toDto(CampanhaModel campanhaModel) {
-        return modelMapper.map(campanhaModel, senac.domain.dtos.requests.CampanhaRequestDTO.class);
+    public CampanhaRequestDTO toRequestDto(CampanhaModel campanhaModel) {
+        return modelMapper.map(campanhaModel, CampanhaRequestDTO.class);
     }
 
-    public CampanhaModel toEntity(senac.domain.dtos.requests.CampanhaRequestDTO campanhaRequestDto) {
+    public CampanhaModel toEntity(CampanhaRequestDTO campanhaRequestDto) {
         return modelMapper.map(campanhaRequestDto, CampanhaModel.class);
     }
     public CampanhaModel toEntity(CampanhaResponseDTO campanhaResponseDto) {
         return modelMapper.map(campanhaResponseDto, CampanhaModel.class);
-    }
-
-    public CampanhaModel toEntityWithId(CampanhaRequestDTO campanhaRequestDTO) {
-        CampanhaModel campanhaModel = toEntity(campanhaRequestDTO);
-        campanhaModel.setCodCampanha(campanhaRepository.save(campanhaModel).getCodCampanha());
-        return campanhaModel;
     }
 
 }
