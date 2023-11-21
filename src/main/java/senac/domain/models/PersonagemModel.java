@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -21,6 +24,12 @@ public class PersonagemModel {
     @JoinColumn(name = "codparticipante", referencedColumnName = "codparticipante",
             foreignKey = @ForeignKey(name = "fk_personagem_participante1"))
     private ParticipanteModel participanteModel;
+
+    @OneToMany(mappedBy = "personagemModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
+    private List<ProficienciaModel> proficiencias = new ArrayList<>();
+
+    @OneToMany(mappedBy = "personagemModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
+    private List<RolagemModel> rolagens = new ArrayList<>();
 
     @Column(name = "nome")
     private String nome;

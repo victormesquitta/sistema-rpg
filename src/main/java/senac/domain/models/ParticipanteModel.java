@@ -4,6 +4,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,13 +23,15 @@ public class ParticipanteModel {
     @Column(name = "codparticipante")
     private Integer codParticipante;
 
+    @ToString.Exclude
     @ManyToOne(cascade = CascadeType.MERGE)
 //    @PrimaryKeyJoinColumn(name = "codusuario", referencedColumnName = "codusuario")
     @JoinColumn(name = "codusuario", referencedColumnName = "codusuario",
             foreignKey = @ForeignKey(name = "fk_participante_usuario1"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private UsuarioModel usuarioModel;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codcampanha", referencedColumnName = "codcampanha",
             foreignKey = @ForeignKey(name = "fk_participante_campanha1"))
     private CampanhaModel campanhaModel;
@@ -44,6 +52,12 @@ public class ParticipanteModel {
 
     @Column(name = "admmaster", nullable = false)
     private boolean admMaster;
+
+    @OneToMany(mappedBy = "participanteModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
+    private List<PersonagemModel> personagens = new ArrayList<>();
+
+    @OneToMany(mappedBy = "participanteModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
+    private List<RegrasModel> regras = new ArrayList<>();
 
     //ver como ficaria a questão da foto
 }

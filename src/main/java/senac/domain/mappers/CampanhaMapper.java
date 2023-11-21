@@ -21,6 +21,7 @@ public class CampanhaMapper {
         return modelMapper.map(campanhaModel, CampanhaResponseDTO.class);
     }
 
+
     public CampanhaRequestDTO toRequestDto(CampanhaModel campanhaModel) {
         return modelMapper.map(campanhaModel, CampanhaRequestDTO.class);
     }

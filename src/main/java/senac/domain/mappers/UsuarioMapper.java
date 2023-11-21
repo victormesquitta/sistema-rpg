@@ -15,6 +15,9 @@ public class UsuarioMapper {
         this.modelMapper = modelMapper;
     }
 
+    public UsuarioModel toEntity(UsuarioResponseDTO usuarioResponseDTO) {
+        return modelMapper.map(usuarioResponseDTO, UsuarioModel.class);
+    }
     public UsuarioModel toEntity(UsuarioRequestDTO usuarioRequestDto) {
         return modelMapper.map(usuarioRequestDto, UsuarioModel.class);
     }

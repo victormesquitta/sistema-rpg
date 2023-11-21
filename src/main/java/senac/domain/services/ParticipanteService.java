@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import senac.domain.dtos.requests.CampanhaRequestDTO;
 import senac.domain.dtos.requests.ParticipanteRequestDTO;
 import senac.domain.dtos.requests.UsuarioRequestDTO;
+import senac.domain.dtos.responses.CampanhaResponseDTO;
 import senac.domain.dtos.responses.ParticipanteResponseDTO;
+import senac.domain.dtos.responses.UsuarioResponseDTO;
 import senac.domain.mappers.CampanhaMapper;
 import senac.domain.mappers.ParticipanteMapper;
 import senac.domain.mappers.UsuarioMapper;
@@ -81,8 +83,8 @@ public class ParticipanteService {
         participanteDto.setAdmMaster(false);
         participanteDto.setAdm(false);
 
-        CampanhaRequestDTO campanhaExistente = campanhaService.obterCampanhaPorIdRequest(codCampanha);
-        UsuarioRequestDTO usuarioExistente = usuarioService.obterUsuarioPorIdRequest(codUsuario);
+        CampanhaResponseDTO campanhaExistente = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+        UsuarioResponseDTO usuarioExistente = usuarioService.obterUsuarioPorIdResponse(codUsuario);
 
         System.out.println("Existe na campanha: " + participanteRepository.existsByUsuarioModel_CodUsuarioAndCampanhaModel_CodCampanha(codUsuario, codCampanha));
         ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDto);
@@ -93,7 +95,7 @@ public class ParticipanteService {
     }
 
     public void criarPrimeiroParticipante(CampanhaModel campanha) {
-        ParticipanteRequestDTO participanteDonoDto = new ParticipanteRequestDTO();
+        ParticipanteResponseDTO participanteDonoDto = new ParticipanteResponseDTO();
 
         // pegar via autenticação
         Integer codUsuario = 1; //participanteDonoDto.getCodUsuario();
