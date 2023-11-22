@@ -74,7 +74,7 @@ public class PersonagemService {
         return personagemOptional.map(personagemMapper::toRequestDto).orElse(null);
     }
 
-    public void criarPersonagem(PersonagemRequestDTO personagemDTO) {
+    public PersonagemModel criarPersonagem(PersonagemRequestDTO personagemDTO) {
 
         ParticipanteModel participanteExistente = participanteMapper.toEntity(participanteService.obterParticipantePorIdResponse(personagemDTO.getCodParticipante()));
 
@@ -82,6 +82,7 @@ public class PersonagemService {
         personagemModel.setParticipanteModel(participanteExistente);
 
         personagemRepository.save(personagemModel);
+        return personagemModel;
     }
 
     public void atualizarPersonagem(Integer codPersonagem, PersonagemRequestDTO personagemRequestDTO) {
