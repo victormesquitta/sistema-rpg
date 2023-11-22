@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +21,16 @@ public class PersonagemModel {
     @Column(name = "codpersonagem")
     private Integer codPersonagem;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codparticipante", referencedColumnName = "codparticipante",
             foreignKey = @ForeignKey(name = "fk_personagem_participante1"))
     private ParticipanteModel participanteModel;
 
     @OneToMany(mappedBy = "personagemModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
+    @ToString.Exclude
     private List<ProficienciaModel> proficiencias = new ArrayList<>();
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "personagemModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
     private List<RolagemModel> rolagens = new ArrayList<>();
 

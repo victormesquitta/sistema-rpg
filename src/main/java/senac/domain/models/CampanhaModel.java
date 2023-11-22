@@ -46,4 +46,25 @@ public class CampanhaModel {
 
     @OneToMany(mappedBy = "campanhaModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
     private List<ParticipanteModel> participantes = new ArrayList<>();
+
+
+    int recursionDepth = 0;
+    @Override
+    public String toString() {
+        if (recursionDepth > 10) {
+            return "...";
+        }
+        recursionDepth++;
+        return "CampanhaModel{" +
+                "codCampanha=" + codCampanha +
+                ", nome='" + nome + '\'' +
+                ", qtdPlayers=" + qtdPlayers +
+                ", dataCriacao=" + dataCriacao +
+                ", senha='" + senha + '\'' +
+                ", qtdPlayersOnline=" + qtdPlayersOnline +
+                ", qtdPlayersOffline=" + qtdPlayersOffline +
+                ", participantes=" + participantes +
+                '}';
+    }
 }
+

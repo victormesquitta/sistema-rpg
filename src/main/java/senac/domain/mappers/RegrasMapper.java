@@ -18,11 +18,15 @@ public class RegrasMapper {
     }
 
     public RegrasResponseDTO toResponseDto(RegrasModel regrasModel) {
-        return modelMapper.map(regrasModel, RegrasResponseDTO.class);
+        RegrasResponseDTO regrasResponseDTO = modelMapper.map(regrasModel, RegrasResponseDTO.class);
+        regrasResponseDTO.setCodParticipante(regrasModel.getParticipanteModel().getCodParticipante());
+        return regrasResponseDTO;
     }
 
     public RegrasRequestDTO toRequestDto(RegrasModel regrasModel) {
-        return modelMapper.map(regrasModel, RegrasRequestDTO.class);
+        RegrasRequestDTO regrasRequestDTO = modelMapper.map(regrasModel, RegrasRequestDTO.class);
+        regrasRequestDTO.setCodParticipante(regrasModel.getParticipanteModel().getCodParticipante());
+        return regrasRequestDTO;
     }
 
     public RegrasModel toEntity(RegrasResponseDTO regrasResponseDTO) {

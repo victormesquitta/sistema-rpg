@@ -17,27 +17,33 @@ public class ParticipanteMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    @PostConstruct
-    public void configureMapper() {
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
-        TypeMap<ParticipanteModel, ParticipanteRequestDTO> typeMapRequest = modelMapper.createTypeMap(ParticipanteModel.class, ParticipanteRequestDTO.class);
-        typeMapRequest.addMapping(src -> src.getUsuarioModel().getCodUsuario(), ParticipanteRequestDTO::setCodUsuario);
-        typeMapRequest.addMapping(src -> src.getCampanhaModel().getCodCampanha(), ParticipanteRequestDTO::setCodCampanha);
-
-        TypeMap<ParticipanteModel, ParticipanteResponseDTO> typeMapResponse = modelMapper.createTypeMap(ParticipanteModel.class, ParticipanteResponseDTO.class);
-        typeMapResponse.addMapping(src -> src.getUsuarioModel().getCodUsuario(), ParticipanteResponseDTO::setCodUsuario);
-        typeMapResponse.addMapping(src -> src.getCampanhaModel().getCodCampanha(), ParticipanteResponseDTO::setCodCampanha);
-    }
+//    @PostConstruct
+//    public void configureMapper() {
+//        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+//
+//        TypeMap<ParticipanteModel, ParticipanteRequestDTO> typeMapRequest = modelMapper.createTypeMap(ParticipanteModel.class, ParticipanteRequestDTO.class);
+//        typeMapRequest.addMapping(src -> src.getUsuarioModel().getCodUsuario(), ParticipanteRequestDTO::setCodUsuario);
+//        typeMapRequest.addMapping(src -> src.getCampanhaModel().getCodCampanha(), ParticipanteRequestDTO::setCodCampanha);
+//
+//        TypeMap<ParticipanteModel, ParticipanteResponseDTO> typeMapResponse = modelMapper.createTypeMap(ParticipanteModel.class, ParticipanteResponseDTO.class);
+//        typeMapResponse.addMapping(src -> src.getUsuarioModel().getCodUsuario(), ParticipanteResponseDTO::setCodUsuario);
+//        typeMapResponse.addMapping(src -> src.getCampanhaModel().getCodCampanha(), ParticipanteResponseDTO::setCodCampanha);
+//    }
 
 
 
     public ParticipanteRequestDTO toRequestDto(ParticipanteModel participanteModel) {
-        return modelMapper.map(participanteModel, ParticipanteRequestDTO.class);
+        ParticipanteRequestDTO participanteRequestDTO = modelMapper.map(participanteModel, ParticipanteRequestDTO.class);
+        participanteRequestDTO.setCodCampanha(participanteModel.getCampanhaModel().getCodCampanha());
+        participanteRequestDTO.setCodUsuario(participanteModel.getUsuarioModel().getCodUsuario());
+        return participanteRequestDTO;
     }
 
     public ParticipanteResponseDTO toResponseDto(ParticipanteModel participanteModel) {
-        return modelMapper.map(participanteModel, ParticipanteResponseDTO.class);
+        ParticipanteResponseDTO participanteResponseDTO = modelMapper.map(participanteModel, ParticipanteResponseDTO.class);
+        participanteResponseDTO.setCodCampanha(participanteModel.getCampanhaModel().getCodCampanha());
+        participanteResponseDTO.setCodUsuario(participanteModel.getUsuarioModel().getCodUsuario());
+        return participanteResponseDTO;
     }
 
 //    public ParticipanteResponseDTO toResponseDto(ParticipanteRequestDTO participanteRequestDTO) {

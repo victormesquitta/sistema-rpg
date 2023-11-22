@@ -68,7 +68,7 @@ public class OutraProficienciaService {
 
     public void criarOutraProficiencia(OutraProficienciaRequestDTO outraProficienciaRequestDTO) {
         OutraProficienciaModel outraProficienciaModel = outraProficienciaMapper.toEntity(outraProficienciaRequestDTO);
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemService.obterPersonagemPorIdRequest(outraProficienciaRequestDTO.getCodPersonagem()));
+        PersonagemModel personagemModel = personagemMapper.toEntity(personagemService.obterPersonagemPorIdRequest(outraProficienciaModel.getPersonagemModel().getCodPersonagem()));
         outraProficienciaModel.setPersonagemModel(personagemModel);
         outraProficienciaRepository.save(outraProficienciaModel);
     }

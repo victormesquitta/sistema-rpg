@@ -28,3 +28,7 @@ VALUES (1, 15, 'D20', '2023-11-20 10:30:00', 'Ataque', 1);
 INSERT INTO tb_proficiencia (ferramenta, tipoProficiencia, atributoRelacionado, modificador, codpersonagem)
 VALUES ('Martelo', 'Ferramenta', 'Força', 2, 1);
 
+/*Outra Proficiencia*/
+INSERT INTO tb_outraproficiencia (tipo, proficiencia, codpersonagem)
+VALUES ('Magia', 'Conjuração', 1);
+

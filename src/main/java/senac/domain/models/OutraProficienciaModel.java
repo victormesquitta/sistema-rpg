@@ -23,7 +23,7 @@ public class OutraProficienciaModel {
     @Column(name = "proficiencia", length = 45, nullable = false)
     private String proficiencia;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
             foreignKey = @ForeignKey(name = "fk_outraproficiencia_personagem1"))
     private PersonagemModel personagemModel;

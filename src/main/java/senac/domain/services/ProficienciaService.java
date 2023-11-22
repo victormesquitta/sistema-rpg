@@ -68,7 +68,9 @@ public class ProficienciaService {
 
     public void criarProficiencia(ProficienciaRequestDTO proficienciaRequestDTO) {
         ProficienciaModel proficienciaModel = proficienciaMapper.toEntity(proficienciaRequestDTO);
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemService.obterPersonagemPorIdRequest(proficienciaModel.getCodProficiencia()));
+        System.out.println(proficienciaModel);
+        PersonagemModel personagemModel = personagemMapper.toEntity(personagemService.obterPersonagemPorIdRequest(proficienciaModel.getPersonagemModel().getCodPersonagem()));
+        System.out.println("PersonagemModel: " + personagemModel);
         proficienciaModel.setPersonagemModel(personagemModel);
         proficienciaRepository.save(proficienciaModel);
     }

@@ -24,7 +24,7 @@ public class ParticipanteModel {
     private Integer codParticipante;
 
     @ToString.Exclude
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 //    @PrimaryKeyJoinColumn(name = "codusuario", referencedColumnName = "codusuario")
     @JoinColumn(name = "codusuario", referencedColumnName = "codusuario",
             foreignKey = @ForeignKey(name = "fk_participante_usuario1"))
@@ -53,9 +53,11 @@ public class ParticipanteModel {
     @Column(name = "admmaster", nullable = false)
     private boolean admMaster;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "participanteModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
     private List<PersonagemModel> personagens = new ArrayList<>();
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "participanteModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
     private List<RegrasModel> regras = new ArrayList<>();
 

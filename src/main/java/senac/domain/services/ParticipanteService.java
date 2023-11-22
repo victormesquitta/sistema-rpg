@@ -63,6 +63,7 @@ public class ParticipanteService {
     public ParticipanteResponseDTO obterParticipantePorIdResponse(Integer id) {
         listarParticipantesResponse();
         Optional<ParticipanteModel> participanteOptional = participanteRepository.findById(id);
+        System.out.println(participanteOptional);
         participanteOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum participante encontrado para o ID fornecido."));
         System.out.println(participanteOptional.map(participanteMapper::toResponseDto));
         return participanteOptional.map(participanteMapper::toResponseDto).orElse(null);

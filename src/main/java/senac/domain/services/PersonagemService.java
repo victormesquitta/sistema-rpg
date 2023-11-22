@@ -39,7 +39,11 @@ public class PersonagemService {
             throw new EntityNotFoundException("Nenhum personagem cadastrado.");
         }
         return personagens.stream()
-                .map(personagemMapper::toResponseDto)
+                .map(personagem -> {
+                    PersonagemResponseDTO personagemResponseDTO = personagemMapper.toResponseDto(personagem);
+                    personagemResponseDTO.setCodParticipante(personagem.getParticipanteModel().getCodParticipante());
+                    return personagemResponseDTO;
+                })
                 .collect(Collectors.toList());
     }
 
@@ -56,7 +60,10 @@ public class PersonagemService {
     public PersonagemResponseDTO obterPersonagemPorIdResponse(Integer codPersonagem) {
         listarPersonagensResponse();
         Optional<PersonagemModel> personagemOptional = personagemRepository.findById(codPersonagem);
+        System.out.println(personagemOptional);
         personagemOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum personagem encontrado para o ID fornecido."));
+
+
         return personagemOptional.map(personagemMapper::toResponseDto).orElse(null);
     }
 
