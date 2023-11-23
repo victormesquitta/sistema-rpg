@@ -62,6 +62,16 @@ public class CampanhaService{
         return campanhaOptional.map(campanhaMapper::toRequestDto).orElse(null);
     }
 
+    public CampanhaModel obterCampanhaModelPorId(Integer codCampanha){
+        listarCampanhasResponse();
+        Optional<CampanhaModel> campanhaModelOptional = campanhaRepository.findById(codCampanha);
+        campanhaModelOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma campanha encontrada para o ID fornecido."));
+        CampanhaRequestDTO campanhaRequestDTO = campanhaModelOptional.map(campanhaMapper::toRequestDto).orElse(null);
+        CampanhaModel campanhaModel = campanhaMapper.toEntity(campanhaRequestDTO);
+        campanhaModel.setCodCampanha(obterCampanhaPorIdResponse(codCampanha).getCodCampanha());
+        return campanhaModel;
+    }
+
     public CampanhaModel criarCampanha(CampanhaRequestDTO campanhaRequestDto) {
         CampanhaModel campanhaModel = campanhaMapper.toEntity(campanhaRequestDto);
         campanhaRepository.save(campanhaModel);

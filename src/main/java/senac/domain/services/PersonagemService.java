@@ -4,7 +4,6 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import senac.domain.dtos.requests.PersonagemRequestDTO;
-import senac.domain.dtos.responses.ParticipanteResponseDTO;
 import senac.domain.dtos.responses.PersonagemResponseDTO;
 import senac.domain.mappers.ParticipanteMapper;
 import senac.domain.mappers.PersonagemMapper;
@@ -74,12 +73,26 @@ public class PersonagemService {
         return personagemOptional.map(personagemMapper::toRequestDto).orElse(null);
     }
 
-    public PersonagemModel criarPersonagem(PersonagemRequestDTO personagemDTO) {
 
-        ParticipanteModel participanteExistente = participanteMapper.toEntity(participanteService.obterParticipantePorIdResponse(personagemDTO.getCodParticipante()));
+    public PersonagemModel obterPersonagemModelPorId(Integer codPersonagem){
+        listarPersonagensResponse();
+        Optional<PersonagemModel> personagemOptional = personagemRepository.findById(codPersonagem);
+        personagemOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum personagem encontrado para o ID fornecido."));
+        PersonagemRequestDTO personagemRequestDTO = personagemOptional.map(personagemMapper::toRequestDto).orElse(null);
+        PersonagemModel personagemModel = personagemMapper.toEntity(personagemRequestDTO);
+        personagemModel.setCodPersonagem(obterPersonagemPorIdResponse(codPersonagem).getCodPersonagem());
+        personagemModel.setParticipanteModel(participanteService.obterParticipanteModelPorId(personagemRequestDTO.getCodParticipante()));
+        return personagemModel;
+    }
 
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemDTO);
-        personagemModel.setParticipanteModel(participanteExistente);
+
+    public PersonagemModel criarPersonagem(PersonagemRequestDTO personagemRequestDTO) {
+
+        ParticipanteModel participanteModel = participanteService.obterParticipanteModelPorId(personagemRequestDTO.getCodParticipante());
+
+        System.out.println(participanteModel);
+        PersonagemModel personagemModel = personagemMapper.toEntity(personagemRequestDTO);
+        personagemModel.setParticipanteModel(participanteModel);
 
         personagemRepository.save(personagemModel);
         return personagemModel;
@@ -87,17 +100,19 @@ public class PersonagemService {
 
     public void atualizarPersonagem(Integer codPersonagem, PersonagemRequestDTO personagemRequestDTO) {
 
-        PersonagemResponseDTO personagemExistente = obterPersonagemPorIdResponse(codPersonagem);
-        ParticipanteResponseDTO participanteResponseDTO = participanteService.obterParticipantePorIdResponse(personagemExistente.getCodParticipante());
+        ParticipanteModel participanteModel = participanteService.obterParticipanteModelPorId(personagemRequestDTO.getCodParticipante());
 
-        if(!(participanteResponseDTO.getCodParticipante().equals(personagemRequestDTO.getCodParticipante()))){
+        PersonagemResponseDTO personagemResponseDTO = obterPersonagemPorIdResponse(codPersonagem);
+
+        if(!(personagemResponseDTO.getCodParticipante().equals(personagemRequestDTO.getCodParticipante()))){
             throw new RuntimeException("Personagem não pode alterar de participante.");
         }
-        PersonagemModel personagemAtualizado = personagemMapper.toEntity(personagemExistente);
-        ParticipanteModel participanteModel = participanteMapper.toEntity(participanteResponseDTO);
-        personagemAtualizado.setParticipanteModel(participanteModel);
-        personagemAtualizado.setCodPersonagem(codPersonagem);
-        personagemRepository.save(personagemAtualizado);
+
+        PersonagemModel personagemModel = personagemMapper.toEntity(personagemRequestDTO);
+        personagemModel.setParticipanteModel(participanteModel);
+        personagemModel.setCodPersonagem(codPersonagem);
+
+        personagemRepository.save(personagemModel);
     }
     public void excluirPersonagem(Integer codPersonagem) {
         obterPersonagemPorIdResponse(codPersonagem);

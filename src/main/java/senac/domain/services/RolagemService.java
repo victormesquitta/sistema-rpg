@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import senac.domain.dtos.requests.PersonagemRequestDTO;
 import senac.domain.dtos.requests.RolagemRequestDTO;
+import senac.domain.dtos.responses.PersonagemResponseDTO;
 import senac.domain.dtos.responses.RolagemResponseDTO;
 import senac.domain.mappers.PersonagemMapper;
 import senac.domain.mappers.RolagemMapper;
@@ -75,7 +76,7 @@ public class RolagemService {
     public void atualizarRolagem(Integer codRolagem, RolagemRequestDTO rolagemDTO) {
 
         RolagemRequestDTO rolagemExistente = obterRolagemPorIdRequest(codRolagem);
-        PersonagemRequestDTO personagemDTO = personagemService.obterPersonagemPorIdRequest(rolagemExistente.getCodPersonagem());
+        PersonagemResponseDTO personagemDTO = personagemService.obterPersonagemPorIdResponse(rolagemExistente.getCodPersonagem());
 
         if(!(personagemDTO.getCodPersonagem().equals(rolagemDTO.getCodPersonagem()))){
             throw new RuntimeException("Rolagem não pode alterar de personagem.");

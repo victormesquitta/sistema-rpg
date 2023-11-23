@@ -17,8 +17,9 @@ public class PericiasModel {
     @Column(name = "codpericia")
     private Integer codPericia;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
+            foreignKey = @ForeignKey(name = "fk_pericia_personagem1"))
     private PersonagemModel personagemModel;
 
     @Column(name = "atletismo", length = 45, nullable = false)

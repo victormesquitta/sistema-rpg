@@ -21,25 +21,33 @@ public class PersonagemModel {
     @Column(name = "codpersonagem")
     private Integer codPersonagem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codparticipante", referencedColumnName = "codparticipante",
             foreignKey = @ForeignKey(name = "fk_personagem_participante1"))
     private ParticipanteModel participanteModel;
 
-    @OneToMany(mappedBy = "personagemModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "personagemModel", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<ProficienciaModel> proficiencias = new ArrayList<>();
 
+    @OneToMany(mappedBy = "personagemModel", cascade = CascadeType.ALL)
     @ToString.Exclude
-    @OneToMany(mappedBy = "personagemModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
+    private List<OutraProficienciaModel> outrasProficiencias = new ArrayList<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "personagemModel", cascade = CascadeType.ALL)
     private List<RolagemModel> rolagens = new ArrayList<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "personagemModel", cascade = CascadeType.ALL)
+    private List<PericiasModel> pericias = new ArrayList<>();
 
     @Column(name = "nome")
     private String nome;
 
-    @Lob
-    @Column(name = "foto")
-    private byte[] foto;
+//    @Lob
+//    @Column(name = "foto")
+//    private byte[] foto;
 
     @Column(name = "classe", length = 20)
     private String classe;

@@ -18,11 +18,11 @@ public class PericiasController {
     @Autowired
     private PericiasService periciasService;
 
-//    @PostMapping
-//    public ResponseEntity<Object> criarPericia(@RequestBody @Valid PericiasRequestDTO periciasRequestDTO) {
-//        periciasService.criarPericia(periciasRequestDTO);
-//        return new ResponseEntity<>("Perícia criada com sucesso.", HttpStatus.CREATED);
-//    }
+    @PostMapping
+    public ResponseEntity<Object> criarPericia(@RequestBody @Valid PericiasRequestDTO periciasRequestDTO) {
+        periciasService.criarPericia(periciasRequestDTO);
+        return new ResponseEntity<>("Perícia criada com sucesso.", HttpStatus.CREATED);
+    }
 
     @GetMapping
     public ResponseEntity<List<PericiasResponseDTO>> listarPericias() {

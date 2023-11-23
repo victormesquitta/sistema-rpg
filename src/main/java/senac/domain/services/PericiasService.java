@@ -66,13 +66,18 @@ public class PericiasService {
     }
 
     public void criarPericia(PericiasRequestDTO periciasRequestDTO){
-        periciasRepository.findById(periciasRequestDTO.)
-        if(periciasRequestDTO.getCodPersonagem().equals()){
+        PersonagemModel personagemModel = personagemMapper.toEntity(personagemService.obterPersonagemPorIdRequest(periciasRequestDTO.getCodPersonagem()));
 
+        // Verifica se o personagem já possui um registro de perícias
+        Optional<PericiasModel> periciasExistenteOptional = periciasRepository.findByPersonagemModel(personagemModel);
+
+        if (periciasExistenteOptional.isPresent()) {
+            // Já existe um registro de perícias para o personagem, você pode lançar uma exceção ou tomar outra ação apropriada
+            throw new RuntimeException("O personagem já possui um registro de perícias.");
         }
 
         PericiasModel periciasModel = periciasMapper.toEntity(periciasRequestDTO);
-        periciasRepository.save();
+        periciasRepository.save(periciasModel);
     }
 
     public void criarPericiaComParticipante(PersonagemModel personagemModel) {

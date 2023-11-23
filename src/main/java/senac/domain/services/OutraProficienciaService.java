@@ -77,7 +77,7 @@ public class OutraProficienciaService {
         OutraProficienciaResponseDTO outraProficienciaExistente = obterOutraProficienciaPorIdResponse(codOutraProficiencia);
         PersonagemResponseDTO personagemResponseDTO = personagemService.obterPersonagemPorIdResponse(outraProficienciaExistente.getCodPersonagem());
 
-        if(!(personagemResponseDTO.getCodPersonagem().equals(outraProficienciaExistente.getCodPersonagem()))){
+        if(!(outraProficienciaRequestDTO.getCodPersonagem().equals(outraProficienciaExistente.getCodPersonagem()))){
             throw new RuntimeException("A Outra Proficiência não pode alterar de personagem.");
         }
 

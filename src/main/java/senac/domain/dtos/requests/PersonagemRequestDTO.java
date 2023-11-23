@@ -9,8 +9,6 @@ import lombok.Data;
 @Data
 public class PersonagemRequestDTO {
 
-    private Integer codPersonagem;
-
     @NotNull(message = "O participante não pode ser nulo")
     private Integer codParticipante;
 

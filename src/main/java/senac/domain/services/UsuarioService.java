@@ -59,6 +59,16 @@ public class UsuarioService{
             return usuarioOptional.map(usuarioMapper::toRequestDto).orElse(null);
     }
 
+    public UsuarioModel obterUsuarioModelPorId(Integer codUsuario){
+        listarUsuariosResponse();
+        Optional<UsuarioModel> usuarioOptional = usuarioRepository.findById(codUsuario);
+        usuarioOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum usuário encontrado para o ID fornecido."));
+        UsuarioRequestDTO usuarioRequestDTO = usuarioOptional.map(usuarioMapper::toRequestDto).orElse(null);
+        UsuarioModel usuarioModel = usuarioMapper.toEntity(usuarioRequestDTO);
+        usuarioModel.setCodUsuario(obterUsuarioPorIdResponse(codUsuario).getCodUsuario());
+        return usuarioModel;
+    }
+
     public void criarUsuario(UsuarioRequestDTO usuarioRequestDto) {
         validarDadosDuplicados(usuarioRequestDto);
         UsuarioModel usuarioModel = usuarioMapper.toEntity(usuarioRequestDto);

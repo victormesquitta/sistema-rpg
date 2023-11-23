@@ -1,21 +1,23 @@
 package senac.domain.mappers;
 
-import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import senac.domain.dtos.requests.ParticipanteRequestDTO;
+import senac.domain.dtos.requests.UsuarioRequestDTO;
 import senac.domain.dtos.responses.ParticipanteResponseDTO;
+import senac.domain.dtos.responses.UsuarioResponseDTO;
 import senac.domain.models.ParticipanteModel;
+import senac.domain.services.UsuarioService;
 
 @Component
 public class ParticipanteMapper {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
 //    @PostConstruct
 //    public void configureMapper() {

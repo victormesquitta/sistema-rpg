@@ -65,37 +65,50 @@ public class RegrasService {
         regrasOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma regra encontrado para o ID fornecido."));
         return regrasOptional.map(regrasMapper::toRequestDto).orElse(null);
     }
+
+    public RegrasModel obterRegrasModelPorId(Integer codRegras){
+        listarRegrasResponse();
+        Optional<RegrasModel> regrasOptional =  regrasRepository.findById(codRegras);
+        regrasOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma regra encontrado para o ID fornecido."));
+        RegrasRequestDTO regrasRequestDTO = regrasOptional.map(regrasMapper::toRequestDto).orElse(null);
+        RegrasModel regrasModel = regrasMapper.toEntity(regrasRequestDTO);
+        regrasModel.setParticipanteModel(participanteService.obterParticipanteModelPorId(regrasRequestDTO.getCodParticipante()));
+        return regrasModel;
+    }
+
+
     public void criarRegras(RegrasRequestDTO regrasRequestDTO) {
         //ver como fazer toda a validação toda jwt
         Integer codParticipante = regrasRequestDTO.getCodParticipante();
 
-        ParticipanteRequestDTO participanteExistente = participanteService.obterParticipantePorIdRequest(codParticipante);
+        ParticipanteModel participanteExistente = participanteService.obterParticipanteModelPorId(codParticipante);
 
         if(!(participanteExistente.getCargo().equals("Mestre"))){
             throw new RuntimeException("Participante não possui o cargo MESTRE para adicionar regras.");
         }
 
         RegrasModel regrasModel = regrasMapper.toEntity(regrasRequestDTO);
-        regrasModel.setParticipanteModel(participanteMapper.toEntity(participanteExistente));
+        regrasModel.setParticipanteModel(participanteExistente);
         regrasRepository.save(regrasModel);
     }
 
     public void atualizarRegras(Integer codRegras, RegrasRequestDTO regrasRequestDTO) {
 
-        RegrasRequestDTO regrasExistente = obterRegrasPorIdResquest(codRegras);
-        ParticipanteModel participanteExistente = participanteMapper.toEntity(participanteService.obterParticipantePorIdResponse(regrasExistente.getCodParticipante()));
+        RegrasResponseDTO regrasResponseDTO = obterRegrasPorIdResponse(codRegras);
+        ParticipanteModel participanteModel = participanteService.obterParticipanteModelPorId(regrasRequestDTO.getCodParticipante());
 
-        if(!(participanteExistente.getCargo().equals("Mestre"))){
+        if(!(participanteModel.getCargo().equals("Mestre"))){
             throw new RuntimeException("Participante não possui o cargo MESTRE para atualizar regras.");
         }
-        else if(!(regrasRequestDTO.getCodParticipante().equals(regrasExistente.getCodParticipante()))){
+        else if(!(regrasResponseDTO.getCodParticipante().equals(regrasRequestDTO.getCodParticipante()))){
             throw new RuntimeException("Não é possível alterar por quem foi escrita as regras.");
         }
-        RegrasModel regrasAtualizada = regrasMapper.toEntity(regrasRequestDTO);
 
-        regrasAtualizada.setCodRegras(codRegras);
-        regrasAtualizada.setParticipanteModel(participanteExistente);
-        regrasRepository.save(regrasAtualizada);
+        RegrasModel regrasModel = regrasMapper.toEntity(regrasRequestDTO);
+        regrasModel.setParticipanteModel(participanteModel);
+        regrasModel.setCodRegras(codRegras);
+
+        regrasRepository.save(regrasModel);
     }
 
     public void excluirRegras(Integer codRegras) {
