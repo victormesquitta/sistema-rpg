@@ -108,7 +108,7 @@ public class ParticipanteService {
         ParticipanteResponseDTO participanteDonoDto = new ParticipanteResponseDTO();
 
         // pegar via autenticação
-        Integer codUsuario = 1; //participanteDonoDto.getCodUsuario();
+        Integer codUsuario = 2; //participanteDonoDto.getCodUsuario();
 
         ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDonoDto);
 
@@ -145,16 +145,13 @@ public class ParticipanteService {
 //        participanteRepository.save(participanteModel);
     }
 
-    public void atualizarParticipante(Integer id, ParticipanteRequestDTO participanteDto) {
+    public void atualizarParticipante(Integer codParticipante, ParticipanteRequestDTO participanteDto) {
 //        if(!(id.equals(participanteDto.getCodUsuario()))){
 //            throw new RuntimeException("Não é possível alterar o codigo de usuário.");
 
 
 //        }
-        ParticipanteRequestDTO participanteExistente = obterParticipantePorIdRequest(id);
-
-        Integer codUsuario = participanteExistente.getCodUsuario();
-        Integer codCampanha = participanteExistente.getCodCampanha();
+        ParticipanteRequestDTO participanteExistente = obterParticipantePorIdRequest(codParticipante);
 
         CampanhaModel campanhaModel = campanhaService.obterCampanhaModelPorId(participanteDto.getCodCampanha());
         UsuarioModel usuarioModel = usuarioService.obterUsuarioModelPorId(participanteDto.getCodUsuario());
@@ -177,7 +174,7 @@ public class ParticipanteService {
 
         //System.out.println(participanteRepository.existsByUsuarioModel_CodUsuarioAndCampanhaModel_CodCampanha(codUsuario, codCampanha));
         ParticipanteModel participanteAtualizado = participanteMapper.toEntity(participanteDto);
-        participanteAtualizado.setCodParticipante(id);
+        participanteAtualizado.setCodParticipante(codParticipante);
         participanteAtualizado.setUsuarioModel(usuarioModel);
         participanteAtualizado.setCampanhaModel(campanhaModel);
         // Atualizar o participante no banco de dados

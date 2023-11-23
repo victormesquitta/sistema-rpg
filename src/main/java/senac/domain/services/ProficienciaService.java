@@ -66,11 +66,19 @@ public class ProficienciaService {
         return proficienciaOptional.map(proficienciaMapper::toRequestDto).orElse(null);
     }
 
-    public void criarProficiencia(ProficienciaRequestDTO proficienciaRequestDTO) {
+    public ProficienciaModel obterProficienciaModelPorId(Integer codProficiencia){
+        listarProficienciasResponse();
+        Optional<ProficienciaModel> proficienciaOptional = proficienciaRepository.findById(codProficiencia);
+        proficienciaOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma proficiência encontrada para o ID fornecido."));
+        ProficienciaRequestDTO proficienciaRequestDTO = proficienciaOptional.map(proficienciaMapper::toRequestDto).orElse(null);
         ProficienciaModel proficienciaModel = proficienciaMapper.toEntity(proficienciaRequestDTO);
-        System.out.println(proficienciaModel);
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemService.obterPersonagemPorIdRequest(proficienciaModel.getPersonagemModel().getCodPersonagem()));
-        System.out.println("PersonagemModel: " + personagemModel);
+        proficienciaModel.setCodProficiencia(codProficiencia);
+        return proficienciaModel;
+    }
+
+    public void criarProficiencia(ProficienciaRequestDTO proficienciaRequestDTO) {
+        PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(proficienciaRequestDTO.getCodPersonagem());
+        ProficienciaModel proficienciaModel = proficienciaMapper.toEntity(proficienciaRequestDTO);
         proficienciaModel.setPersonagemModel(personagemModel);
         proficienciaRepository.save(proficienciaModel);
     }
@@ -78,17 +86,16 @@ public class ProficienciaService {
     public void atualizarProficiencia(int codProficiencia, ProficienciaRequestDTO proficienciaRequestDTO) {
 
         ProficienciaResponseDTO proficienciaExistente = obterProficienciaPorIdResponse(codProficiencia);
-        PersonagemResponseDTO personagemDTO = personagemService.obterPersonagemPorIdResponse(proficienciaExistente.getCodProficiencia());
+        PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(proficienciaRequestDTO.getCodPersonagem());
 
-        if (!(personagemDTO.getCodPersonagem().equals(proficienciaExistente.getCodPersonagem()))) {
+        if (!(personagemModel.getCodPersonagem().equals(proficienciaExistente.getCodPersonagem()))) {
             throw new RuntimeException("A proficiência não pode alterar de personagem.");
         }
 
         ProficienciaModel proficienciaAtualizada = proficienciaMapper.toEntity(proficienciaRequestDTO);
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemDTO);
-
-        proficienciaAtualizada.setPersonagemModel(personagemModel);
         proficienciaAtualizada.setCodProficiencia(codProficiencia);
+        proficienciaAtualizada.setPersonagemModel(personagemModel);
+
         proficienciaRepository.save(proficienciaAtualizada);
     }
 

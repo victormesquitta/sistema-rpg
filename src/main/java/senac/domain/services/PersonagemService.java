@@ -89,8 +89,6 @@ public class PersonagemService {
     public PersonagemModel criarPersonagem(PersonagemRequestDTO personagemRequestDTO) {
 
         ParticipanteModel participanteModel = participanteService.obterParticipanteModelPorId(personagemRequestDTO.getCodParticipante());
-
-        System.out.println(participanteModel);
         PersonagemModel personagemModel = personagemMapper.toEntity(personagemRequestDTO);
         personagemModel.setParticipanteModel(participanteModel);
 
