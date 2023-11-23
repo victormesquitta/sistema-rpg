@@ -51,32 +51,44 @@ public class PericiasService {
                 .collect(Collectors.toList());
     }
 
-    public PericiasResponseDTO obterPericiaPorIdResponse(int codPericia) {
+    public PericiasResponseDTO obterPericiaPorIdResponse(int codPericias) {
         listarPericiasResponse();
-        Optional<PericiasModel> periciaOptional = periciasRepository.findById(codPericia);
+        Optional<PericiasModel> periciaOptional = periciasRepository.findById(codPericias);
         periciaOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma perícia encontrada para o ID fornecido."));
         return periciaOptional.map(periciasMapper::toResponseDto).orElse(null);
     }
 
-    public PericiasRequestDTO obterPericiaPorIdRequest(int codPericia) {
+    public PericiasRequestDTO obterPericiaPorIdRequest(int codPericias) {
         listarPericiasResponse();
-        Optional<PericiasModel> periciaOptional = periciasRepository.findById(codPericia);
+        Optional<PericiasModel> periciaOptional = periciasRepository.findById(codPericias);
         periciaOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma perícia encontrada para o ID fornecido."));
         return periciaOptional.map(periciasMapper::toRequestDto).orElse(null);
     }
 
-    public void criarPericia(PericiasRequestDTO periciasRequestDTO){
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemService.obterPersonagemPorIdRequest(periciasRequestDTO.getCodPersonagem()));
+    public PericiasModel obterPericiasModelPorId(Integer codPericias){
+        listarPericiasResponse();
+        Optional<PericiasModel> periciaOptional = periciasRepository.findById(codPericias);
+        periciaOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma perícia encontrada para o ID fornecido."));
+        PericiasRequestDTO periciasRequestDTO = periciaOptional.map(periciasMapper::toRequestDto).orElse(null);
+        PericiasModel periciasModel = periciasMapper.toEntity(periciasRequestDTO);
+        periciasModel.setCodPericias(codPericias);
+        periciasModel.setPersonagemModel(personagemService.obterPersonagemModelPorId(periciasRequestDTO.getCodPersonagem()));
+        return periciasModel;
 
+    }
+
+    public void criarPericia(PericiasRequestDTO periciasRequestDTO){
+        PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(periciasRequestDTO.getCodPersonagem());
+        PericiasModel periciasModel = periciasMapper.toEntity(periciasRequestDTO);
         // Verifica se o personagem já possui um registro de perícias
         Optional<PericiasModel> periciasExistenteOptional = periciasRepository.findByPersonagemModel(personagemModel);
 
         if (periciasExistenteOptional.isPresent()) {
-            // Já existe um registro de perícias para o personagem, você pode lançar uma exceção ou tomar outra ação apropriada
+            // Já existe um registro de perícias para o personagem
             throw new RuntimeException("O personagem já possui um registro de perícias.");
         }
 
-        PericiasModel periciasModel = periciasMapper.toEntity(periciasRequestDTO);
+        periciasModel.setPersonagemModel(personagemModel);
         periciasRepository.save(periciasModel);
     }
 
@@ -108,18 +120,19 @@ public class PericiasService {
         periciasRepository.save(periciasModel);
     }
 
-    public void atualizarPericia(int codPericia, PericiasRequestDTO periciaRequestDTO) {
-        PericiasResponseDTO periciasExistentes = obterPericiaPorIdResponse(codPericia);
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemService.obterPersonagemPorIdResponse(periciasExistentes.getCodPersonagem()));
+    public void atualizarPericia(int codPericias, PericiasRequestDTO periciaRequestDTO) {
+        PericiasResponseDTO periciasExistentes = obterPericiaPorIdResponse(codPericias);
+        PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(periciaRequestDTO.getCodPersonagem());
 
         if (!(personagemModel.getCodPersonagem().equals(periciasExistentes.getCodPersonagem()))) {
             throw new RuntimeException("A perícia não pode alterar de personagem.");
         }
 
-        PericiasModel periciaAtualizada = periciasMapper.toEntity(periciaRequestDTO);
-        periciaAtualizada.setPersonagemModel(personagemModel);
-        periciaAtualizada.setCodPericia(codPericia);
-        periciasRepository.save(periciaAtualizada);
+        PericiasModel periciasAtualizadas = periciasMapper.toEntity(periciaRequestDTO);
+        periciasAtualizadas.setCodPericias(codPericias);
+        periciasAtualizadas.setPersonagemModel(personagemModel);
+
+        periciasRepository.save(periciasAtualizadas);
     }
 
     public void excluirPericia(int codPericia) {

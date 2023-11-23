@@ -25,8 +25,8 @@ INSERT INTO tb_rolagem (codpersonagem, resultrolagem, tipodado, data, tiporolage
 VALUES (1, 15, 'D20', '2023-11-20 10:30:00', 'Ataque', 1);
 
 /*Proficiencia*/
-INSERT INTO tb_proficiencia (ferramenta, tipoProficiencia, atributoRelacionado, modificador, codpersonagem)
-VALUES ('Martelo', 'Ferramenta', 'Força', 2, 1);
+INSERT INTO tb_proficiencia (ferramenta, tipoProficiencia, atributoRelacionado, modificador, codpersonagem, valortotproficiencia)
+VALUES ('Martelo', 'Ferramenta', 'Força', 2, 1, 5);
 
 /*Outra Proficiencia*/
 INSERT INTO tb_outraproficiencia (tipo, proficiencia, codpersonagem)

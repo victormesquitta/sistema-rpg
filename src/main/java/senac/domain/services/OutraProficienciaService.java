@@ -73,6 +73,8 @@ public class OutraProficienciaService {
         OutraProficienciaRequestDTO outraProficienciaRequestDTO = outraProficienciaOptional.map(outraProficienciaMapper::toRequestDto).orElse(null);
         OutraProficienciaModel outraProficienciaModel = outraProficienciaMapper.toEntity(outraProficienciaRequestDTO);
         outraProficienciaModel.setCodOutraProficiencia(codOutraProficiencia);
+        outraProficienciaModel.setPersonagemModel(personagemService.obterPersonagemModelPorId(outraProficienciaRequestDTO.getCodPersonagem()));
+
         return outraProficienciaModel;
     }
 

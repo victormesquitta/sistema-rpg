@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class PericiasResponseDTO {
 
-    private Integer codPericia;
+    private Integer codPericias;
 
     @NotNull(message = "O código do personagem não pode ser nulo")
     private Integer codPersonagem;

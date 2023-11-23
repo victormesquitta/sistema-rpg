@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 public class RolagemRequestDTO {
@@ -19,7 +19,7 @@ public class RolagemRequestDTO {
     private String tipoDado;
 
     @NotNull(message = "A data não pode ser nula")
-    private Timestamp data;
+    private LocalDateTime data;
 
     @NotBlank(message = "O tipo de rolagem não pode estar em branco")
     private String tipoRolagem;

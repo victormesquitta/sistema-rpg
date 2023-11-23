@@ -14,12 +14,12 @@ public class PericiasModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codpericia")
-    private Integer codPericia;
+    @Column(name = "codpericias")
+    private Integer codPericias;
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
-            foreignKey = @ForeignKey(name = "fk_pericia_personagem1"))
+            foreignKey = @ForeignKey(name = "fk_pericias_personagem1"))
     private PersonagemModel personagemModel;
 
     @Column(name = "atletismo", length = 45, nullable = false)

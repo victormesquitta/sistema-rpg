@@ -17,6 +17,11 @@ public class ProficienciaModel {
     @Column(name = "codproficiencia")
     private int codProficiencia;
 
+    @ManyToOne
+    @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
+            foreignKey = @ForeignKey(name = "fk_proficiencia_personagem1"))
+    private PersonagemModel personagemModel;
+
     @Column(name = "ferramenta", length = 45, nullable = false)
     private String ferramenta;
 
@@ -26,11 +31,10 @@ public class ProficienciaModel {
     @Column(name = "atributorelacionado", length = 45, nullable = false)
     private String atributoRelacionado;
 
-    @Column(name = "modificador", length = 45)
+    @Column(name = "modificador")
     private Integer modificador;
 
-    @ManyToOne
-    @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
-            foreignKey = @ForeignKey(name = "fk_proficiencia_personagem1"))
-    private PersonagemModel personagemModel;
+    @Column(name = "valortotproficiencia")
+    private Integer valorTotProficiencia;
+
 }
