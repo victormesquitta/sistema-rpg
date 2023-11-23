@@ -4,11 +4,13 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import senac.domain.dtos.requests.UsuarioRequestDTO;
 import senac.domain.dtos.responses.UsuarioResponseDTO;
 import senac.domain.mappers.UsuarioMapper;
 import senac.domain.models.UsuarioModel;
 import senac.domain.repositories.UsuarioRepository;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -98,6 +100,21 @@ public class UsuarioService{
             else if(usuario.getEmail().equals(usuarioRequestDto.getEmail())){
                 throw new DataIntegrityViolationException("Endereço de e-mail já em uso.");
             }
+        }
+
+
+    }
+
+
+    public String uploadImagemUsuario(Integer id, MultipartFile file){
+        try{
+            UsuarioModel usuario = usuarioRepository.findById(id)
+                    .orElseThrow(()-> new RuntimeException("Usuario nao encontrado com o ID" + id));
+            usuario.setImagemUsuario(file.getBytes());
+            usuarioRepository.save(usuario);
+            return "Imagem do usuário salva com sucesso!";
+        }catch (Exception e){
+            return "Erro ao salvar imagem do usuário: " + e.getMessage();
         }
     }
 }

@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import senac.domain.dtos.requests.UsuarioRequestDTO;
 import senac.domain.dtos.responses.UsuarioResponseDTO;
 import senac.domain.mappers.UsuarioMapper;
 import senac.domain.services.UsuarioService;
-
 import java.util.List;
 
 @RestController
@@ -28,6 +28,12 @@ public class UsuarioController {
         usuarioService.criarUsuario(usuarioRequestDto);
         return new ResponseEntity<>("Usuário criado com sucesso.", HttpStatus.CREATED);
     }
+
+    @PostMapping
+    public String uploadImagemUsuario(@PathVariable Integer id, @RequestParam("file")MultipartFile file) {
+            return usuarioService.uploadImagemUsuario(id,file);
+    }
+
 
     @GetMapping
     public ResponseEntity<Object> listarUsuarios() {

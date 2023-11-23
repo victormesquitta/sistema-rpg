@@ -1,5 +1,6 @@
 package senac.domain.dtos.responses;
 
+import jakarta.persistence.Lob;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -27,4 +28,7 @@ public class UsuarioResponseDTO {
 
     @NotNull(message = "O campo 'horasjogadas' não pode ser nulo")
     private LocalTime horasJogadas;
+
+    @Lob
+    private byte[] imagemUsuario;
 }
