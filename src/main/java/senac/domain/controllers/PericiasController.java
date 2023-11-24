@@ -20,7 +20,7 @@ public class PericiasController {
 
     @PostMapping
     public ResponseEntity<Object> criarPericia(@RequestBody @Valid PericiasRequestDTO periciasRequestDTO) {
-        periciasService.criarPericia(periciasRequestDTO);
+        periciasService.criarPericias(periciasRequestDTO);
         return new ResponseEntity<>("Perícia criada com sucesso.", HttpStatus.CREATED);
     }
 

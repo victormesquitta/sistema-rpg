@@ -35,3 +35,19 @@ VALUES ('Magia', 'Conjuração', 1);
 /*Pericias*/
 INSERT INTO tb_pericias (codpersonagem, atletismo, acrobacia, furtividade, prestidigitacao, arcanismo, historia, investigacao, natureza, religiao, intuicao, lidarComAnimais, medicina, percepcao, sobrevivencia, atuacao, enganacao, intimidacao, persuasao)
 VALUES (1, 1, 2, 0, -1, 3, -2, 0, 1, 2, -1, 0, -2, 3, 1, 2, 0, -1, 3);
+
+/*Atributos*/
+INSERT INTO tb_atributos (codpersonagem, forca, inteligencia, destreza, constituicao, carisma, sabedoria)
+VALUES (1, 16, 14, 12, 15, 13, 10);
+
+/*Talento Traço*/
+INSERT INTO tb_talentotraco(codtalentotraco, nome, fonte, tipofonte, descricao, codpersonagem)
+VALUES(1, 'Talento 1', 'Fonte 1', 'Tipo Fonte 1', 'Descrição do Talento 1', 1);
+
+/*Moedas*/
+INSERT INTO tb_moedas(po, pp, pc, pl, da, codpersonagem)
+VALUES (10, 5, 20, 2, 1, 1);
+
+/*Equipamento*/
+INSERT INTO tb_equipamento (codpersonagem, nome, quantidade, peso) VALUES
+(1, 'Espada', 1, 5.0);

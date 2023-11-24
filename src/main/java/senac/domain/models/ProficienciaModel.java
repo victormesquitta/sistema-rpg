@@ -1,6 +1,7 @@
 package senac.domain.models;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ public class ProficienciaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codproficiencia")
-    private int codProficiencia;
+    private Integer codProficiencia;
 
     @ManyToOne
     @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",

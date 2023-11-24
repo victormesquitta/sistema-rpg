@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import senac.domain.dtos.requests.PericiasRequestDTO;
 import senac.domain.dtos.responses.PericiasResponseDTO;
 import senac.domain.mappers.PericiasMapper;
-import senac.domain.mappers.PersonagemMapper;
 import senac.domain.models.PersonagemModel;
 import senac.domain.models.PericiasModel;
 import senac.domain.repositories.PericiasRepository;
@@ -20,15 +19,13 @@ public class PericiasService {
 
     private final PericiasRepository periciasRepository;
     private final PericiasMapper periciasMapper;
-    private final PersonagemService personagemService;
-    private final PersonagemMapper personagemMapper;
+    private final PersonagemService personagemService;;
 
     @Autowired
-    public PericiasService(PericiasRepository periciasRepository, PericiasMapper periciasMapper, PersonagemService personagemService, PersonagemMapper personagemMapper) {
+    public PericiasService(PericiasRepository periciasRepository, PericiasMapper periciasMapper, PersonagemService personagemService) {
         this.periciasRepository = periciasRepository;
         this.periciasMapper = periciasMapper;
         this.personagemService = personagemService;
-        this.personagemMapper = personagemMapper;
     }
 
     public List<PericiasResponseDTO> listarPericiasResponse() {
@@ -77,7 +74,7 @@ public class PericiasService {
 
     }
 
-    public void criarPericia(PericiasRequestDTO periciasRequestDTO){
+    public void criarPericias(PericiasRequestDTO periciasRequestDTO){
         PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(periciasRequestDTO.getCodPersonagem());
         PericiasModel periciasModel = periciasMapper.toEntity(periciasRequestDTO);
         // Verifica se o personagem já possui um registro de perícias
@@ -92,7 +89,7 @@ public class PericiasService {
         periciasRepository.save(periciasModel);
     }
 
-    public void criarPericiaComParticipante(PersonagemModel personagemModel) {
+    public void criarPericiasComPersonagem(PersonagemModel personagemModel) {
         PericiasResponseDTO periciasResponseDTO = new PericiasResponseDTO();
         PericiasModel periciasModel = periciasMapper.toEntity(periciasResponseDTO);
 

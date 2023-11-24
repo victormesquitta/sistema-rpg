@@ -9,7 +9,6 @@ import senac.domain.dtos.requests.PersonagemRequestDTO;
 import senac.domain.dtos.responses.PersonagemResponseDTO;
 import senac.domain.services.PericiasService;
 import senac.domain.services.PersonagemService;
-import senac.domain.services.ProficienciaService;
 
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class PersonagemController {
 
     @PostMapping
     public ResponseEntity<Object> criarPersonagem(@RequestBody @Valid PersonagemRequestDTO personagemRequestDTO) {
-        periciasService.criarPericiaComParticipante(personagemService.criarPersonagem(personagemRequestDTO));
+        periciasService.criarPericiasComPersonagem(personagemService.criarPersonagem(personagemRequestDTO));
         return new ResponseEntity<>("Personagem criado com sucesso.", HttpStatus.CREATED);
     }
 

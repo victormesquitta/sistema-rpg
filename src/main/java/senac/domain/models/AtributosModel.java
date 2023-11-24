@@ -14,28 +14,29 @@ public class AtributosModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codatributo")
-    private Integer codAtributo;
+    @Column(name = "codatributos")
+    private Integer codAtributos;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
+            foreignKey = @ForeignKey(name = "fk_atributos_personagem1"))
     private PersonagemModel personagemModel;
 
-    @Column(name = "forca", length = 45, nullable = false)
-    private String forca;
+    @Column(name = "forca", nullable = false)
+    private Integer forca;
 
-    @Column(name = "inteligencia", length = 45, nullable = false)
-    private String inteligencia;
+    @Column(name = "inteligencia", nullable = false)
+    private Integer inteligencia;
 
-    @Column(name = "destreza", length = 45, nullable = false)
-    private String destreza;
+    @Column(name = "destreza", nullable = false)
+    private Integer destreza;
 
-    @Column(name = "constituicao", length = 45, nullable = false)
-    private String constituicao;
+    @Column(name = "constituicao", nullable = false)
+    private Integer constituicao;
 
-    @Column(name = "carisma", length = 45, nullable = false)
-    private String carisma;
+    @Column(name = "carisma", nullable = false)
+    private Integer carisma;
 
-    @Column(name = "sabedoria", length = 45, nullable = false)
-    private String sabedoria;
+    @Column(name = "sabedoria", nullable = false)
+    private Integer sabedoria;
 }
