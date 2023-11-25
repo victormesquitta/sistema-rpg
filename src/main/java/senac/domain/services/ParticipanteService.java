@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import senac.domain.dtos.requests.ParticipanteRequestDTO;
+import senac.domain.dtos.responses.CampanhaResponseDTO;
 import senac.domain.dtos.responses.ParticipanteResponseDTO;
 import senac.domain.mappers.CampanhaMapper;
 import senac.domain.mappers.ParticipanteMapper;
