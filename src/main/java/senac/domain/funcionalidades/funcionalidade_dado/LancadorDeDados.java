@@ -2,20 +2,20 @@ package senac.domain.funcionalidades.funcionalidade_dado;
 
 public class LancadorDeDados{
 
-    private final LogRolagens log = new LogRolagens();
+//    private final LogRolagens log = new LogRolagens();
 
     public void rolagemDeDados(int qtd, TipoDado dado) {
         Rolagem rolagem = new Rolagem(qtd, dado);
-        log.salvarRolagem(rolagem);
+//        log.salvarRolagem(rolagem);
     }
 
-    public void imprimirLog(){
-        System.out.println(log.getLog());
-    }
-
-    public void imprimirUltimaRolagem(){
-        System.out.println(log.getStrUltimaRolagem());
-    }
+//    public void imprimirLog(){
+//        System.out.println(log.getLog());
+//    }
+//
+//    public void imprimirUltimaRolagem(){
+//        System.out.println(log.getStrUltimaRolagem());
+//    }
 
 //
 //     public String mostrarUltimaRolagem(){

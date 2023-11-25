@@ -9,7 +9,7 @@ public class Rolagem {
 
     private int valorTotRolagem;
     private ArrayList<Integer> valoresDados;
-    private final LogRolagens log = new LogRolagens();
+//    private final LogRolagens log = new LogRolagens();
 
     public Rolagem(int qtd, TipoDado dado) {
 
@@ -26,7 +26,7 @@ public class Rolagem {
 //            valorTotRolagem += valor;
 //        }
 
-        log.salvarRolagem(salvarValores(valorTotRolagem, valoresDados));
+//        log.salvarRolagem(salvarValores(valorTotRolagem, valoresDados));
 
         System.out.printf("Rolagem com Sucesso!!!\n");
     }

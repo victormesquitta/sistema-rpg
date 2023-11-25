@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import senac.domain.dtos.requests.RolagemRequestDTO;
 import senac.domain.dtos.responses.RolagemResponseDTO;
+import senac.domain.funcionalidades.funcionalidade_dado.TipoDado;
 import senac.domain.mappers.PersonagemMapper;
 import senac.domain.mappers.RolagemMapper;
 import senac.domain.models.PersonagemModel;
@@ -79,7 +80,30 @@ public class RolagemService {
         PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(rolagemRequestDTO.getCodPersonagem());
         RolagemModel rolagemModel = rolagemMapper.toEntity(rolagemRequestDTO);
         rolagemModel.setPersonagemModel(personagemModel);
+
+
+
+
+
+        getTipoDado(rolagemRequestDTO.getTipoDado());
+
+
+
+        rolagemModel.setResultRolagem();
         rolagensRepository.save(rolagemModel);
+    }
+
+
+    public TipoDado getTipoDado(String tipoDado){
+        return switch (tipoDado) {
+            case "D4" -> TipoDado.D4;
+            case "D6" -> TipoDado.D6;
+            case "D8" -> TipoDado.D6;
+            case "D12" -> TipoDado.D6;
+            case "D20" -> TipoDado.D6;
+            case "D100" -> TipoDado.D6;
+            default -> throw new RuntimeException("Opção de dado inválida!");
+        };
     }
 
     public void atualizarRolagem(Integer codRolagem, RolagemRequestDTO rolagemRequestDTO) {

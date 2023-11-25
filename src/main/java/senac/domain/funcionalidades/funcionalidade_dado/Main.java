@@ -22,8 +22,8 @@ public class Main {
         roladorLaEle.rolagemDeDados(3, TipoDado.D6);
         roladorLaEle.rolagemDeDados(6, TipoDado.D20);
         roladorLaEle.rolagemDeDados(4, TipoDado.D100);
-        roladorLaEle.imprimirUltimaRolagem();
-        roladorLaEle.imprimirLog();
+//        roladorLaEle.imprimirUltimaRolagem();
+//        roladorLaEle.imprimirLog();
 
 //        roladorLaEle.rolagemDeDados(3, TipoDado.D100);
 //        roladorLaEle.mostrarRolagem();
