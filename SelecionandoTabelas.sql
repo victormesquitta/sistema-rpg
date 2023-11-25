@@ -11,5 +11,6 @@ select * from tb_outraproficiencia;
 select * from tb_atributos;
 select * from tb_talentotraco;
 select * from tb_moedas;
-
 select * from tb_equipamento;
+
+select * from tb_magia;

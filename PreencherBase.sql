@@ -51,3 +51,7 @@ VALUES (10, 5, 20, 2, 1, 1);
 /*Equipamento*/
 INSERT INTO tb_equipamento (codpersonagem, nome, quantidade, peso) VALUES
 (1, 'Espada', 1, 5.0);
+
+/*Magia*/
+INSERT INTO tb_magia (codpersonagem, material, tempoconjuracao, alcance, componente, duracao, descricao, nvlmagia, tipomagia)
+VALUES (1, 'Material 1', 'Tempo 1', 'Alcance 1', 'Componente 1', 'Duracao 1', 'Descricao 1', 1, 'Tipo 1');
