@@ -55,3 +55,7 @@ INSERT INTO tb_equipamento (codpersonagem, nome, quantidade, peso) VALUES
 /*Magia*/
 INSERT INTO tb_magia (codpersonagem, material, tempoconjuracao, alcance, componente, duracao, descricao, nvlmagia, tipomagia)
 VALUES (1, 'Material 1', 'Tempo 1', 'Alcance 1', 'Componente 1', 'Duracao 1', 'Descricao 1', 1, 'Tipo 1');
+
+/*Ataques Conjuração*/
+INSERT INTO tb_ataquesconjuracao (codpersonagem, nome, bonusataque, dano, tipodano, origem)
+VALUES(1, 'Ataque Fogo Mágico', 5, '2d8', 'Fogo', 'Ataque');

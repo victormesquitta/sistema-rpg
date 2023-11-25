@@ -17,6 +17,11 @@ public class AtaquesConjuracaoModel {
     @Column(name = "codataquesconjuracao")
     private Integer codAtaquesConjuracao;
 
+    @ManyToOne
+    @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
+            foreignKey = @ForeignKey(name = "fk_ataquesconjuracao_personagem1"))
+    private PersonagemModel personagemModel;
+
     @Column(name = "nome", length = 300, nullable = false)
     private String nome;
 
@@ -32,14 +37,4 @@ public class AtaquesConjuracaoModel {
 
     @Column(name = "origem", length = 45, nullable = false)
     private String origem; // se é ataque ou conjuração
-
-    @ManyToOne
-    @JoinColumn(name = "codequipamento", referencedColumnName = "codequipamento",
-            foreignKey = @ForeignKey(name = "fk_ataquesconjuracao_equipamento1"))
-    private EquipamentoModel equipamentoModel;
-
-    @ManyToOne
-    @JoinColumn(name = "codmagia", referencedColumnName = "codmagia",
-            foreignKey = @ForeignKey(name = "fk_ataquesconjuracao_magias1"))
-    private MagiaModel magiaModel;
 }
