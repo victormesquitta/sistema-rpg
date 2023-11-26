@@ -6,47 +6,57 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import senac.domain.dtos.requests.AuthenticationDTO;
+import senac.domain.dtos.requests.RegisterDTO;
+import senac.domain.dtos.responses.LoginResponseDTO;
 import senac.domain.models.UsuarioModel;
 import senac.domain.repositories.UsuarioRepository;
+import senac.domain.security.TokenService;
 
 @RestController
-@RequestMapping("auth")
-
+@RequestMapping("/auth")
 public class AuthenticationController {
 
     @Autowired
-    private UsuarioRepository repository;
+    private PasswordEncoder passwordEncoder;
+
+    private UsuarioModel usuarioModel;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
 
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
-        var usernamePassoword = new UsernamePasswordAuthenticationToken(data.usuario(), data.senha());
-        var auth = this.authenticationManager.authenticate(usernamePassoword);
+    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO authentication) {
+        var authenticationToken = new UsernamePasswordAuthenticationToken(authentication.usuario(), authentication.senha());
+        var auth = this.authenticationManager.authenticate(authenticationToken);
+
+        var token = tokenService.GerarToken((UsuarioModel) auth.getPrincipal());
+        return ResponseEntity.ok(new LoginResponseDTO(token));
+    }
+    @PostMapping("/register")
+    public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
+        if(this.usuarioRepository.findByUsuario(data.login()) != null) return ResponseEntity.badRequest().build();
+
+        String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
+        UsuarioModel novoUsuario = new UsuarioModel(data.login(), encryptedPassword);
+
+        this.usuarioRepository.save(novoUsuario);
 
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/registrar")
-    public ResponseEntity registrar(@RequestBody @Valid AuthenticationDTO data) {
-        if (this.repository.findByLogin(data.usuario()) != null)                                    //caso já tenha um usuario no banco
-            return ResponseEntity.badRequest().build();
-
-        String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha());
-
-        UsuarioModel novoUsuario = new UsuarioModel(data.usuario(), encryptedPassword);
-
-         this.repository.save(novoUsuario);
-
-         return ResponseEntity.ok().build();
-    }
 
 
 }

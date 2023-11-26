@@ -22,10 +22,12 @@ public class ProficienciaResponseDTO {
     @Size(max = 45, message = "O atributo relacionado deve ter no máximo 45 caracteres")
     private String atributoRelacionado;
 
-    @Size(max = 45, message = "O modificador deve ter no máximo 45 caracteres")
     private Integer modificador;
 
     @NotNull(message = "O código do personagem não pode ser nulo")
     private Integer codPersonagem;
+
+    @NotNull(message = "O valor total de proficiência do personagem não pode ser nulo")
+    private Integer valorTotProficiencia;
 
 }

@@ -14,64 +14,65 @@ public class PericiasModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codpericia")
-    private Integer codPericia;
+    @Column(name = "codpericias")
+    private Integer codPericias;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
+            foreignKey = @ForeignKey(name = "fk_pericias_personagem1"))
     private PersonagemModel personagemModel;
 
     @Column(name = "atletismo", length = 45, nullable = false)
-    private String atletismo;
+    private Integer atletismo;
 
     @Column(name = "acrobacia", length = 45, nullable = false)
-    private String acrobacia;
+    private Integer acrobacia;
 
     @Column(name = "furtividade", length = 45, nullable = false)
-    private String furtividade;
+    private Integer furtividade;
 
     @Column(name = "prestidigitacao", length = 45, nullable = false)
-    private String prestidigitacao;
+    private Integer prestidigitacao;
 
     @Column(name = "arcanismo", length = 45, nullable = false)
-    private String arcanismo;
+    private Integer arcanismo;
 
     @Column(name = "historia", length = 45, nullable = false)
-    private String historia;
+    private Integer historia;
 
     @Column(name = "investigacao", length = 45, nullable = false)
-    private String investigacao;
+    private Integer investigacao;
 
     @Column(name = "natureza", length = 45, nullable = false)
-    private String natureza;
+    private Integer natureza;
 
     @Column(name = "religiao", length = 45, nullable = false)
-    private String religiao;
+    private Integer religiao;
 
     @Column(name = "intuicao", length = 45, nullable = false)
-    private String intuicao;
+    private Integer intuicao;
 
     @Column(name = "lidarcomanimais", length = 45, nullable = false)
-    private String lidarComAnimais;
+    private Integer lidarComAnimais;
 
     @Column(name = "medicina", length = 45, nullable = false)
-    private String medicina;
+    private Integer medicina;
 
     @Column(name = "percepcao", length = 45, nullable = false)
-    private String percepcao;
+    private Integer percepcao;
 
     @Column(name = "sobrevivencia", length = 45, nullable = false)
-    private String sobrevivencia;
+    private Integer sobrevivencia;
 
     @Column(name = "atuacao", length = 45, nullable = false)
-    private String atuacao;
+    private Integer atuacao;
 
     @Column(name = "enganacao", length = 45, nullable = false)
-    private String enganacao;
+    private Integer enganacao;
 
     @Column(name = "intimidacao", length = 45, nullable = false)
-    private String intimidacao;
+    private Integer intimidacao;
 
     @Column(name = "persuasao", length = 45, nullable = false)
-    private String persuasao;
+    private Integer persuasao;
 }

@@ -13,11 +13,15 @@ public class ProficienciaMapper {
     private ModelMapper modelMapper;
 
     public ProficienciaResponseDTO toResponseDto(ProficienciaModel proficienciaModel) {
-        return modelMapper.map(proficienciaModel, ProficienciaResponseDTO.class);
+        ProficienciaResponseDTO proficienciaResponseDTO = modelMapper.map(proficienciaModel, ProficienciaResponseDTO.class);
+        proficienciaResponseDTO.setCodPersonagem(proficienciaModel.getPersonagemModel().getCodPersonagem());
+        return proficienciaResponseDTO;
     }
 
     public ProficienciaRequestDTO toRequestDto(ProficienciaModel proficienciaModel) {
-        return modelMapper.map(proficienciaModel, ProficienciaRequestDTO.class);
+        ProficienciaRequestDTO proficienciaRequestDTO = modelMapper.map(proficienciaModel, ProficienciaRequestDTO.class);
+        proficienciaRequestDTO.setCodPersonagem(proficienciaModel.getPersonagemModel().getCodPersonagem());
+        return proficienciaRequestDTO;
     }
 
     public ProficienciaModel toEntity(ProficienciaResponseDTO proficienciaResponseDTO) {

@@ -3,13 +3,9 @@ package senac.domain.services;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import senac.domain.dtos.requests.CampanhaRequestDTO;
 import senac.domain.dtos.requests.ParticipanteRequestDTO;
-import senac.domain.dtos.requests.UsuarioRequestDTO;
 import senac.domain.dtos.responses.CampanhaResponseDTO;
 import senac.domain.dtos.responses.ParticipanteResponseDTO;
-import senac.domain.dtos.responses.UsuarioResponseDTO;
 import senac.domain.mappers.CampanhaMapper;
 import senac.domain.mappers.ParticipanteMapper;
 import senac.domain.mappers.UsuarioMapper;
@@ -63,6 +59,7 @@ public class ParticipanteService {
     public ParticipanteResponseDTO obterParticipantePorIdResponse(Integer id) {
         listarParticipantesResponse();
         Optional<ParticipanteModel> participanteOptional = participanteRepository.findById(id);
+        System.out.println(participanteOptional);
         participanteOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum participante encontrado para o ID fornecido."));
         System.out.println(participanteOptional.map(participanteMapper::toResponseDto));
         return participanteOptional.map(participanteMapper::toResponseDto).orElse(null);
@@ -75,7 +72,24 @@ public class ParticipanteService {
         return participanteOptional.map(participanteMapper::toRequestDto).orElse(null);
     }
 
+    public ParticipanteModel obterParticipanteModelPorId(Integer codParticipante){
+        listarParticipantesResponse();
+        Optional<ParticipanteModel> participanteOptional = participanteRepository.findById(codParticipante);
+        participanteOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum participante encontrado para o ID fornecido."));
+        ParticipanteRequestDTO participanteRequestDTO = participanteOptional.map(participanteMapper::toRequestDto).orElse(null);
+        ParticipanteModel participanteModel = participanteMapper.toEntity(participanteRequestDTO);
+        participanteModel.setCodParticipante(obterParticipantePorIdResponse(codParticipante).getCodParticipante());
+        participanteModel.setCampanhaModel(campanhaService.obterCampanhaModelPorId(participanteRequestDTO.getCodCampanha()));
+        participanteModel.setUsuarioModel(usuarioService.obterUsuarioModelPorId(participanteRequestDTO.getCodUsuario()));
+        return participanteModel;
+
+    }
+
     public void criarParticipante(ParticipanteRequestDTO participanteDto) {
+
+        CampanhaModel campanhaModel = campanhaService.obterCampanhaModelPorId(participanteDto.getCodCampanha());
+        UsuarioModel usuarioModel = usuarioService.obterUsuarioModelPorId(participanteDto.getCodUsuario());
+
         Integer codUsuario = participanteDto.getCodUsuario();
         Integer codCampanha = participanteDto.getCodCampanha();
 
@@ -83,13 +97,10 @@ public class ParticipanteService {
         participanteDto.setAdmMaster(false);
         participanteDto.setAdm(false);
 
-        CampanhaResponseDTO campanhaExistente = campanhaService.obterCampanhaPorIdResponse(codCampanha);
-        UsuarioResponseDTO usuarioExistente = usuarioService.obterUsuarioPorIdResponse(codUsuario);
-
         System.out.println("Existe na campanha: " + participanteRepository.existsByUsuarioModel_CodUsuarioAndCampanhaModel_CodCampanha(codUsuario, codCampanha));
         ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDto);
-        participanteModel.setCampanhaModel(campanhaMapper.toEntity(campanhaExistente));
-        participanteModel.setUsuarioModel(usuarioMapper.toEntity(usuarioExistente));
+        participanteModel.setCampanhaModel(campanhaModel);
+        participanteModel.setUsuarioModel(usuarioModel);
         usuarioTemParticipanteNaCampanha(codUsuario, codCampanha);
         participanteRepository.save(participanteModel);
     }
@@ -98,12 +109,16 @@ public class ParticipanteService {
         ParticipanteResponseDTO participanteDonoDto = new ParticipanteResponseDTO();
 
         // pegar via autenticação
-        Integer codUsuario = 1; //participanteDonoDto.getCodUsuario();
+        Integer codUsuario = 2; //participanteDonoDto.getCodUsuario();
 
         ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDonoDto);
 
         participanteModel.setNome("Participante 1");
-        participanteModel.setUsuarioModel(usuarioMapper.toEntity(usuarioService.obterUsuarioPorIdRequest(codUsuario))); // puxar a autenticação do usuário para pegar seu id
+
+
+        UsuarioModel usuarioModel = usuarioMapper.toEntity(usuarioService.obterUsuarioPorIdResponse(codUsuario));
+        usuarioModel.setSenha((usuarioService.obterUsuarioPorIdRequest(codUsuario).getSenha()));
+        participanteModel.setUsuarioModel(usuarioModel); // puxar a autenticação do usuário para pegar seu id
         participanteModel.setCampanhaModel(campanha);
         participanteModel.setAdm(true);
         participanteModel.setAdmMaster(true);
@@ -131,24 +146,21 @@ public class ParticipanteService {
 //        participanteRepository.save(participanteModel);
     }
 
-    public void atualizarParticipante(Integer id, ParticipanteRequestDTO participanteDto) {
+    public void atualizarParticipante(Integer codParticipante, ParticipanteRequestDTO participanteDto) {
 //        if(!(id.equals(participanteDto.getCodUsuario()))){
 //            throw new RuntimeException("Não é possível alterar o codigo de usuário.");
 
 
 //        }
-        ParticipanteRequestDTO participanteExistente = obterParticipantePorIdRequest(id);
+        ParticipanteRequestDTO participanteExistente = obterParticipantePorIdRequest(codParticipante);
 
-        Integer codUsuario = participanteExistente.getCodUsuario();
-        Integer codCampanha = participanteExistente.getCodCampanha();
+        CampanhaModel campanhaModel = campanhaService.obterCampanhaModelPorId(participanteDto.getCodCampanha());
+        UsuarioModel usuarioModel = usuarioService.obterUsuarioModelPorId(participanteDto.getCodUsuario());
 
-        UsuarioModel usuarioExistente =  usuarioMapper.toEntity(usuarioService.obterUsuarioPorIdRequest(codUsuario));
-        CampanhaModel campanhaExistente = campanhaMapper.toEntity(campanhaService.obterCampanhaPorIdRequest(codCampanha));
-
-        if(!(usuarioExistente.getCodUsuario().equals(participanteDto.getCodUsuario()))){
+        if(!(usuarioModel.getCodUsuario().equals(participanteDto.getCodUsuario()))){
             throw new RuntimeException("Não é possível desvincular um participante de um usuário.");
         }
-        else if(!(campanhaExistente.getCodCampanha().equals(participanteDto.getCodCampanha()))){
+        else if(!(campanhaModel.getCodCampanha().equals(participanteDto.getCodCampanha()))){
             throw new RuntimeException("Não é possível desvincular um participante de uma campanha.");
 
         }
@@ -163,9 +175,9 @@ public class ParticipanteService {
 
         //System.out.println(participanteRepository.existsByUsuarioModel_CodUsuarioAndCampanhaModel_CodCampanha(codUsuario, codCampanha));
         ParticipanteModel participanteAtualizado = participanteMapper.toEntity(participanteDto);
-        participanteAtualizado.setCodParticipante(id);
-        participanteAtualizado.setUsuarioModel(usuarioExistente);
-        participanteAtualizado.setCampanhaModel(campanhaExistente);
+        participanteAtualizado.setCodParticipante(codParticipante);
+        participanteAtualizado.setUsuarioModel(usuarioModel);
+        participanteAtualizado.setCampanhaModel(campanhaModel);
         // Atualizar o participante no banco de dados
         participanteRepository.save(participanteAtualizado);
     }

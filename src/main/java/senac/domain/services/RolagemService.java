@@ -3,7 +3,6 @@ package senac.domain.services;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import senac.domain.dtos.requests.PersonagemRequestDTO;
 import senac.domain.dtos.requests.RolagemRequestDTO;
 import senac.domain.dtos.responses.RolagemResponseDTO;
 import senac.domain.mappers.PersonagemMapper;
@@ -65,26 +64,38 @@ public class RolagemService {
         return rolagemOptional.map(rolagemMapper::toRequestDto).orElse(null);
     }
 
-    public void criarRolagem(RolagemRequestDTO rolagemRequestDTO) {
+    public RolagemModel obterRolagemModelPorId(Integer codRolagem){
+        listarRolagensResponse();
+        Optional<RolagemModel> rolagemOptional = rolagensRepository.findById(codRolagem);
+        rolagemOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma rolagem encontrada para o ID fornecido."));
+        RolagemRequestDTO rolagemRequestDTO = rolagemOptional.map(rolagemMapper::toRequestDto).orElse(null);
         RolagemModel rolagemModel = rolagemMapper.toEntity(rolagemRequestDTO);
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemService.obterPersonagemPorIdRequest(rolagemRequestDTO.getCodPersonagem()));
+        rolagemModel.setCodRolagem(codRolagem);
+        rolagemModel.setPersonagemModel(personagemService.obterPersonagemModelPorId(rolagemRequestDTO.getCodPersonagem()));
+        return rolagemModel;
+    }
+
+    public void criarRolagem(RolagemRequestDTO rolagemRequestDTO) {
+        PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(rolagemRequestDTO.getCodPersonagem());
+        RolagemModel rolagemModel = rolagemMapper.toEntity(rolagemRequestDTO);
         rolagemModel.setPersonagemModel(personagemModel);
         rolagensRepository.save(rolagemModel);
     }
 
-    public void atualizarRolagem(Integer codRolagem, RolagemRequestDTO rolagemDTO) {
+    public void atualizarRolagem(Integer codRolagem, RolagemRequestDTO rolagemRequestDTO) {
 
-        RolagemRequestDTO rolagemExistente = obterRolagemPorIdRequest(codRolagem);
-        PersonagemRequestDTO personagemDTO = personagemService.obterPersonagemPorIdRequest(rolagemExistente.getCodPersonagem());
+        RolagemResponseDTO rolagemExistente = obterRolagemPorIdResponse(codRolagem);
+        PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(rolagemRequestDTO.getCodPersonagem());
 
-        if(!(personagemDTO.getCodPersonagem().equals(rolagemDTO.getCodPersonagem()))){
+        if(!(personagemModel.getCodPersonagem().equals(rolagemExistente.getCodPersonagem()))){
             throw new RuntimeException("Rolagem não pode alterar de personagem.");
         }
-        RolagemModel rolagensAtualizado = rolagemMapper.toEntity(rolagemDTO);
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemDTO);
-        rolagensAtualizado.setPersonagemModel(personagemModel);
-        rolagensAtualizado.setCodRolagem(codRolagem);
-        rolagensRepository.save(rolagensAtualizado);
+
+        RolagemModel rolagemAtualizada = rolagemMapper.toEntity(rolagemRequestDTO);
+        rolagemAtualizada.setCodRolagem(codRolagem);
+        rolagemAtualizada.setPersonagemModel(personagemModel);
+
+        rolagensRepository.save(rolagemAtualizada);
     }
 
     public void excluirRolagem(Integer codPersonagem) {

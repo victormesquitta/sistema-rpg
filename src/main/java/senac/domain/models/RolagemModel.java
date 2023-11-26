@@ -1,10 +1,11 @@
 package senac.domain.models;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -30,7 +31,7 @@ public class RolagemModel {
     private String tipoDado ;
 
     @Column(name = "data", nullable = false)
-    private Timestamp data ;
+    private LocalDateTime data ;
 
     @Column(name = "tiporolagem", nullable = false)
     private String tipoRolagem ;

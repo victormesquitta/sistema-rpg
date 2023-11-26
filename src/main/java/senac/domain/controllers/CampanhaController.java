@@ -1,15 +1,14 @@
 package senac.domain.controllers;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import senac.domain.dtos.responses.CampanhaResponseDTO;
 import senac.domain.dtos.requests.CampanhaRequestDTO;
+import senac.domain.dtos.responses.CampanhaResponseDTO;
 import senac.domain.mappers.CampanhaMapper;
-import senac.domain.models.CampanhaModel;
 import senac.domain.repositories.CampanhaRepository;
 import senac.domain.services.CampanhaService;
 import senac.domain.services.ParticipanteService;
@@ -38,6 +37,7 @@ public class CampanhaController {
         participanteService.criarPrimeiroParticipante(campanhaService.criarCampanha(campanhaRequestDto));
         return new ResponseEntity<>("Campanha criada com sucesso.", HttpStatus.CREATED);
     }
+
     @GetMapping
     public ResponseEntity<Object> listarCampanhas() {
         List<CampanhaResponseDTO> listaCampanhas = campanhaService.listarCampanhasResponse();

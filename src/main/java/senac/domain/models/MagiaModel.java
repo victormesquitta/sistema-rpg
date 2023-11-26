@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="tb_magias")
+@Table(name="tb_magia")
 public class MagiaModel {
 
     @Id
@@ -19,7 +19,7 @@ public class MagiaModel {
 
     @ManyToOne
     @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
-            foreignKey = @ForeignKey(name = "fk_magias_personagem1"))
+            foreignKey = @ForeignKey(name = "fk_magia_personagem1"))
     private PersonagemModel personagemModel;
 
     @Column(name = "material", length = 200)

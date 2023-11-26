@@ -13,12 +13,12 @@ import java.util.List;
 @Repository
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer> {
 
-    UserDetails findByLogin(String usuario);   //Metodo usado para consultar os usuarios
-    @GetMapping
-    default List<UsuarioModel> find(UsuarioModel filtro){
-        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase()
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING );
-        Example example = Example.of(filtro, matcher);
-        return findAll(example);
-    }
+    UserDetails findByUsuario(String usuario);   //Metodo usado para consultar os usuarios
+//    @GetMapping
+//    default List<UsuarioModel> find(UsuarioModel filtro){
+//        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase()
+//                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING );
+//        Example example = Example.of(filtro, matcher);
+//        return findAll(example);
+//    }
 }

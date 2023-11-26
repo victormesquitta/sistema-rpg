@@ -12,11 +12,15 @@ public class RolagemMapper {
     private ModelMapper modelMapper;
 
     public RolagemResponseDTO toResponseDto(RolagemModel rolagemModel) {
-        return modelMapper.map(rolagemModel, RolagemResponseDTO.class);
+        RolagemResponseDTO rolagemResponseDTO = modelMapper.map(rolagemModel, RolagemResponseDTO.class);
+        rolagemResponseDTO.setCodPersonagem(rolagemModel.getPersonagemModel().getCodPersonagem());
+        return rolagemResponseDTO;
     }
 
     public RolagemRequestDTO toRequestDto(RolagemModel rolagemModel) {
-        return modelMapper.map(rolagemModel, RolagemRequestDTO.class);
+        RolagemRequestDTO rolagemRequestDTO = modelMapper.map(rolagemModel, RolagemRequestDTO.class);
+        rolagemRequestDTO.setCodPersonagem(rolagemModel.getPersonagemModel().getCodPersonagem());
+        return rolagemRequestDTO;
     }
 
     public RolagemModel toEntity(RolagemResponseDTO rolagemResponseDTO) {

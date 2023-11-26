@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,7 +46,8 @@ public class UsuarioModel implements UserDetails {
     @Column(name="horasjogadas", nullable = false)
     private LocalTime horasJogadas;
 
-    @OneToMany(mappedBy = "usuarioModel", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "usuarioModel", cascade = CascadeType.ALL)
     private List<ParticipanteModel> participantes = new ArrayList<>();
 
     public UsuarioModel (String usuario, String senha){

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -44,6 +45,9 @@ public class CampanhaModel {
     @Column(name = "qtdplayersoffline", nullable = false)
     private Integer qtdPlayersOffline;
 
-    @OneToMany(mappedBy = "campanhaModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "campanhaModel", cascade = CascadeType.ALL)
     private List<ParticipanteModel> participantes = new ArrayList<>();
+
 }
+

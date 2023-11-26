@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campanha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilocampanha.css">
+</head>
+
+<body>
+
+    <div class="main-content">
+        <header class="topnav">
+            <section class="logo">Logo</section>
+            <nav>
+                <ul class="topnav-menu">
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">CAMPANHAS</a></li>
+                    <li><a href="#">AMIGOS</a></li>
+                    <li><a href="#">INFORMAÇÕES</a></li>
+                    <li><a href="#">SOBRE</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="content-block">
+                <div class="text-block">
+                    <h2>COMECE SUA AVENTURA!</h2>
+                    <img src="imagem 1.png" alt="Imagem 1">
+                    <p>Quer despertar sua imaginação enquanto se diverte com os amigos? Dungeons & Dragons é um RPG colaborativo para jogadores de todas as idades. Reúna seus amigos para derrotar monstros poderosos, embarcar em missões épicas e contar histórias lendárias cheias de fantasia e diversão.</p>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <div class="text-block">
+                    <h2>SUPORTE A
+                        VÁRIOS SISTEMAS</h2>
+                        <img src="imagem 2.png" alt="Imagem 2">
+                    <p>Em caso de necessidade, colocamo-nos à disposição para auxiliá-lo em uma ampla variedade de sistemas. Não hesite em contatar nossa equipe para esclarecimentos ou dúvidas. Estamos totalmente preparados e comprometidos em fornecer o suporte necessário para garantir sua experiência tranquila e satisfatória.</p>
+                </div>
+                <div class="content-block">
+                    <div class="text-block">
+                        <h2>CRIE O SEU PRÓPRIO SISTEMAS</h2>
+                        <img src="imagem 3.png" alt="Imagem 3">
+                        <p>Crie o seu pró´rio sistema e venha se divertir com seus amigos como vocês quiserem e o melhor, com as suas regras !!</p>
+                    </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>

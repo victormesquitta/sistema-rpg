@@ -66,25 +66,38 @@ public class OutraProficienciaService {
         return outraProficienciaOptional.map(outraProficienciaMapper::toRequestDto).orElse(null);
     }
 
-    public void criarOutraProficiencia(OutraProficienciaRequestDTO outraProficienciaRequestDTO) {
+    public OutraProficienciaModel obterOutraProficienciaModelPorId(Integer codOutraProficiencia){
+        listarOutrasProficienciasResponse();
+        Optional<OutraProficienciaModel> outraProficienciaOptional = outraProficienciaRepository.findById(codOutraProficiencia);
+        outraProficienciaOptional.orElseThrow(() -> new EntityNotFoundException("Nenhuma outra proficiência encontrada para o ID fornecido."));
+        OutraProficienciaRequestDTO outraProficienciaRequestDTO = outraProficienciaOptional.map(outraProficienciaMapper::toRequestDto).orElse(null);
         OutraProficienciaModel outraProficienciaModel = outraProficienciaMapper.toEntity(outraProficienciaRequestDTO);
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemService.obterPersonagemPorIdRequest(outraProficienciaRequestDTO.getCodPersonagem()));
+        outraProficienciaModel.setCodOutraProficiencia(codOutraProficiencia);
+        outraProficienciaModel.setPersonagemModel(personagemService.obterPersonagemModelPorId(outraProficienciaRequestDTO.getCodPersonagem()));
+
+        return outraProficienciaModel;
+    }
+
+    public void criarOutraProficiencia(OutraProficienciaRequestDTO outraProficienciaRequestDTO) {
+        PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(outraProficienciaRequestDTO.getCodPersonagem());
+        OutraProficienciaModel outraProficienciaModel = outraProficienciaMapper.toEntity(outraProficienciaRequestDTO);
         outraProficienciaModel.setPersonagemModel(personagemModel);
         outraProficienciaRepository.save(outraProficienciaModel);
     }
 
     public void atualizarOutraProficiencia(int codOutraProficiencia, OutraProficienciaRequestDTO outraProficienciaRequestDTO) {
-        OutraProficienciaResponseDTO outraProficienciaExistente = obterOutraProficienciaPorIdResponse(codOutraProficiencia);
-        PersonagemResponseDTO personagemResponseDTO = personagemService.obterPersonagemPorIdResponse(outraProficienciaExistente.getCodPersonagem());
 
-        if(!(personagemResponseDTO.getCodPersonagem().equals(outraProficienciaExistente.getCodPersonagem()))){
+        OutraProficienciaResponseDTO outraProficienciaExistente = obterOutraProficienciaPorIdResponse(codOutraProficiencia);
+        PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(outraProficienciaRequestDTO.getCodPersonagem());
+
+        if(!(personagemModel.getCodPersonagem().equals(outraProficienciaExistente.getCodPersonagem()))){
             throw new RuntimeException("A Outra Proficiência não pode alterar de personagem.");
         }
 
         OutraProficienciaModel outraProficienciaAtualizada = outraProficienciaMapper.toEntity(outraProficienciaRequestDTO);
-        PersonagemModel personagemModel = personagemMapper.toEntity(personagemResponseDTO);
         outraProficienciaAtualizada.setCodOutraProficiencia(codOutraProficiencia);
         outraProficienciaAtualizada.setPersonagemModel(personagemModel);
+
         outraProficienciaRepository.save(outraProficienciaAtualizada);
     }
 

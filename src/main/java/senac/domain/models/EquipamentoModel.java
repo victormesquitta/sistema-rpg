@@ -24,7 +24,7 @@ public class EquipamentoModel {
     @Column(name = "nome", length = 100, nullable = false   )
     private String nome;
 
-    @Column(name = "qtd", nullable = false)
+    @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
     @Column(name = "peso", nullable = false)

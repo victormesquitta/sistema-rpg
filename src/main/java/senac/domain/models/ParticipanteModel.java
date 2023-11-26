@@ -23,12 +23,11 @@ public class ParticipanteModel {
     @Column(name = "codparticipante")
     private Integer codParticipante;
 
-    @ToString.Exclude
+//    @ToString.Exclude
     @ManyToOne(cascade = CascadeType.MERGE)
 //    @PrimaryKeyJoinColumn(name = "codusuario", referencedColumnName = "codusuario")
     @JoinColumn(name = "codusuario", referencedColumnName = "codusuario",
             foreignKey = @ForeignKey(name = "fk_participante_usuario1"))
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private UsuarioModel usuarioModel;
 
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -53,10 +52,12 @@ public class ParticipanteModel {
     @Column(name = "admmaster", nullable = false)
     private boolean admMaster;
 
-    @OneToMany(mappedBy = "participanteModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "participanteModel", cascade = CascadeType.ALL)
     private List<PersonagemModel> personagens = new ArrayList<>();
 
-    @OneToMany(mappedBy = "participanteModel", cascade = {CascadeType.ALL, CascadeType.REMOVE}, orphanRemoval = true)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "participanteModel", cascade = CascadeType.ALL)
     private List<RegrasModel> regras = new ArrayList<>();
 
     //ver como ficaria a questão da foto

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import senac.domain.dtos.requests.PersonagemRequestDTO;
 import senac.domain.dtos.responses.PersonagemResponseDTO;
+import senac.domain.services.PericiasService;
 import senac.domain.services.PersonagemService;
 
 import java.util.List;
@@ -15,12 +16,20 @@ import java.util.List;
 @RequestMapping("/api/personagens")
 public class PersonagemController {
 
+
+    private final PersonagemService personagemService;
+    private final PericiasService periciasService;
+
     @Autowired
-    private PersonagemService personagemService;
+    public PersonagemController(PersonagemService personagemService, PericiasService periciasService) {
+        this.personagemService = personagemService;
+        this.periciasService = periciasService;
+    }
+
 
     @PostMapping
     public ResponseEntity<Object> criarPersonagem(@RequestBody @Valid PersonagemRequestDTO personagemRequestDTO) {
-        personagemService.criarPersonagem(personagemRequestDTO);
+        periciasService.criarPericiasComPersonagem(personagemService.criarPersonagem(personagemRequestDTO));
         return new ResponseEntity<>("Personagem criado com sucesso.", HttpStatus.CREATED);
     }
 

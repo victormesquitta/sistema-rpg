@@ -32,8 +32,8 @@ public class MoedasModel {
     @Column(name = "da", columnDefinition = "INT COMMENT 'diamante astral'", nullable = false)
     private Integer da;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "codpersonagem", referencedColumnName = "codpersonagem",
+            foreignKey = @ForeignKey(name = "fk_moedas_personagem1"))
     private PersonagemModel personagemModel;
-
 }
