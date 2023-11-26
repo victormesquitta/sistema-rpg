@@ -21,8 +21,8 @@ INSERT INTO tb_personagem (codparticipante, nome, classe, raca, antecedente, niv
 VALUES (1, 'Nome Personagem', 'Classe', 'Raça', 'Antecedente', 1, 0, 2, 'Inspiração', 'Sabedoria Passiva', 12, 3, 30.0, 10, 0, 'Traços Personalidade', 'Ideais', 'Vínculos', 'Fraquezas', 'Cor dos Olhos', 'Altura', 'Peso', 'Cor da Pele', 'Cor dos Cabelos', 'Aparência', 'Aliados e Organizações', 'Outras Características', 'História', 'Tesouro', 'Inteligência', 15, 5);
 
 /*Rolagem*/
-INSERT INTO tb_rolagem (codpersonagem, resultrolagem, tipodado, data, tiporolagem, qtdrolagens)
-VALUES (1, 15, 'D20', '2023-11-20 10:30:00', 'Ataque', 1);
+INSERT INTO tb_rolagem (codpersonagem, resultrolagem, tipodado, data, tiporolagem, qtdrolagens, valoresgerados)
+VALUES (1, 22, 'D20', '2023-11-20 10:30:00', 'Ataque', 3, '(8, 10, 4)');
 
 /*Proficiencia*/
 INSERT INTO tb_proficiencia (ferramenta, tipoProficiencia, atributoRelacionado, modificador, codpersonagem, valortotproficiencia)
@@ -57,5 +57,5 @@ INSERT INTO tb_magia (codpersonagem, material, tempoconjuracao, alcance, compone
 VALUES (1, 'Material 1', 'Tempo 1', 'Alcance 1', 'Componente 1', 'Duracao 1', 'Descricao 1', 1, 'Tipo 1');
 
 /*Ataques Conjuração*/
-INSERT INTO tb_ataquesconjuracao (codpersonagem, nome, bonusataque, dano, tipodano, origem)
-VALUES(1, 'Ataque Fogo Mágico', 5, '2d8', 'Fogo', 'Ataque');
+INSERT INTO tb_ataquesconjuracao (codpersonagem, nome, bonusataque, tipodado, tipodano, origem, qtdrolagens)
+VALUES(1, 'Ataque Fogo Mágico', 5, 'D8', 'Fogo', 'Ataque', 3);

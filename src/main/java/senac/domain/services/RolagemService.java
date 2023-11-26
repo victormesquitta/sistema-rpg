@@ -12,6 +12,7 @@ import senac.domain.models.PersonagemModel;
 import senac.domain.models.RolagemModel;
 import senac.domain.repositories.RolagensRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -81,30 +82,42 @@ public class RolagemService {
         RolagemModel rolagemModel = rolagemMapper.toEntity(rolagemRequestDTO);
         rolagemModel.setPersonagemModel(personagemModel);
 
+        //set resultado da rolagem e os valore gerados
+        calculaRolagem(rolagemModel);
 
-
-
-
-        getTipoDado(rolagemRequestDTO.getTipoDado());
-
-
-
-        rolagemModel.setResultRolagem();
         rolagensRepository.save(rolagemModel);
     }
 
 
-    public TipoDado getTipoDado(String tipoDado){
+    public TipoDado converteTipoDado(String tipoDado){
+        // aceita tanto letra minuscula quanto maiuscula - D20/d20
+        String dado = tipoDado.substring(0, 1).toUpperCase();
         return switch (tipoDado) {
             case "D4" -> TipoDado.D4;
             case "D6" -> TipoDado.D6;
-            case "D8" -> TipoDado.D6;
-            case "D12" -> TipoDado.D6;
-            case "D20" -> TipoDado.D6;
-            case "D100" -> TipoDado.D6;
+            case "D8" -> TipoDado.D8;
+            case "D12" -> TipoDado.D12;
+            case "D20" -> TipoDado.D20;
+            case "D100" -> TipoDado.D100;
             default -> throw new RuntimeException("Opção de dado inválida!");
         };
     }
+
+    public RolagemModel calculaRolagem(RolagemModel rolagemModel){
+        Integer qtdRolagens = rolagemModel.getQtdRolagens();
+        TipoDado tipoDado = converteTipoDado(rolagemModel.getTipoDado());
+        ArrayList<Integer> valoresDados = new ArrayList<>();
+        int valorTotRolagem = 0;
+        for (int i = 0; i < qtdRolagens; i++) {
+            int numeroRandomizado = (int) (Math.random() * tipoDado.getLados()) + 1;
+            valoresDados.add(numeroRandomizado);
+            valorTotRolagem += numeroRandomizado;
+        }
+        rolagemModel.setResultRolagem(valorTotRolagem);
+        rolagemModel.setValoresGerados(valoresDados.toString().replace('[', '(').replace(']', ')'));
+        return rolagemModel;
+    }
+
 
     public void atualizarRolagem(Integer codRolagem, RolagemRequestDTO rolagemRequestDTO) {
 

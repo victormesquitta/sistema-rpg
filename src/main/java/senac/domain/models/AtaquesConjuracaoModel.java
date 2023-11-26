@@ -29,8 +29,11 @@ public class AtaquesConjuracaoModel {
     private Integer bonusAtaque;
 
     // passar o dado a ser rolado. ex: 3d20
-    @Column(name = "dano", length = 20, nullable = false)
-    private String dano;
+    @Column(name = "tipodado")
+    private String tipoDado;
+
+    @Column(name = "qtdrolagens")
+    private Integer qtdRolagens;
 
     @Column(name = "tipodano", length = 45, nullable = false)
     private String tipoDano;

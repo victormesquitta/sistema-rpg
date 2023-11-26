@@ -1,5 +1,6 @@
 package senac.domain.dtos.responses;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -28,5 +29,8 @@ public class RolagemResponseDTO {
 
     @NotNull(message = "A quantidade de rolagens não pode ser nula")
     private Integer qtdRolagens;
+
+    @Column(name = "valoresgerados", length = 100)
+    private String valoresGerados;
 
 }

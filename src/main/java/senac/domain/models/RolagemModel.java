@@ -39,4 +39,7 @@ public class RolagemModel {
     @Column(name = "qtdrolagens", nullable = false)
     private Integer qtdRolagens;
 
+    @Column(name = "valoresgerados", length = 100)
+    private String valoresGerados;
+
 }

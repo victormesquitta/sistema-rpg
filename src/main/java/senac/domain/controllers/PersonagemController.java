@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import senac.domain.dtos.requests.PersonagemRequestDTO;
 import senac.domain.dtos.responses.PersonagemResponseDTO;
+import senac.domain.models.PersonagemModel;
+import senac.domain.services.AtributosService;
+import senac.domain.services.MoedasService;
 import senac.domain.services.PericiasService;
 import senac.domain.services.PersonagemService;
 
@@ -19,17 +22,24 @@ public class PersonagemController {
 
     private final PersonagemService personagemService;
     private final PericiasService periciasService;
+    private final AtributosService atributosService;
+    private final MoedasService moedasService;
 
     @Autowired
-    public PersonagemController(PersonagemService personagemService, PericiasService periciasService) {
+    public PersonagemController(PersonagemService personagemService, PericiasService periciasService, AtributosService atributosService, MoedasService moedasService) {
         this.personagemService = personagemService;
         this.periciasService = periciasService;
+        this.atributosService = atributosService;
+        this.moedasService = moedasService;
     }
 
 
     @PostMapping
     public ResponseEntity<Object> criarPersonagem(@RequestBody @Valid PersonagemRequestDTO personagemRequestDTO) {
-        periciasService.criarPericiasComPersonagem(personagemService.criarPersonagem(personagemRequestDTO));
+        PersonagemModel personagemModel = personagemService.criarPersonagem(personagemRequestDTO);
+        atributosService.criarAtributosComPersonagem(personagemModel);
+        periciasService.criarPericiasComPersonagem(personagemModel);
+        moedasService.criarMoedaComPersonagem(personagemModel);
         return new ResponseEntity<>("Personagem criado com sucesso.", HttpStatus.CREATED);
     }
 
