@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import senac.domain.dtos.requests.AuthenticationDTO;
+import senac.domain.dtos.requests.RegisterDTO;
 import senac.domain.dtos.responses.LoginResponseDTO;
 import senac.domain.models.UsuarioModel;
 import senac.domain.repositories.UsuarioRepository;
@@ -43,6 +44,17 @@ public class AuthenticationController {
 
         var token = tokenService.GerarToken((UsuarioModel) auth.getPrincipal());
         return ResponseEntity.ok(new LoginResponseDTO(token));
+    }
+    @PostMapping("/register")
+    public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
+        if(this.usuarioRepository.findByUsuario(data.login()) != null) return ResponseEntity.badRequest().build();
+
+        String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
+        UsuarioModel novoUsuario = new UsuarioModel(data.login(), encryptedPassword);
+
+        this.usuarioRepository.save(novoUsuario);
+
+        return ResponseEntity.ok().build();
     }
 
 
