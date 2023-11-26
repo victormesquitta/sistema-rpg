@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import senac.domain.dtos.requests.PericiasRequestDTO;
 import senac.domain.dtos.responses.PericiasResponseDTO;
 import senac.domain.mappers.PericiasMapper;
+import senac.domain.models.AtributosModel;
 import senac.domain.models.PersonagemModel;
 import senac.domain.models.PericiasModel;
 import senac.domain.repositories.PericiasRepository;
@@ -89,7 +90,7 @@ public class PericiasService {
         periciasRepository.save(periciasModel);
     }
 
-    public void criarPericiasComPersonagem(PersonagemModel personagemModel) {
+    public void criarPericiasComPersonagem(AtributosModel atributosModel) {
         PericiasResponseDTO periciasResponseDTO = new PericiasResponseDTO();
         PericiasModel periciasModel = periciasMapper.toEntity(periciasResponseDTO);
 
@@ -112,7 +113,7 @@ public class PericiasService {
         periciasModel.setIntimidacao(0);
         periciasModel.setPersuasao(0);
 
-        periciasModel.setPersonagemModel(personagemModel);
+        periciasModel.setPersonagemModel(atributosModel.getPersonagemModel());
 
         periciasRepository.save(periciasModel);
     }

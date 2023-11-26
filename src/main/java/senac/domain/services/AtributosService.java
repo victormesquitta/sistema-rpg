@@ -87,7 +87,7 @@ public class AtributosService {
         atributosRepository.save(atributosModel);
     }
 
-    public void criarAtributosComPersonagem(PersonagemModel personagemModel) {
+    public AtributosModel criarAtributosComPersonagem(PersonagemModel personagemModel) {
         AtributosResponseDTO atributosResponseDTO = new AtributosResponseDTO();
         AtributosModel atributosModel = atributosMapper.toEntity(atributosResponseDTO);
 
@@ -101,6 +101,7 @@ public class AtributosService {
         atributosModel.setPersonagemModel(personagemModel);
 
         atributosRepository.save(atributosModel);
+        return atributosModel;
     }
 
     public void atualizarAtributo(int codAtributos, AtributosRequestDTO atributosRequestDTO) {
