@@ -1,0 +1,142 @@
+:root {
+    --primary-color: #03060c;
+    --dark: #cdcdf6;
+    --light: #776969;
+    --default-pad: 2.5rem;
+}
+
+*{
+    margin:0;
+    padding:0;
+    border:0;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    color: var(--dark);
+    display: flex;
+    flex-direction: column; 
+    margin: 0; 
+    
+}
+
+nav{
+    display: flex;
+    height: 100%;
+    width: 50%;
+    align-items: center;
+
+}
+
+nav ul{
+    display: flex;
+    margin: 0;
+    list-style-type: none;
+}
+
+.topnav-menu li{
+    padding: 5%;
+}
+
+.main-content {
+    background-color: #0e0d0d;
+    flex-grow: 1;
+}
+
+.topnav {
+    background-color: #aa4946;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center; 
+    padding-right: var(--default-pad); 
+    height: 10vh;
+    width: 100%;
+    padding: 0;
+}
+
+.div-logo{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 30%;
+    margin: 0;
+}
+
+.logo {
+    height: 100%;
+    margin: 0;
+}
+
+.div-acesso{
+    background-color: #aa4684;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 20%;
+}
+
+.nav-button{
+    height: 30%;
+    width: 30%;
+    border-radius: 10px;
+}
+
+/* .topnav-menu li {
+    display: inline-block;
+    list-style: none;
+} */
+
+main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.div-main{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 60%;
+}
+
+.content-block {
+    background-color: orange;
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.content-img{
+    display: flex;
+    align-items: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}   
+
+.content-block img {
+    max-width: 150%;
+    height: auto;
+    max-height: 150px; 
+    margin-bottom: 10px;
+}
+
+.text-block {
+    text-align: left;
+    max-width: 200px; 
+    margin: 0;
+}
+
+
+.title{
+    
+}
+
