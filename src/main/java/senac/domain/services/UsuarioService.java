@@ -4,12 +4,14 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import senac.domain.dtos.requests.UsuarioRequestDTO;
 import senac.domain.dtos.responses.UsuarioResponseDTO;
 import senac.domain.mappers.UsuarioMapper;
 import senac.domain.models.UsuarioModel;
 import senac.domain.repositories.UsuarioRepository;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,6 +52,14 @@ public class UsuarioService{
         Optional<UsuarioModel> usuarioOptional = usuarioRepository.findById(id);
         usuarioOptional.orElseThrow(() -> new EntityNotFoundException("Nenhum usuário encontrado para o ID fornecido."));
             return usuarioOptional.map(usuarioMapper::toResponseDto).orElse(null);
+    }
+
+    public void salvarImagemDoUsuario(Integer codUsuario, MultipartFile imagem) throws IOException {
+        UsuarioModel usuario = usuarioRepository.findById(codUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        usuario.setImagem(imagem.getBytes());
+        usuarioRepository.save(usuario);
     }
 
     public UsuarioRequestDTO obterUsuarioPorIdRequest(Integer id) {

@@ -39,7 +39,10 @@ public class UsuarioModel implements UserDetails {
     @Column(name="datacriacao", nullable = false)
     private LocalDate dataCriacao;
 
-//    private Blob imagem;
+    @Lob
+    @Column(name="imagem", nullable = false)
+    private byte [] imagem;
+
     @Column(name="horasjogadas", nullable = false)
     private LocalTime horasJogadas;
 
