@@ -106,15 +106,16 @@ body {
 
 
 #container__principal--section {
-  background-image: url(imagens/background-1.png);
-  /* backdrop-filter: blur(10px); */
+  background-image: url(/static/images/home/background-1.png);
+  background-clip: border-box;
+ 
 }
 #container__principal--section2 {
-  background-image: url(imagens/background-2.png);
+  background-image: url(/static/images/home/background-2.png);
   /* backdrop-filter: blur(10px); */
 }
 #container__principal--section3 {
-  background-image: url(imagens/background-3.png);
+  background-image: url(/static/images/home/background-3.png);
   /* backdrop-filter: blur(10px); */
 }
 

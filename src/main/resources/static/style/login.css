@@ -16,7 +16,7 @@ body {
     /* background-color: #ecf0f1; */
 }
 .content {
-    background-color: #fff;
+    background-color: #f1d7d7;
     border-radius: 15px;
     width: 1000px;
     height: 70%;
@@ -142,9 +142,22 @@ body {
 .form input {
     height: 45px;
     width: 100%;
+    padding-left: 10px;
     border: none;
     background-color: #ecf0f1;
 }
+
+.form input:focus{
+    background:rgb(231, 245, 250);
+    border: 0.1px solid rgb(104, 178, 224);
+    outline: none !important;
+}
+
+
+/* input{
+    border: none;  
+} */
+
 input:-webkit-autofill 
 {    
     -webkit-box-shadow: 0 0 0px 1000px #ecf0f1 inset !important;
@@ -184,8 +197,6 @@ input:-webkit-autofill
 .password::first-letter {
     text-transform: capitalize;
 }
-
-
 
 .sign-in-js .first-content .first-column {
     z-index: -1;
