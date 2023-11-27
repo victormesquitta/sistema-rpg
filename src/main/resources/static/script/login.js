@@ -1,4 +1,4 @@
-const formulario = document.querySelector("form");
+const formulario = document.querySelector(".form");
 const Iemail = document.querySelector("#inputEmail");
 const isenha = document.querySelector("#inputPassword");
 
