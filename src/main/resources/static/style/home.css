@@ -26,10 +26,19 @@ body {
   background-color: #04141b;
   display: flex;
   justify-content: space-between;
-  padding-left: 2rem;
+  /* padding-left: 2rem; */
+  width: 100%;
+  box-shadow: 0 1px 30px #191919;
 }
-.imagem {
+
+.navegacao{
+  
+}
+
+.logo {
   margin: 5px;
+  padding-left: 2rem;
+
 }
 .menu-lista {
   display: flex;
@@ -39,7 +48,7 @@ body {
 
 .list-link {
   list-style-type: none;
-  padding: 10px;
+  padding: 20px;
   font-size: 15px;
   font-weight: 200;
   /* font-family: 'Inter', sans-serif; */
@@ -47,7 +56,13 @@ body {
 
 .cabecalho__list-link {
   text-decoration: none;
+
 }
+
+.cabecalho__list-link:hover{
+  text-decoration: underline;
+}
+
 
 .container {
   height: 100vh;
@@ -127,4 +142,6 @@ body {
   padding: 1em;
   text-align: center;
   margin-top: 1em;
+  margin-right: 1em;
+  margin-left: 1em;
 }
