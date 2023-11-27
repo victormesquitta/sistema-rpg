@@ -36,9 +36,9 @@ public class ParticipanteModel {
     private CampanhaModel campanhaModel;
 
     // pegar imagem padrão no do envio da foto ser nulo
-//    @Lob
-//    @Column(nullable = true)
-//    private Byte[] imagem;
+    @Lob
+    @Column(nullable = true, columnDefinition = "LONGBLOB")
+    private Byte[] imagem;
 
     @Column(nullable = false, length = 100)
     private String nome;

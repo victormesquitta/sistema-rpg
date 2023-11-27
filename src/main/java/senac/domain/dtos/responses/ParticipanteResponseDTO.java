@@ -17,4 +17,5 @@ public class ParticipanteResponseDTO {
     private String cargo;
     private boolean adm;
     private boolean admMaster;
+    private byte[] imagem;
 }

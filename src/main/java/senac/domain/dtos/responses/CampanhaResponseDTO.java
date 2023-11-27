@@ -32,4 +32,6 @@ public class CampanhaResponseDTO {
     @NotNull(message = "O campo 'qtdPlayersOffline' não pode ser nulo")
     @Min(value = 0, message = "A quantidade mínima de players offline é 0")
     private Integer qtdPlayersOffline;
+
+    private byte[] imagem;
 }
