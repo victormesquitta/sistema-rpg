@@ -43,8 +43,8 @@ public class    UsuarioModel implements UserDetails {
 //    @Column(name="imagem", nullable = false, columnDefinition = "LONGBLOB")
 //    private byte [] imagem;
 
-    @Column(name="horasjogadas", nullable = false)
-    private LocalTime horasJogadas;
+//    @Column(name="horasjogadas", nullable = false)
+//    private LocalTime horasJogadas;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "usuarioModel", cascade = CascadeType.ALL)

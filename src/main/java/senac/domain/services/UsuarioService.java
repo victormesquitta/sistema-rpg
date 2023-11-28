@@ -12,6 +12,7 @@ import senac.domain.models.UsuarioModel;
 import senac.domain.repositories.UsuarioRepository;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,7 +38,7 @@ public class UsuarioService{
                     .collect(Collectors.toList());
     }
 
-    public List<Object> listarUsuariosRequest() {
+    public List<UsuarioRequestDTO> listarUsuariosRequest() {
         List<UsuarioModel> usuarios = usuarioRepository.findAll();
         if (usuarios.isEmpty()) {
             throw new EntityNotFoundException("Nenhum usuário cadastrado ainda.");
@@ -54,13 +55,13 @@ public class UsuarioService{
             return usuarioOptional.map(usuarioMapper::toResponseDto).orElse(null);
     }
 
-    public void salvarImagemDoUsuario(Integer codUsuario, MultipartFile imagem) throws IOException {
-        UsuarioModel usuario = usuarioRepository.findById(codUsuario)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
-        usuario.setImagem(imagem.getBytes());
-        usuarioRepository.save(usuario);
-    }
+//    public void salvarImagemDoUsuario(Integer codUsuario, MultipartFile imagem) throws IOException {
+//        UsuarioModel usuario = usuarioRepository.findById(codUsuario)
+//                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+//
+//        usuario.setImagem(imagem.getBytes());
+//        usuarioRepository.save(usuario);
+//    }
 
     public UsuarioRequestDTO obterUsuarioPorIdRequest(Integer id) {
         listarUsuariosResponse();
@@ -82,6 +83,7 @@ public class UsuarioService{
     public void criarUsuario(UsuarioRequestDTO usuarioRequestDto) {
         validarDadosDuplicados(usuarioRequestDto);
         UsuarioModel usuarioModel = usuarioMapper.toEntity(usuarioRequestDto);
+        usuarioModel.setDataCriacao(LocalDate.now());
         usuarioRepository.save(usuarioModel);
     }
 

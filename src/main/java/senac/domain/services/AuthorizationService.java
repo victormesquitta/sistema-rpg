@@ -13,8 +13,8 @@ import senac.domain.repositories.UsuarioRepository;
 
 public class AuthorizationService implements UserDetailsService {
 
-    @Autowired
-    UsuarioModel usuario;
+//    @Autowired
+//    UsuarioModel usuario;
 
     @Autowired
     UsuarioRepository usuarioRepository;

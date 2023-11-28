@@ -112,14 +112,14 @@ public class ParticipanteService {
 
     public void criarPrimeiroParticipante(CampanhaModel campanha) {
         ParticipanteResponseDTO participanteDonoDto = new ParticipanteResponseDTO();
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Integer codUsuario = 1;/*null;*/
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Integer codUsuario = null;
-
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            codUsuario = Integer.parseInt(userDetails.getUsername());
-        }
+//        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+//            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//            codUsuario = userDetails.getCodUsername();
+//        }
 
 
 

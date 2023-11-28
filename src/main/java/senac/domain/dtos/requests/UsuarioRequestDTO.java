@@ -36,7 +36,7 @@ public class UsuarioRequestDTO {
 //        private byte[] imagem;
 
 //        @NotNull(message = "O campo 'horasjogadas' não pode ser nulo")
-        private LocalTime horasJogadas;
+//        private LocalTime horasJogadas;
 }
 
 

@@ -27,6 +27,4 @@ public class UsuarioResponseDTO {
 
 //    private byte[] imagem;
 
-    @NotNull(message = "O campo 'horasjogadas' não pode ser nulo")
-    private LocalTime horasJogadas;
 }
