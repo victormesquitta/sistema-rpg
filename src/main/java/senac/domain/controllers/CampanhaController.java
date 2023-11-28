@@ -5,19 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import senac.domain.dtos.requests.CampanhaRequestDTO;
 import senac.domain.dtos.responses.CampanhaResponseDTO;
 import senac.domain.mappers.CampanhaMapper;
+import senac.domain.models.UsuarioModel;
 import senac.domain.repositories.CampanhaRepository;
 import senac.domain.services.CampanhaService;
 import senac.domain.services.ParticipanteService;
 
 import java.util.List;
 
-@RestController
-@CrossOrigin("*")
-@RequestMapping("/api/campanhas")
+@Controller
+@RequestMapping("/campanhas")
 public class CampanhaController {
     private final ParticipanteService participanteService;
     private final CampanhaMapper campanhaMapper;
@@ -37,27 +39,28 @@ public class CampanhaController {
         participanteService.criarPrimeiroParticipante(campanhaService.criarCampanha(campanhaRequestDto));
         return new ResponseEntity<>("Campanha criada com sucesso.", HttpStatus.CREATED);
     }
-
-    @GetMapping
-    public ResponseEntity<Object> listarCampanhas() {
+    @GetMapping()
+    public String listarCampanhas(Model model) {
         List<CampanhaResponseDTO> listaCampanhas = campanhaService.listarCampanhasResponse();
-            return ResponseEntity.ok(listaCampanhas);
+        model.addAttribute("listaCampanhas", listaCampanhas);
+        return "campanha";
     }
 
-    @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<Object> obterCampanhaPorId(@PathVariable Integer id) {
-        CampanhaResponseDTO campanhaResponseDTODto = campanhaService.obterCampanhaPorIdResponse(id);
-        return ResponseEntity.ok(campanhaResponseDTODto);
+    @PostMapping("/detalhesCampanha")
+    public String detalhesCampanha(@RequestParam Integer codCampanha, Model model) {
+        campanhaService.obterCampanhaPorIdRequest(codCampanha);
+        return "detalhesCampanha";
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Object> atualizarCampanha(@PathVariable Integer id, @RequestBody CampanhaRequestDTO campanhaRequestDTO) {
         campanhaService.atualizarCampanha(id, campanhaRequestDTO);
         return new ResponseEntity<>("Campanha atualizada com sucesso.", HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> excluirCampanha(@PathVariable Integer id) {
-        campanhaService.excluirCampanha(id);
-        return new ResponseEntity<>("Campanha excluída com sucesso.", HttpStatus.OK);
+    @PostMapping("/deletarCampanha")
+    public String excluirCampanha(@RequestParam Integer codCampanha) {
+        campanhaService.excluirCampanha(codCampanha);
+        return "campanha";
     }
 }

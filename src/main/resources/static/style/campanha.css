@@ -67,7 +67,9 @@ body{
  
 }
 
-
+.imgcampanha{
+    width: 400px;
+}
 
 
 .card {
@@ -79,6 +81,7 @@ body{
     text-align: center;
     box-sizing: border-box;
     margin-bottom: 20px;
+    cursor: pointer;
     /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
 }
 

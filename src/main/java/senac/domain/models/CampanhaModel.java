@@ -27,23 +27,11 @@ public class CampanhaModel {
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "qtdplayers", nullable = false)
-    private Integer qtdPlayers;
-
-    @Column(name = "imagem", columnDefinition = "LONGBLOB")
-    private byte[] imagem;
-
     @Column(name = "datacriacao", nullable = false)
     private LocalDate dataCriacao;
 
     @Column(name = "senha", nullable = false, length = 40)
     private String senha;
-
-    @Column(name = "qtdplayersonline", nullable = false)
-    private Integer qtdPlayersOnline;
-
-    @Column(name = "qtdplayersoffline", nullable = false)
-    private Integer qtdPlayersOffline;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "campanhaModel", cascade = CascadeType.ALL)
