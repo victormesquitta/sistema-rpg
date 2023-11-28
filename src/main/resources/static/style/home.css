@@ -29,6 +29,10 @@ body {
   /* padding-left: 2rem; */
   width: 100%;
   box-shadow: 0 1px 30px #191919;
+  position: fixed;
+  z-index: 2;  
+  top: 0;
+  height: 10vh;
 }
 
 .navegacao{
@@ -63,7 +67,6 @@ body {
   text-decoration: underline;
 }
 
-
 .container {
   height: 100vh;
   display: grid;
@@ -71,7 +74,10 @@ body {
   scroll-snap-align: start;
   background-size: cover; /* Certifica que a imagem de fundo cobre toda a seção */
   background-position: center;
+  margin: 10vh 0 0 0;
+  z-index: 1;
 }
+
 .container__principal {
   margin: 6em;
 }
