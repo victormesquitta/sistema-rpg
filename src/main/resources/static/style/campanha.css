@@ -118,3 +118,22 @@ body{
     text-align: center;
     margin-top: 1em;
   }
+
+  .container-cards {
+    background-color: white; /* Cor de fundo da caixa branca */
+    border: 1px solid #ccc; /* Borda ao redor da caixa */
+    border-radius: 10px; /* Raio da borda */
+    padding: 20px; /* Espaçamento interno da caixa */
+    margin: 20px auto; /* Margem superior e inferior para centralizar e separar do cabeçalho */
+    max-width: 1200px; /* Largura máxima da caixa (ajuste conforme necessário) */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra da caixa */
+}
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#04141b;
+    color: rgb(235, 235, 235);
+    padding: 3em;
+}
