@@ -113,49 +113,31 @@ public class ParticipanteService {
     public void criarPrimeiroParticipante(CampanhaModel campanha) {
         ParticipanteResponseDTO participanteDonoDto = new ParticipanteResponseDTO();
 //
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Integer codUsuario = 1;/*null;*/
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Integer codUsuario = null;
 
-//        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-//            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//            codUsuario = userDetails.getCodUsername();
-//        }
+        if (authentication != null && authentication.getPrincipal() instanceof UsuarioModel) {
+            UsuarioModel usuarioModel = (UsuarioModel) authentication.getPrincipal();
+            codUsuario = usuarioModel.getCodUsuario();
+        }
 
+        if (codUsuario != null) {
+            ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDonoDto);
 
+            participanteModel.setNome("Participante 1");
 
-        ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDonoDto);
-
-        participanteModel.setNome("Participante 1");
-
-
-        UsuarioModel usuarioModel = usuarioMapper.toEntity(usuarioService.obterUsuarioPorIdResponse(codUsuario));
-        usuarioModel.setSenha((usuarioService.obterUsuarioPorIdRequest(codUsuario).getSenha()));
-        participanteModel.setUsuarioModel(usuarioModel); // puxar a autenticação do usuário para pegar seu id
-        participanteModel.setCampanhaModel(campanha);
-        participanteModel.setAdm(true);
-        participanteModel.setAdmMaster(true);
-        participanteModel.setCargo("Mestre");
-        participanteRepository.save(participanteModel);
-
-
-
-//        ParticipanteDTO participanteDonoDto = new ParticipanteDTO();
-//
-//        // pegar via autenticação
-//        Integer codUsuario = 1; //participanteDonoDto.getCodUsuario();
-//
-//        CampanhaRequestDTO campanhaExistente = campanhaService.obterCampanhaPorIdRequest(codCampanha);
-//        UsuarioRequestDTO usuarioExistente = usuarioService.obterUsuarioPorIdRequest(codUsuario);
-//
-//        ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDonoDto);
-//
-//        participanteModel.setNome("Participante 1");
-//        participanteModel.setUsuarioModel(usuarioMapper.toEntity(usuarioExistente)); // puxar a autenticação do usuário para pegar seu id
-//        participanteModel.setCampanhaModel(campanhaMapper.toEntity(campanhaExistente));
-//        participanteModel.setAdm(true);
-//        participanteModel.setAdmMaster(true);
-//        participanteModel.setCargo("Mestre");
-//        participanteRepository.save(participanteModel);
+            UsuarioModel usuarioModel = usuarioMapper.toEntity(usuarioService.obterUsuarioPorIdResponse(codUsuario));
+            usuarioModel.setSenha((usuarioService.obterUsuarioPorIdRequest(codUsuario).getSenha()));
+            participanteModel.setUsuarioModel(usuarioModel);
+            participanteModel.setCampanhaModel(campanha);
+            participanteModel.setAdm(true);
+            participanteModel.setAdmMaster(true);
+            participanteModel.setCargo("Mestre");
+            participanteRepository.save(participanteModel);
+        } else {
+            // Trate o caso em que o código do usuário não é um número inteiro válido
+            throw new IllegalStateException("Código de usuário não é um número inteiro válido.");
+        }
     }
 
     public void atualizarParticipante(Integer codParticipante, ParticipanteRequestDTO participanteDto) {

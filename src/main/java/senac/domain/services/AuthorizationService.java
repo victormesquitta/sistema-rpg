@@ -26,13 +26,7 @@ public class AuthorizationService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserDetails usuario = usuarioRepository.findByUsuario(username);
 
-        if (usuario == null ){
-            throw new UsernameNotFoundException("Usuario não encontrado" + username);
 
-
-        }
-        UsuarioModel usuarioModel = new UsuarioModel();
-        usuarioModel.setCodUsuario(usuarioModel.getCodUsuario());
         return usuarioRepository.findByUsuario(username);    // metodo para fazer a consulta dos usuarios para o spring SecurityConfiguration
     }
 }
