@@ -25,7 +25,7 @@ public class UsuarioResponseDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataCriacao;
 
-    private byte[] imagem;
+//    private byte[] imagem;
 
     @NotNull(message = "O campo 'horasjogadas' não pode ser nulo")
     private LocalTime horasJogadas;

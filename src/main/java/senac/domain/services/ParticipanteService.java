@@ -118,7 +118,7 @@ public class ParticipanteService {
 
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            codUsuario = userDetails.getCodUsername();
+            codUsuario = Integer.parseInt(userDetails.getUsername());
         }
 
 

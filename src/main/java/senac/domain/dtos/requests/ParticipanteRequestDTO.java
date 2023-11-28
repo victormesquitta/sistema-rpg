@@ -16,5 +16,5 @@ public class ParticipanteRequestDTO {
     private String cargo;
     private boolean adm;
     private boolean admMaster;
-    private byte[] imagem;
+//    private byte[] imagem;
 }

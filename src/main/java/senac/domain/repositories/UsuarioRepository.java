@@ -14,6 +14,7 @@ import java.util.List;
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Integer> {
 
     UserDetails findByUsuario(String usuario);   //Metodo usado para consultar os usuarios
+
 //    @GetMapping
 //    default List<UsuarioModel> find(UsuarioModel filtro){
 //        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase()

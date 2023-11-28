@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import senac.domain.models.UsuarioModel;
 import senac.domain.repositories.UsuarioRepository;
 
 @Service
@@ -13,10 +14,25 @@ import senac.domain.repositories.UsuarioRepository;
 public class AuthorizationService implements UserDetailsService {
 
     @Autowired
-    UsuarioRepository repository;
+    UsuarioModel usuario;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByUsuario(username);    // metodo para fazer a consulta dos usuarios para o spring SecurityConfiguration
+        UserDetails usuario = usuarioRepository.findByUsuario(username);
+
+        if (usuario == null ){
+            throw new UsernameNotFoundException("Usuario não encontrado" + username);
+
+
+        }
+        UsuarioModel usuarioModel = new UsuarioModel();
+        usuarioModel.setCodUsuario(usuarioModel.getCodUsuario());
+        return usuarioRepository.findByUsuario(username);    // metodo para fazer a consulta dos usuarios para o spring SecurityConfiguration
     }
 }
