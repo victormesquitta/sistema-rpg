@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Open+Sans:ital@1&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --font: inter;
+}
+
+a {
+    color: #fff;
+}
+body {
+    /* background-image: url(imagens/DALL·E\ 2023-11-23\ 14.07.57\ -\ A\ mystical\ landscape\ at\ twilight\,\ featuring\ an\ array\ of\ jagged\ mountains\ shrouded\ in\ mist.\ In\ the\ sky\ above\ the\ highest\ peak\,\ a\ supernatural\ phenomeno.png); */
+    /* background: color(srgb red green blue); */
+    background-color: black;
+    /* background-image: url(PI/login/imagens/background-3.png); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0; /* Remover as margens padrão */
+    height: 100vh;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: var(--font);
+}
+
+.cabecalho {
+    align-items: center;
+    /* background-color: #04141b; */
+    background-color: #04141b;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2rem;
+}
+
+
+
+.menu-lista {
+    display: flex;
+    color: aliceblue;
+    padding: 2em;
+}
+
+.list-link {
+    list-style-type: none;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 200;
+    /* font-family: 'Inter', sans-serif; */
+}
+
+.cabecalho__list-link {
+    text-decoration: none;
+}
+
+.container {
+    height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Espaço entre os cards */
+    gap: 20px; /* Espaçamento entre os cards */
+    padding: 20px; /* Espaçamento ao redor dos cards */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: center; 
+}
+
+#cabecalho__botao--font {
+    text-decoration: none;
+    background-color: red;
+    border-color: #fff;
+    border-radius: 5px;
+    padding: 1em;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#04141b;
+    color: rgb(235, 235, 235);
+    padding: 3em;
+}
+
+
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input, textarea, select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color:#04141b;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #333;
+}
+
+.formulario {
+    width: 100%;; /* Adjust as needed */
+    /* Add any additional styling as required */
+}
+
+.caixa-formulario {
+    width: 30%;
+    border: 2px solid #ccc; /* Borda sólida cinza */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    background-color: white; /* Fundo branco */
+    /* max-width: 600px;  */
+    margin: auto; /* Centraliza a caixa */
+    width: 40%; /* Ajuste a largura conforme necessário */
+    margin: 20px
+}
+
+.h2{
+    padding: 20px;
+}
