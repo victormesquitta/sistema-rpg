@@ -2,6 +2,11 @@ package senac.domain.services;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import senac.domain.dtos.requests.ParticipanteRequestDTO;
 import senac.domain.dtos.responses.CampanhaResponseDTO;
@@ -108,8 +113,15 @@ public class ParticipanteService {
     public void criarPrimeiroParticipante(CampanhaModel campanha) {
         ParticipanteResponseDTO participanteDonoDto = new ParticipanteResponseDTO();
 
-        // pegar via autenticação
-        Integer codUsuario = 2; //participanteDonoDto.getCodUsuario();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Integer codUsuario = null;
+
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            codUsuario = userDetails.getCodUsername();
+        }
+
+
 
         ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDonoDto);
 
