@@ -22,23 +22,13 @@ public class UsuarioController {
     @Autowired
     private UsuarioMapper usuarioMapper;
 
-//    @PostMapping()
-//    public ResponseEntity<Object> criarUsuario(@RequestBody @Valid UsuarioRequestDTO usuarioRequestDto) {
-//        System.out.println(usuarioRequestDto);
-//        usuarioService.criarUsuario(usuarioRequestDto);
-//        return new ResponseEntity<>("Usuário criado com sucesso.", HttpStatus.CREATED);
-//    }
-//
-//    @PostMapping("/{codUsuario}/foto")
-//    public ResponseEntity<String> uploadFoto(@PathVariable Integer codUsuario, @RequestPart("imagem") MultipartFile imagem) {
-//        UsuarioModel usuario = usuarioService.obterUsuarioModelPorId(codUsuario);
-//        try {
-//            usuarioService.salvarImagemDoUsuario(codUsuario, imagem);
-//            return ResponseEntity.ok("Foto do usuário salva com sucesso");
-//        } catch (IOException e) {
-//            return ResponseEntity.status(500).body("Erro ao salvar a foto do usuário");
-//        }
-//    }
+    @PostMapping()
+    public ResponseEntity<Object> criarUsuario(@RequestBody UsuarioRequestDTO usuarioRequestDto) {
+        System.out.println(usuarioRequestDto);
+        usuarioService.criarUsuario(usuarioRequestDto);
+        return new ResponseEntity<>("Usuário criado com sucesso.", HttpStatus.CREATED);
+    }
+
 
     @GetMapping
     public ResponseEntity<Object> listarUsuarios() {

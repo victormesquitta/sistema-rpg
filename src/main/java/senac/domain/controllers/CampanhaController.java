@@ -34,6 +34,12 @@ public class CampanhaController {
         this.campanhaRepository = campanhaRepository;
     }
 
+    @PostMapping("/criar")
+    public ResponseEntity<Object> criarCampanhaApi(@RequestBody @Valid CampanhaRequestDTO campanhaRequestDto) {
+        participanteService.criarPrimeiroParticipante(campanhaService.criarCampanha(campanhaRequestDto));
+        return new ResponseEntity<>("Campanha criada com sucesso.", HttpStatus.CREATED);
+    }
+
     @PostMapping
     public ResponseEntity<Object> criarCampanha(@RequestBody @Valid CampanhaRequestDTO campanhaRequestDto) {
         // salvando a campanha
