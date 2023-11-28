@@ -32,7 +32,7 @@ public class UsuarioRequestDTO {
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate dataCriacao;
 
-
+        @NotNull(message ="o campo de 'imagem' não pode ser nulo")
         private byte[] imagem;
 
         @NotNull(message = "O campo 'horasjogadas' não pode ser nulo")

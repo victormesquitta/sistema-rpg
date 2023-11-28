@@ -16,7 +16,8 @@ public class PersonagemRequestDTO {
     @Size(max = 255, message = "O nome deve ter no máximo 255 caracteres")
     private String nome;
 
-//    private byte[] foto;
+    @NotBlank(message = "A foto não pode estar em branco")
+    private byte[] foto;
 
     @Size(max = 20, message = "A classe deve ter no máximo 20 caracteres")
     private String classe;

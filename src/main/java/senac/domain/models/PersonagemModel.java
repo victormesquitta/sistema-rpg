@@ -45,9 +45,9 @@ public class PersonagemModel {
     @Column(name = "nome")
     private String nome;
 
-//    @Lob
-//    @Column(name = "foto")
-//    private byte[] foto;
+    @Lob
+    @Column(name = "foto", columnDefinition = "LONGBLOB")
+    private byte[] foto;
 
     @Column(name = "classe", length = 20)
     private String classe;

@@ -30,8 +30,8 @@ public class CampanhaModel {
     @Column(name = "qtdplayers", nullable = false)
     private Integer qtdPlayers;
 
-    //@Column(name = "imagem", columnDefinition = "BLOB")
-    //private byte[] imagem;
+    @Column(name = "imagem", columnDefinition = "LONGBLOB")
+    private byte[] imagem;
 
     @Column(name = "datacriacao", nullable = false)
     private LocalDate dataCriacao;
