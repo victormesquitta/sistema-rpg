@@ -154,6 +154,14 @@ body {
 }
 
 
+input[type="file"] {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+}
+
 /* input{
     border: none;  
 } */

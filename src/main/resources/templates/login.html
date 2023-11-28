@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
@@ -40,25 +39,23 @@
                     </ul>
                 </div><!-- social media -->
                 <p class="description description-second">Ou use seu e-mail para cadastro:</p>
-                <form class="form">
+                <form th:action="@{/api/usuarios/{codUsuario}/foto}" th:object="${usuario}" id="userForm" class="form" method="post" enctype="multipart/form-data">
                     <label class="label-input" for="">
                         <i class="far fa-user icon-modify"></i>
-                        <input type="text" placeholder="Name">
+                        <input type="text" placeholder="Nome" th:field="*{usuario}" required>
                     </label>
-                    
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="Email">
+                        <input type="email" placeholder="E-mail" th:field="*{email}" required>
                     </label>
-                    
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Senha" th:field="*{senha}" required>
                     </label>
-                    
-                    
-                    <button class="btn btn-second">Inscrever-se</button>        
-                </form>
+                    <label for="imagem">Imagem:</label>
+                    <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                    <button type="submit" class="btn btn-second">Inscrever-se</button>        
+                </form>                
             </div><!-- second column -->
         </div><!-- first content -->
         <div class="content second-content">
@@ -94,12 +91,12 @@
                 
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="Email">
+                        <input type="email" placeholder="E-mail">
                     </label>
                 
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Senha">
                     </label>
                 
                     <a class="password" href="#">forgot your password?</a>
@@ -109,6 +106,7 @@
         </div><!-- second-content -->
     </div>
     <!-- <script src="/static/script/cadastroScript.js"></script> -->
-    <script src="/static/script/ap.js"></script>    
+    <script src="/static/script/login.js"></script>
+    <!-- <script src="/static/script/cadastro.js"></script> -->
 </body>
 </html>

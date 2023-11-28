@@ -15,27 +15,27 @@ import java.time.LocalTime;
 public class UsuarioRequestDTO {
 
 
-        @NotBlank(message = "O campo 'usuario' não pode estar em branco")
+//        @NotBlank(message = "O campo 'usuario' não pode estar em branco")
         @Size(max = 255, message = "O campo 'usuario' deve ter no máximo 255 caracteres")
         private String usuario;
 
-        @NotBlank(message = "O campo 'email' não pode estar em branco")
+//        @NotBlank(message = "O campo 'email' não pode estar em branco")
         @Email(message = "O campo 'email' deve ser um endereço de e-mail válido")
         @Size(max = 255, message = "O campo 'email' deve ter no máximo 255 caracteres")
         private String email;
 
-        @NotBlank(message = "O campo 'senha' não pode estar em branco")
+//        @NotBlank(message = "O campo 'senha' não pode estar em branco")
         @Size(max = 30, message = "O campo 'senha' deve ter no máximo 30 caracteres")
-        String senha;
+        private String senha;
 
-        @NotNull(message = "O campo 'datacriacao' não pode ser nulo")
+//        @NotNull(message = "O campo 'datacriacao' não pode ser nulo")
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate dataCriacao;
 
-        @NotNull(message ="o campo de 'imagem' não pode ser nulo")
+//        @NotNull(message ="o campo de 'imagem' não pode ser nulo")
         private byte[] imagem;
 
-        @NotNull(message = "O campo 'horasjogadas' não pode ser nulo")
+//        @NotNull(message = "O campo 'horasjogadas' não pode ser nulo")
         private LocalTime horasJogadas;
 }
 

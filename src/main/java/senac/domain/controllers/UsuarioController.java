@@ -25,14 +25,14 @@ public class UsuarioController {
     @Autowired
     private UsuarioMapper usuarioMapper;
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Object> criarUsuario(@RequestBody @Valid UsuarioRequestDTO usuarioRequestDto) {
         usuarioService.criarUsuario(usuarioRequestDto);
         return new ResponseEntity<>("Usuário criado com sucesso.", HttpStatus.CREATED);
     }
 
     @PostMapping("/{codUsuario}/foto")
-    public ResponseEntity<String> uploadFoto(@PathVariable Integer codUsuario, @RequestParam("imagem") MultipartFile imagem) {
+    public ResponseEntity<String> uploadFoto(@PathVariable Integer codUsuario, @RequestPart("imagem") MultipartFile imagem) {
         try {
             usuarioService.salvarImagemDoUsuario(codUsuario, imagem);
             return ResponseEntity.ok("Foto do usuário salva com sucesso");
@@ -40,8 +40,6 @@ public class UsuarioController {
             return ResponseEntity.status(500).body("Erro ao salvar a foto do usuário");
         }
     }
-
-
 
     @GetMapping
     public ResponseEntity<Object> listarUsuarios() {

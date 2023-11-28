@@ -115,15 +115,16 @@ body {
 }
 
 .rodape {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background:#04141b;
+  color: rgb(235, 235, 235);
   /* margin: 1em; */
-  padding: 2em;
+  padding: 3em;
   /* border-radius: 5px; */
 }
 
-.menu__rodape{
-  display: flex;
-}
 
 
 #container__principal--section {
