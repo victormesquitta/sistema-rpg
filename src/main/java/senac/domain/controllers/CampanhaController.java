@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import senac.domain.dtos.requests.CampanhaRequestDTO;
 import senac.domain.dtos.responses.CampanhaResponseDTO;
 import senac.domain.mappers.CampanhaMapper;
@@ -48,7 +49,8 @@ public class CampanhaController {
 
     @PostMapping("/detalhesCampanha")
     public String detalhesCampanha(@RequestParam Integer codCampanha, Model model) {
-        campanhaService.obterCampanhaPorIdRequest(codCampanha);
+        CampanhaRequestDTO campanhaRequestDTO = campanhaService.obterCampanhaPorIdRequest(codCampanha);
+        model.addAttribute("campanha", campanhaRequestDTO);
         return "detalhesCampanha";
     }
 
@@ -61,6 +63,6 @@ public class CampanhaController {
     @PostMapping("/deletarCampanha")
     public String excluirCampanha(@RequestParam Integer codCampanha) {
         campanhaService.excluirCampanha(codCampanha);
-        return "campanha";
+        return "redirect:/campanhas";
     }
 }
