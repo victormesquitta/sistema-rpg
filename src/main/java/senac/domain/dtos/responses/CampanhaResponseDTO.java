@@ -21,17 +21,4 @@ public class CampanhaResponseDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataCriacao;
 
-    @NotNull(message = "O campo 'players' não pode ser nulo")
-    @Min(value = 0, message = "O número mínimo de players é 0")
-    private Integer qtdPlayers;
-
-    @NotNull(message = "O campo 'qtdPlayersOnline' não pode ser nulo")
-    @Min(value = 0, message = "A quantidade mínima de players online é 0")
-    private Integer qtdPlayersOnline;
-
-    @NotNull(message = "O campo 'qtdPlayersOffline' não pode ser nulo")
-    @Min(value = 0, message = "A quantidade mínima de players offline é 0")
-    private Integer qtdPlayersOffline;
-
-    private byte[] imagem;
 }

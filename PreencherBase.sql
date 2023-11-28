@@ -5,8 +5,8 @@ INSERT INTO tb_usuario(datacriacao, email, horasjogadas, senha, usuario)
 VALUES('2023-11-02','mvictormesquita@gmail.com','08:30','1234','mesquitta');
 
 /*Campanha*/
-INSERT INTO tb_campanha (nome, qtdplayers, datacriacao, senha, qtdplayersonline, qtdplayersoffline)
-VALUES ('Nome Campanha', 5, '2023-11-01', 'senha123', 3, 2);
+INSERT INTO tb_campanha (nome, datacriacao, senha)
+VALUES ('Nome Campanha', '2023-11-01', 'senha123');
 
 /*Participante*/
 INSERT INTO tb_participante (codusuario, codcampanha, nome, cargo, adm, admMaster)

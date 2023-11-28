@@ -28,9 +28,9 @@ public class CampanhaService{
 
     public List<CampanhaResponseDTO> listarCampanhasResponse() {
         List<CampanhaModel> campanhas = campanhaRepository.findAll();
-        if(campanhas.isEmpty()){
-           throw new EntityNotFoundException("Nenhuma campanha cadastrada ainda.");
-        }
+//        if(campanhas.isEmpty()){
+//           throw new EntityNotFoundException("Nenhuma campanha cadastrada ainda.");
+//        }
         return campanhas.stream()
                 .map(campanhaMapper::toResponseDto)
                 .collect(Collectors.toList());
