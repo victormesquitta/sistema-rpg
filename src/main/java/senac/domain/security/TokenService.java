@@ -33,7 +33,7 @@ public class TokenService {
 
         }catch (JWTCreationException exception){
 
-            throw new RuntimeException("Erro na generação do token", exception);
+            throw new RuntimeException("Erro na geração do token", exception);
 
         }
 
@@ -48,7 +48,7 @@ public class TokenService {
                     .getSubject();
 
         }catch (JWTVerificationException exception){
-            return "";
+            throw new RuntimeException("Erro na validação do token", exception);
 
 
         }

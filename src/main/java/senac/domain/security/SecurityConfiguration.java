@@ -30,8 +30,10 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(mvcMatcherBuilder.pattern("/api/campanhas")).authenticated()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/auth/login")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/campanhas")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/participantes")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/personagens")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/usuarios")).permitAll()
 
 
 

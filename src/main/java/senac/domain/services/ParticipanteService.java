@@ -109,15 +109,15 @@ public class ParticipanteService {
         ParticipanteResponseDTO participanteDonoDto = new ParticipanteResponseDTO();
 
         // pegar via autenticação
-        Integer codUsuario = 2; //participanteDonoDto.getCodUsuario();
+        Integer codUsuario = 1; //participanteDonoDto.getCodUsuario();
 
         ParticipanteModel participanteModel = participanteMapper.toEntity(participanteDonoDto);
 
         participanteModel.setNome("Participante 1");
 
 
-        UsuarioModel usuarioModel = usuarioMapper.toEntity(usuarioService.obterUsuarioPorIdResponse(codUsuario));
-        usuarioModel.setSenha((usuarioService.obterUsuarioPorIdRequest(codUsuario).getSenha()));
+        UsuarioModel usuarioModel = usuarioService.obterUsuarioModelPorId(codUsuario);
+        usuarioModel.setSenha(usuarioModel.getSenha());
         participanteModel.setUsuarioModel(usuarioModel); // puxar a autenticação do usuário para pegar seu id
         participanteModel.setCampanhaModel(campanha);
         participanteModel.setAdm(true);
