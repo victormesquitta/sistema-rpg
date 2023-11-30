@@ -1,4 +1,4 @@
 package senac.domain.dtos.requests;
 
-public record RegisterDTO(String login, String password) {
+public record RegisterDTO(String usuario, String senha) {
 }
