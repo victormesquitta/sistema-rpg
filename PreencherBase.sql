@@ -1,8 +1,8 @@
 use projeto;
 
 /*Usuario*/
-INSERT INTO tb_usuario(datacriacao, email, horasjogadas, senha, usuario) 
-VALUES('2023-11-02','mvictormesquita@gmail.com','08:30','1234','mesquitta');
+INSERT INTO tb_usuario(datacriacao, email, senha, usuario) 
+VALUES('2023-11-02','mvictormesquita@gmail.com','1234','mesquitta');
 
 /*Campanha*/
 INSERT INTO tb_campanha (nome, datacriacao, senha)
