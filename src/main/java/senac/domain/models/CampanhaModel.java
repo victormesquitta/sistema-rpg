@@ -33,6 +33,9 @@ public class CampanhaModel {
     @Column(name = "senha", nullable = false, length = 40)
     private String senha;
 
+    @Column(name = "descricao", nullable = false, length = 3000)
+    private String descricao;
+
     @ToString.Exclude
     @OneToMany(mappedBy = "campanhaModel", cascade = CascadeType.ALL)
     private List<ParticipanteModel> participantes = new ArrayList<>();

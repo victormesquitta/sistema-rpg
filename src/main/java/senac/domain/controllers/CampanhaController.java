@@ -50,7 +50,7 @@ public class CampanhaController {
     public String listarCampanhas(Model model) {
         List<CampanhaResponseDTO> listaCampanhas = campanhaService.listarCampanhasResponse();
         model.addAttribute("listaCampanhas", listaCampanhas);
-        return "campanha";
+        return "campanhas";
     }
 
     @PostMapping("/detalhesCampanha")

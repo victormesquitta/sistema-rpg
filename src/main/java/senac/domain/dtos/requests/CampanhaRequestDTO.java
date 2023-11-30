@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class CampanhaRequestDTO {
 
         private Integer codCampanha;
+
         @NotBlank(message = "O campo 'nome' não pode estar em branco")
         @Size(max = 255, message = "O campo 'nome' deve ter no máximo 255 caracteres")
         private String nome;
@@ -24,5 +25,8 @@ public class CampanhaRequestDTO {
         @NotBlank(message = "O campo 'senha' não pode estar em branco")
         @Size(max = 30, message = "O campo 'senha' deve ter no máximo 30 caracteres")
         private String senha;
+
+        @Size(max = 3000, message = "O campo 'descricao' deve ter no máximo 30 caracteres")
+        private String descricao;
 
 }

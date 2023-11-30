@@ -5,8 +5,8 @@ INSERT INTO tb_usuario(datacriacao, email, senha, usuario)
 VALUES('2023-11-02','mvictormesquita@gmail.com','1234','mesquitta');
 
 /*Campanha*/
-INSERT INTO tb_campanha (nome, datacriacao, senha)
-VALUES ('Nome Campanha', '2023-11-01', 'senha123');
+INSERT INTO tb_campanha (nome, datacriacao, senha, descricao)
+VALUES ('Nome Campanha', '2023-11-01', 'senha123', 'Essa é a descrição da campanha!!! lsdjhab sadlkjasdbknasd asnd asdkh baskn dasnk dasnk ak sdk w qkn edkn dasujdhba dskjvbasdnk asdhjk asd askhjdaskn dasknv asdas');
 
 /*Participante*/
 INSERT INTO tb_participante (codusuario, codcampanha, nome, cargo, adm, admMaster)

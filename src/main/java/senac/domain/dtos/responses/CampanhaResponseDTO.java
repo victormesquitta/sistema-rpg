@@ -21,4 +21,8 @@ public class CampanhaResponseDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataCriacao;
 
+    @Size(max = 3000, message = "O campo 'descricao' deve ter no máximo 30 caracteres")
+    private String descricao;
+
+
 }
