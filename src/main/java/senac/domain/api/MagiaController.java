@@ -1,4 +1,4 @@
-package senac.domain.controllers;
+package senac.domain.api;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

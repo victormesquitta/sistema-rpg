@@ -1,4 +1,4 @@
-package senac.domain.controllers;
+package senac.domain.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,11 +24,9 @@ public class UsuarioController {
 
     @PostMapping()
     public ResponseEntity<Object> criarUsuario(@RequestBody UsuarioRequestDTO usuarioRequestDto) {
-        System.out.println(usuarioRequestDto);
         usuarioService.criarUsuario(usuarioRequestDto);
         return new ResponseEntity<>("Usuário criado com sucesso.", HttpStatus.CREATED);
     }
-
 
     @GetMapping
     public ResponseEntity<Object> listarUsuarios() {

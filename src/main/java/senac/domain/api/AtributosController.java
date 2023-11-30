@@ -1,4 +1,4 @@
-package senac.domain.controllers;
+package senac.domain.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
