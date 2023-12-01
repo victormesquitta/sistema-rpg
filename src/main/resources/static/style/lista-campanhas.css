@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Open+Sans:ital@1&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --font:inter;
+}
+a{
+    color: #fff;
+}
+body{
+    /* background-image: url(imagens/DALL·E\ 2023-11-23\ 14.07.57\ -\ A\ mystical\ landscape\ at\ twilight\,\ featuring\ an\ array\ of\ jagged\ mountains\ shrouded\ in\ mist.\ In\ the\ sky\ above\ the\ highest\ peak\,\ a\ supernatural\ phenomeno.png); */
+    /* background: color(srgb red green blue); */
+    background-color: black;
+    /* background-image: url(PI/login/imagens/background-3.png); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0; /* Remover as margens padrão */
+    height: 100vh;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: var(--font);
+    
+}
+
+.cabecalho{
+    align-items: center;
+    /* background-color: #04141b; */
+    background-color: #04141b;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2rem;
+    height: 10vh;
+}
+
+#logo-ancora{
+    height: 100%;
+}
+
+.logo{
+    height: 80%;
+}
+
+img{
+    user-select: none;  
+}
+
+.imagem{
+    margin: 5px;
+}
+.menu-lista{
+    display: flex;
+    color: aliceblue;
+    padding: 2em;
+    
+}
+
+.list-link{
+    list-style-type: none;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 200;
+    /* font-family: 'Inter', sans-serif; */
+    
+}
+
+.cabecalho__list-link{
+    text-decoration: none;
+}
+
+
+.container{
+    /* height: 90vh; */
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; /* Espaçamento entre os cards */
+    padding: 20px; /* Espaçamento ao redor dos cards */
+    min-height: 70vh;
+    width: 100%;
+}
+
+.imgcampanha{
+    width: 70%;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(50% - 10px); /* Duas colunas com espaço entre elas */
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    min-width: 45%;
+    max-height: 45vh;
+    /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
+}
+
+
+ .titulo-card {
+    font-size: 18px; /* Tamanho da fonte dos títulos */
+    margin: 10px 0; /* Espaçamento entre os títulos e os cards */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    color: blue; /* Cor dos títulos */
+    font-weight: bold; /* Peso da fonte dos títulos */
+}
+
+/* Estilização do botão "Adicionar Card" */
+.botao-adicionar {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px auto; /* Centraliza o botão horizontalmente e adiciona margem inferior */
+    display: block; /* Torna o botão um elemento de bloco para ocupar toda a largura do container */
+}
+
+.botao-adicionar:hover {
+    background-color: #0056b3;
+}
+
+#cabecalho__botao--font{
+    text-decoration: none;
+    background-color: red;
+    border-color: #fff;
+    border-radius: 5px;
+    padding: 1em;
+    text-align: center;
+    margin-top: 1em;
+  }
+
+  .container-cards {
+    background-color: white; /* Cor de fundo da caixa branca */
+    border: 1px solid #ccc; /* Borda ao redor da caixa */
+    border-radius: 10px; /* Raio da borda */
+    padding: 20px; /* Espaçamento interno da caixa */
+    margin: 20px auto; /* Margem superior e inferior para centralizar e separar do cabeçalho */
+    max-width: 1200px; /* Largura máxima da caixa (ajuste conforme necessário) */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra da caixa */
+}
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#04141b;
+    color: rgb(235, 235, 235);
+    padding: 3em;
+}
+
+.caixa{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title{
+    padding: 15px;
+}
+
+button{
+    cursor: pointer;
+  }

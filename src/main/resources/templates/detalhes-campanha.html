@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/style/detalhesCampanha.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/static/images/logo/logo_com_fundo.jpg" type="image/x-icon">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <title>Detalhes Campanha</title>
+</head>
+<header class="cabecalho">
+    <a href="/" class="" id="logo-ancora"><img src="/static/images/logo/logo_com_fundo.jpg" alt="logo" class="logo"></a>
+    <nav class="navegaçao">
+        <ul class="menu-lista">
+            <li class="list-link"><a class="cabecalho__list-link" href="/">Home</a></li>
+            <li class="list-link"><a class="cabecalho__list-link" href="/lista-de-campanhas">Campanhas</a></li>
+            <li class="list-link"><a class="cabecalho__list-link" href="/amigos">Amigos</a></li>
+            <li class="list-link"><a class="cabecalho__list-link" href="/informacoes">Informações</a></li>
+            <li class="list-link"><a class="cabecalho__list-link" id="cabecalho__botao--font" href="/login-cadastro">Registrar / Entrar</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container-cards">
+    <div class="card">
+        <div class="colunas">
+            <div class="coluna1">
+                <img src="/static/images/campanha/campanha_background.png" alt="Imagem 1" class="imgcampanha"><br>
+                <div class="text_campanha"><br>
+                    <h1 th:text="${campanha.nome}"></h1><br>
+                    <h2 th:text="${campanha.codCampanha}"></h2><br>
+                    <p th:text="${campanha.dataCriacao}"></p><br>
+                    <p class="campanha_descricao" th:text="${campanha.descricao}"></p>
+                </div>
+            </div>
+            <div class="coluna2">
+                <h2 class="titulo_participantes">Participantes da Campanha</h2>
+                <div class="lista_participantes" th:each="participante : ${participantes}">
+                    <!-- Exibir informações sobre cada participante -->
+                    <img class="foto_participante" src="/static/images/participantes/foto_participante_default.png" alt="foto do participante">
+                    <div class="infos_participante">
+                        <h3 class="nome_participante" th:text="${participante.nome}"></h3>
+                        <h5 class="role_participante" th:text="${participante.cargo}"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="button_entrar">Entrar na Campanha</button>
+    </div>
+</div>
+
+  
+</body>
+
+<footer class="rodape" >
+    <p>© 2023 Dice & Rise</p>
+</footer>
+
+    <script src="/static/script/campanha.js"></script>
+</html>

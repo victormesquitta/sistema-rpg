@@ -6,4 +6,6 @@ import senac.domain.models.CampanhaModel;
 
 @Repository
 public interface CampanhaRepository extends JpaRepository<CampanhaModel, Integer>{
+
+
 }

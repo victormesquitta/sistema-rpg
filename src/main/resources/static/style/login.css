@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Open+Sans:ital@1&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +7,59 @@
 body {
     font-family: 'Open Sans', sans-serif;
     background-image: url(imagens/s9etZ1.jpg);
+    font-size: 16px;
+    font-weight: 400;
+    font-family: var(--font);
 }
+
+:root{
+    --font:inter;
+}
+
+a{
+    color: #fff;
+}
+
+.cabecalho{
+    align-items: center;
+    /* background-color: #04141b; */
+    background-color: #04141b;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2rem;
+    height: 10vh;
+}
+
+#logo-ancora{
+    height: 100%;
+}
+
+.logo{
+    height: 80%;
+}
+
+.menu-lista{
+    display: flex;
+    color: aliceblue;
+    padding: 2em;
+    
+}
+
+.list-link{
+    list-style-type: none;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 200;
+    /* font-family: 'Inter', sans-serif; */
+    
+}
+
+.cabecalho__list-link{
+    text-decoration: none;
+}
+
+
+
 .container {
     display: flex;
     justify-content: center;
@@ -151,6 +203,10 @@ body {
     background:rgb(231, 245, 250);
     border: 0.1px solid rgb(104, 178, 224);
     outline: none !important;
+}
+
+img{
+    user-select: none;  
 }
 
 

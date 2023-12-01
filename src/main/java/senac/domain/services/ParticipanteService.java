@@ -41,6 +41,17 @@ public class ParticipanteService {
         this.campanhaMapper = campanhaMapper;
     }
 
+    public List<ParticipanteResponseDTO> listarParticipantesPorCampanha(Integer codCampanha) {
+        List<ParticipanteModel> participantes = participanteRepository.findByCampanhaModel_CodCampanha(codCampanha);
+//        if(participantes.isEmpty()){
+//            throw new EntityNotFoundException("Nenhum participante cadastrado.");
+//        }
+        return participantes.stream()
+                .map(participanteMapper::toResponseDto)
+                .collect(Collectors.toList());
+    }
+
+
     public List<ParticipanteResponseDTO> listarParticipantesResponse() {
         List<ParticipanteModel> participantes = participanteRepository.findAll();
         if(participantes.isEmpty()){

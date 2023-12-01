@@ -3,15 +3,15 @@ package senac.domain.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import senac.domain.models.UsuarioModel;
 
 @Controller
-@RequestMapping("/campanha")
-public class CampanhaController {
+@RequestMapping("/informacoes")
+public class InformacoesController {
 
-    @PostMapping()
-    public String obterCampanha(Model model) {
-        return "campanha";
+    @GetMapping()
+    public String informacoes() {
+        return "informacoes";
     }
 }
