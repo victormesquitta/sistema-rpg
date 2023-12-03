@@ -43,7 +43,7 @@
                         </form>
                     </td>
                     <td>
-                        <form th:action="@{/campanha}" method="post">
+                        <form th:action="@{/campanha}" method="get">
                             <input type="hidden" name="codCampanha" th:value="${campanha.codCampanha}" />
                             <button id="detalhe" type="submit">Entrar na Campanha</button>
                         </form>
@@ -58,6 +58,4 @@
 <footer class="rodape" >
     <p>© 2023 Dice & Rise</p>
 </footer>
-
-    <script src="/static/script/campanha.js"></script>
 </html>

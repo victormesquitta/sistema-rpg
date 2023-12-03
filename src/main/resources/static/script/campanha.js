@@ -1,52 +1,26 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//     const adicionarCardButton = document.getElementById("adicionarCard");
-//     const container = document.querySelector(".container");
+const body = document.querySelector("body"),
+      sidebar = body.querySelector(".sidebar"),
+      toggle = body.querySelector(".toggle"), 
+      searchBtn = body.querySelector(".search-box"), 
+      modeSwitch = body.querySelector(".toggle-switch"), 
+      modeText = body.querySelector(".mode-text");
 
-//     adicionarCardButton.addEventListener("click", function () {
-//         // Código para adicionar um novo card
+      toggle.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+      })
 
-//         const novoCard = criarNovoCard();
-//         container.appendChild(novoCard);
+      
+      searchBtn.addEventListener("click", () => {
+        sidebar.classList.remove("close");
+      })
 
-//         adicionarEventoDeletar(novoCard);
-//     });
+      
+      modeSwitch.addEventListener("click", () => {
+        body.classList.toggle("dark");
 
-//     function criarNovoCard() {
-//         const novoCard = document.createElement("div");
-//         novoCard.className = "card";
-
-//         const imagem = document.createElement("img");
-//         imagem.src = "imagem3.jpg"; // Substitua pelo caminho da sua imagem
-//         imagem.alt = "Nova Imagem";
-
-//         const cardContent = document.createElement("div");
-//         cardContent.className = "card-content";
-
-//         const titulo = document.createElement("h3");
-//         titulo.textContent = "Título do Novo Card";
-
-//         const descricao = document.createElement("p");
-//         descricao.textContent = "Descrição do Novo Card.";
-
-//         const botaoDeletar = document.createElement("button");
-//         botaoDeletar.className = "deletar-card";
-//         botaoDeletar.textContent = "Deletar";
-
-//         cardContent.appendChild(titulo);
-//         cardContent.appendChild(descricao);
-//         cardContent.appendChild(botaoDeletar);
-
-//         novoCard.appendChild(imagem);
-//         novoCard.appendChild(cardContent);
-
-//         return novoCard;
-//     }
-
-//     function adicionarEventoDeletar(card) {
-//         const botaoDeletar = card.querySelector(".deletar-card");
-
-//         botaoDeletar.addEventListener("click", function () {
-//             container.removeChild(card);
-//         });
-//     }
-// });
+        if(body.classList.contains("dark")){
+            modeText.innerText = "Light Mode"
+        } else{
+            modeText.innerText = "Dark Mode"
+        }
+      })
