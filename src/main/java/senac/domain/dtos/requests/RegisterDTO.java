@@ -1,4 +1,6 @@
 package senac.domain.dtos.requests;
 
-public record RegisterDTO(String usuario, String senha) {
+import java.time.LocalDate;
+
+public record RegisterDTO(String usuario, String senha, String email, LocalDate dataCriacao) {
 }

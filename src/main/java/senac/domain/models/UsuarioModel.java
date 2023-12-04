@@ -33,7 +33,7 @@ public class    UsuarioModel implements UserDetails {
     @Column(name="email", nullable = false, unique = true, length = 255)
     private String email;
 
-    @Column(name="senha", nullable = false, length = 30)
+    @Column(name="senha", nullable = false, length = 255)
     private String senha;
 
     @Column(name="datacriacao", nullable = false)
