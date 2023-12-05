@@ -95,19 +95,23 @@ body {
 
 #container__titulo--section{
   background-image: url(/src/main/resources/static/images/informações/3.png);
-  backdrop-filter: blur(10px);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #container__principal--section2 {
   background-image: url(/src/main/resources/static/images/informações/1.png);
-  backdrop-filter: blur(10px);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #container__principal--section3 {
   background-image: url(/src/main/resources/static/images/informações/7.png);
-  /* backdrop-filter: blur(10px); */
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #container__principal--section4 {
   background-image: url(/src/main/resources/static/images/informações/4.png);
-  /* backdrop-filter: blur(10px); */
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #cabecalho__botao--font{
