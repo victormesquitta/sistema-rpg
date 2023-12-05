@@ -1,4 +1,5 @@
 use projeto;
+select * from tb_personagem;
 select * from tb_usuario;
 select * from tb_participante;
 select * from tb_campanha;

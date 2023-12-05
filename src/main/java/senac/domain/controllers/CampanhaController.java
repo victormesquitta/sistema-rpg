@@ -52,6 +52,22 @@ public class CampanhaController {
         return "campanha-personagens";
     }
 
+    @GetMapping("/{codCampanha}/{codPersonagem}/{nome}")
+    public String obterPersonagem(@PathVariable Integer codCampanha, @PathVariable String nome, @PathVariable Integer codPersonagem, Model model){
+        CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+        PersonagemResponseDTO personagemResponseDTO = personagemService.obterPersonagemPorIdResponse(codPersonagem);
+        model.addAttribute("personagem", personagemResponseDTO);
+        model.addAttribute("campanha", campanhaResponseDTO);
+        return "campanha-personagem";
+    }
+
+    @GetMapping("/{codCampanha}/criar-personagem")
+    public String criarPersonagem(@PathVariable Integer codCampanha, Model model){
+        CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+        model.addAttribute("campanha", campanhaResponseDTO);
+        return "campanha-criar-personagem";
+    }
+
     @GetMapping("/{codCampanha}/mapa")
     public String obterMapa(@PathVariable Integer codCampanha, Model model){
         CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
@@ -66,10 +82,11 @@ public class CampanhaController {
         return "campanha-regras";
     }
 
-    @GetMapping("/{codCampanha}/criar-personagem")
-    public String criarPersonagem(@PathVariable Integer codCampanha, Model model){
+    @GetMapping("/{codCampanha}/rolagens")
+    public String obterRolagens(@PathVariable Integer codCampanha, Model model){
         CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
         model.addAttribute("campanha", campanhaResponseDTO);
-        return "campanha-criar-personagem";
+        return "campanha-rolagens";
     }
+
 }

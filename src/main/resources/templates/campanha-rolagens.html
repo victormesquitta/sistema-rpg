@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/style/campanha-rolagens.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/static/images/logo/logo_com_fundo.jpg" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Regras</title>
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <a class="ancora-home" href="/">
+                <div class="image-text">
+                    <span class="image">
+                        <img src="/static/images/logo/logo_com_fundo.jpg" alt="logo">
+                    </span>
+                </div>
+                <div class="text header-text">
+                    <span class="name">Dice&Rise</span>
+                    <span class="profession">Web Developer</span>
+                </div>
+            </a>
+            <box-icon class="bx bx-chevron-right toggle" name='chevron-right'></box-icon>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <!-- <li class="search-box">
+                    <box-icon class="bx bx-search icon"></box-icon>
+                    <input type="text" placeholder="Search...">
+                </li> -->
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a th:href="@{/campanha/{codCampanha}(codCampanha=${campanha.codCampanha})}">
+                            <box-icon class="bx bxs-home icon"></box-icon>
+                            <span class="text nav-text">Tela Inicial</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">    
+                        <a th:href="@{/campanha/{codCampanha}/participantes(codCampanha=${campanha.codCampanha})}">
+                            <box-icon class="bx bxs-user icon"></box-icon>
+                            <span class="text nav-text">Participantes</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a th:href="@{/campanha/{codCampanha}/personagens(codCampanha=${campanha.codCampanha})}">
+                            <box-icon class="bx bxs-user-badge icon"></box-icon>
+                            <span class="text nav-text">Personagens</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a th:href="@{/campanha/{codCampanha}/mapa(codCampanha=${campanha.codCampanha})}">
+                            <box-icon class="bx bx-map-alt icon"></box-icon>
+                            <span class="text nav-text">Mapa</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a th:href="@{/campanha/{codCampanha}/regras(codCampanha=${campanha.codCampanha})}">
+                            <box-icon class="bx bxs-book icon"></box-icon>
+                            <span class="text nav-text">Regras</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a th:href="@{/campanha/{codCampanha}/rolagens(codCampanha=${campanha.codCampanha})}">
+                            <box-icon class="bx bxs-dice-6 icon"></box-icon>
+                            <span class="text nav-text">Rolagens</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="/lista-de-campanhas">
+                        <box-icon class="bx bx-log-out icon"></box-icon>
+                        <span class="text nav-text">Sair da campanha</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <section class="home">
+        <div class="text">Rolagens</div>
+    </section>
+</body>
+<script src="/static/script/campanha.js"></script>
+</html>

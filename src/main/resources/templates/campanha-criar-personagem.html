@@ -6,7 +6,7 @@
     <link href="/static/style/campanha-criar-personagem.css" rel="stylesheet">
     <link rel="shortcut icon" href="/static/images/logo/logo_com_fundo.jpg" type="image/x-icon">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Detalhes Campanha</title>
+    <title>Criar Personagem</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -63,9 +63,9 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
-                            <box-icon class="bx bx-map-alt icon"></box-icon>
-                            <span class="text nav-text">Wallets</span>
+                        <a th:href="@{/campanha/{codCampanha}/rolagens(codCampanha=${campanha.codCampanha})}">
+                            <box-icon class="bx bxs-dice-6 icon"></box-icon>
+                            <span class="text nav-text">Rolagens</span>
                         </a>
                     </li>
                 </ul>
@@ -84,7 +84,23 @@
         <div class="text">Criar Personagem</div>
         <div class="container-cards">
             <div class="card">
-            
+                <div class="coluna-1">
+                    <div class="div-img-personagem">
+                        <img class="foto-personagem" src="/static/images/personagens/foto_participante_default.png" alt="">
+                        <input type="file" name="" id="">
+                    </div>
+                    <div class="div-text-info">
+                        <label for="">Nome</label>
+                        <input type="text">
+                    </div>
+                    <div class="coluna-2">
+
+                    </div>
+                </div>
+                
+                <div class="">
+                    
+                </div>
             </div>
     </section>
 </body>

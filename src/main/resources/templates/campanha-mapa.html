@@ -6,7 +6,7 @@
     <link href="/static/style/campanha-mapa.css" rel="stylesheet">
     <link rel="shortcut icon" href="/static/images/logo/logo_com_fundo.jpg" type="image/x-icon">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Detalhes Campanha</title>
+    <title>Mapa</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -63,9 +63,9 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
-                            <box-icon class="bx bx-map-alt icon"></box-icon>
-                            <span class="text nav-text">Wallets</span>
+                        <a th:href="@{/campanha/{codCampanha}/rolagens(codCampanha=${campanha.codCampanha})}">
+                            <box-icon class="bx bxs-dice-6 icon"></box-icon>
+                            <span class="text nav-text">Rolagens</span>
                         </a>
                     </li>
                 </ul>
@@ -83,7 +83,7 @@
     <section class="main">
         <h1 class="text">Mapa</h1>
         <div class="div-mapa">
-            <img class="img-mapa" src="/static/images/campanha/campanha-mapa-vertical.jpg" alt="">
+            <img class="img-mapa" src="/static/images/campanha/mapa-campanha.jpg" alt="">
         </div>
     </section>
 </body>

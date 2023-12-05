@@ -6,7 +6,7 @@
     <link href="/static/style/campanha-personagens.css" rel="stylesheet">
     <link rel="shortcut icon" href="/static/images/logo/logo_com_fundo.jpg" type="image/x-icon">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Detalhes Campanha</title>
+    <title>Personagens</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -63,9 +63,9 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
-                            <box-icon class="bx bx-map-alt icon"></box-icon>
-                            <span class="text nav-text">Wallets</span>
+                        <a th:href="@{/campanha/{codCampanha}/rolagens(codCampanha=${campanha.codCampanha})}">
+                            <box-icon class="bx bxs-dice-6 icon"></box-icon>
+                            <span class="text nav-text">Rolagens</span>
                         </a>
                     </li>
                 </ul>
@@ -83,31 +83,13 @@
     <section class="main">
         <div class="text">Personagens</div>
         <div class="container-cards">
-            <div class="card" th:each="personagem : ${personagens}">
-                <a class="ancora-foto-personagem" th:href="@{/lista-de-campanhas/{codCampanha}(codCampanha=${campanha.codCampanha})}">
+            <a class="ancora-card" th:href="@{/campanha/{codCampanha}/{codPersonagem}/{nome}(codCampanha=${campanha.codCampanha}, codPersonagem=${personagem.codPersonagem}, nome=${personagem.nome})}" th:each="personagem : ${personagens}">
+                <div class="card" >
                     <img src="/static/images/personagens/foto-perfil-personagem.jpg" alt="Imagem 1" class="foto-personagem">
-                </a>
-                <p th:text="${personagem.nome}"></p>  
-                <!-- <td>
-                    <form th:action="@{/lista-de-campanhas/{codCampanha}(codCampanha=${campanha.codCampanha})}" method="get">
-                        <input type="hidden" name="codCampanha" th:value="${campanha.codCampanha}" />
-                        <button id="detalhe" type="submit">Detalhes</button>
-                    </form>
-                </td>
-                <td>
-                    <form th:action="@{/lista-de-campanhas/deletarCampanha}" method="post">
-                        <input type="hidden" name="codCampanha" th:value="${campanha.codCampanha}" />
-                        <button id="detalhe" type="submit">Apagar</button>
-                    </form>
-                </td>
-                <td>
-                    <form th:action="@{/campanha/{codCampanha}(codCampanha=${campanha.codCampanha})}" method="get">
-                        <input type="hidden" name="codCampanha" th:value="${campanha.codCampanha}" />
-                        <button id="detalhe" type="submit">Entrar na Campanha</button>
-                    </form>
-                </td> -->
-            </div>
-            <a id="card-add" class="card" th:href="@{/campanha/{codCampanha}/criar-personagem(codCampanha=${campanha.codCampanha})}">
+                    <p th:text="${personagem.nome}"></p> 
+                </div>
+            </a>
+            <a id="card-add" class="ancora-card" th:href="@{/campanha/{codCampanha}/criar-personagem(codCampanha=${campanha.codCampanha})}">
                 <div class="div-add-personagem">
                     <box-icon class="bx bxs-plus-circle icon-circle"></box-icon>
                     <p>Criar um Personagem</p>

@@ -39,19 +39,12 @@ body {
   height: 100%;
 }
 
-.logo{
-  height: 80%;
-}
-
-.navegacao{
-  
-}
-
 .logo {
+  height: 80%;
   margin: 5px;
   padding-left: 2rem;
-
 }
+
 .menu-lista {
   display: flex;
   color: aliceblue;

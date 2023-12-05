@@ -25,7 +25,13 @@ body {
   background-color: #04141b;
   display: flex;
   justify-content: space-between;
-  padding-left: 2rem;
+  /* padding-left: 2rem; */
+  width: 100%;
+  box-shadow: 0 1px 30px #191919;
+  position: fixed;
+  z-index: 2;  
+  top: 0;
+  height: 10vh;
 }
 .imagem {
   margin: 5px;
@@ -34,6 +40,16 @@ body {
   display: flex;
   color: aliceblue;
   justify-content: flex-end;
+}
+
+#logo-ancora {
+  height: 100%;
+}
+
+.logo {
+  height: 80%;
+  margin: 5px;
+  padding-left: 2rem;
 }
 
 .list-link {

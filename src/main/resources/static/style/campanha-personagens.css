@@ -321,6 +321,21 @@ body.dark .menu-bar .mode i.moon{
 
 .card {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    height: 60%;
+    /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
+}
+
+/* .card p{
+    font-size: 1rem;
+
+} */
+
+.ancora-card{
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -331,22 +346,13 @@ body.dark .menu-bar .mode i.moon{
     margin-right:1%;
     height: 20vh;
     width: 15%;
-    /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
-}
-
-/* .card p{
-    font-size: 1rem;
-
-} */
-
-.ancora-foto-personagem{
-    height: 60%;
-    padding-bottom: 20px;
+    text-decoration: none;
 }
 
 .foto-personagem{
     height: 100%;
     border-radius: 50%;
+    margin-bottom: 20px;
 }
 
 #card-add{
@@ -371,3 +377,4 @@ body.dark .menu-bar .mode i.moon{
     justify-content: center;
     align-items: center;
 }
+
