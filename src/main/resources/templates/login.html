@@ -1,125 +1,85 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <link rel="stylesheet" href="/static/style/login.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="shortcut icon" href="/static/images/logo/logo_com_fundo.jpg" type="image/x-icon">
+    
+    <title>Login Dark/Light Mode</title>
 </head>
-<header class="cabecalho">
-    <a href="/" class="" id="logo-ancora"><img src="/static/images/logo/logo_com_fundo.jpg" alt="logo" class="logo" width="70"></a>
-    <nav class="navegaçao">
-        <ul class="menu-lista">
-            <li class="list-link"><a class="cabecalho__list-link" href="/">Home</a></li>
-            <li class="list-link"><a class="cabecalho__list-link" href="/lista-de-campanhas">Campanhas</a></li>
-            <li class="list-link"><a class="cabecalho__list-link" href="/amigos">Amigos</a></li>
-            <li class="list-link"><a class="cabecalho__list-link" href="/informacoes">Informações</a></li>
-            <li class="list-link"><a class="cabecalho__list-link " id="cabecalho__botao--font" href="/login">Registrar / Entrar</a></li>
-        </ul>
-    </nav>
-</header>
-<body>
-    <div class="container">
-        <div class="content first-content">
-            <div class="first-column">
-                <h2 class="title title-primary">Bem-vindo de Volta!</h2>
-                <p class="description description-primary">To keep connected with us</p>
-                <p class="description description-primary">please login with your personal info</p>
-                <button id="signin" class="btn btn-primary">Login</button>
-            </div>    
-            <div class="second-column">
-                <h2 class="title title-second">Cadastre-se</h2>
-                <div class="social-media">
-                    <ul class="list-social-media">
-                        <a class="link-social-media" href="#">
-                            <li class="item-social-media">
-                                <i class="fab fa-facebook-f"></i>        
-                            </li>
-                        </a>
-                        <a class="link-social-media" href="#">
-                            <li class="item-social-media">
-                                <i class="fab fa-google-plus-g"></i>
-                            </li>
-                        </a>
-                        <a class="link-social-media" href="#">
-                            <li class="item-social-media">
-                                <i class="fab fa-linkedin-in"></i>
-                            </li>
-                        </a>
-                    </ul>
-                </div><!-- social media -->
-                <p class="description description-second">Ou use seu e-mail para cadastro:</p>
-                <form th:action="@{/login-cadastro/cadastro}" th:object="${usuario}" id="userForm" class="form" method="post" enctype="multipart/form-data">
-                    <label class="label-input" for="">
-                        <i class="far fa-user icon-modify"></i>
-                        <input type="text" placeholder="Nome" th:field="*{usuario}" required>
-                    </label>
-                    <label class="label-input" for="">
-                        <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="E-mail" th:field="*{email}" required>
-                    </label>
-                    <label class="label-input" for="">
-                        <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Senha" th:field="*{senha}" required>
-                    </label>
-                    <!-- <label for="imagem">Imagem:</label>
-                    <input type="file" id="imagem" name="imagem" accept="image/*" required> -->
-                    <button type="submit" class="btn btn-second">Inscrever-se</button>        
-                </form>                
-            </div><!-- second column -->
-        </div><!-- first content -->
-        <div class="content second-content">
-            <div class="first-column">
-                <h2 class="title title-primary">hello, friend!</h2>
-                <p class="description description-primary">Enter your personal details</p>
-                <p class="description description-primary">and start journey with us</p>
-                <button id="signup" class="btn btn-primary">sign up</button>
+<body>   
+    <main id="container">
+        <form id="login_form">
+            <!-- FORM HEADER -->
+            <div id="form_header">
+                <h1>Login</h1>
+                
             </div>
-            <div class="second-column">
-                <h2 class="title title-second">sign in to developer</h2>
-                <div class="social-media">
-                    <ul class="list-social-media">
-                        <a class="link-social-media" href="#">
-                            <li class="item-social-media">
-                                <i class="fab fa-facebook-f"></i>
-                            </li>
-                        </a>
-                        <a class="link-social-media" href="#">
-                            <li class="item-social-media">
-                                <i class="fab fa-google-plus-g"></i>
-                            </li>
-                        </a>
-                        <a class="link-social-media" href="#">
-                            <li class="item-social-media">
-                                <i class="fab fa-linkedin-in"></i>
-                            </li>
-                        </a>
-                    </ul>
-                </div><!-- social media -->
-                <p class="description description-second">or use your email account:</p>
-                <form th:action="@{/login-cadastro/login}" th:object="${usuario}" id="userForm" class="form" method="post" enctype="multipart/form-data">
+
+            
+
+            <!-- INPUTS -->
+            <div id="inputs">
+                <!-- NAME -->
+                <div class="input-box">
+                    <label for="name">
+                        Nome
+                        <div class="input-field">
+                            
+                            <box-icon name='user' type='solid' color='#737171' class="fa-solid fa-user" ></box-icon>
+                            <input type="text" id="name" name="name">
+                        </div>
+                    </label>
+                </div>
                 
-                    <label class="label-input" for="">
-                        <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="E-mail" th:field="*{email}" required>
+               
+                <!-- PASSWORD -->
+                <div class="input-box">
+                    <label for="password">
+                        Senha
+                        <div class="input-field">
+                            
+                            <box-icon name='key' type='solid' color='#737171'class="fa-solid fa-key" ></box-icon>
+                            <input type="password" id="password" name="password">
+                        </div>
                     </label>
                 
-                    <label class="label-input" for="">
-                        <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Senha" th:field="*{senha}" required>
-                    </label>
+                    <!-- FORGOT PASSWORD -->
+                    <div id="forgot_password">
+                        <a href="#">
+                            Forgot your password?
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="social_media">
+                <!-- FACEBOOK -->
+                <a href="#">
+                    <img src="static/images/login/facebook.png" alt="">
+                </a>
+
+                <!-- GOOGLE -->
+                <a href="#">
+                    <img src="static/images/login/google.png" alt="Google logo">
+                </a>
                 
-                    <a class="password" href="#">forgot your password?</a>
-                    <button class="btn btn-second">sign in</button>
-                </form>
-            </div><!-- second column -->
-        </div><!-- second-content -->
-    </div>
-    <!-- <script src="/static/script/cadastroScript.js"></script> -->
-    <script src="/static/script/login.js"></script>
-    <!-- <script src="/static/script/cadastro.js"></script> -->
+                <!-- GITHUB -->
+                <a href="#">
+                    <img src="static/images/login/icon-linkedin.png" alt="">
+                </a>
+            </div>
+
+            <!-- LOGIN BUTTON -->
+            <button type="submit" id="login_button">
+                Login
+            </button>
+        </form>
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
