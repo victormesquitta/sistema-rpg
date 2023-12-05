@@ -45,7 +45,7 @@ public class AuthenticationController {
         var token = tokenService.GerarToken((UsuarioModel) auth.getPrincipal());
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
-    @PostMapping("/register")
+    @PostMapping("/cadastro")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
         if(this.usuarioRepository.findByUsuario(data.usuario()) != null) return ResponseEntity.badRequest().build();
 

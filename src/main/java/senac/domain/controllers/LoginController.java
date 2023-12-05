@@ -66,15 +66,9 @@ public class LoginController {
 //    }
 
 
-    @PostMapping("/cadastro")
-    public ModelAndView criarUsuario(@ModelAttribute UsuarioRequestDTO usuarioRequestDto) {
-        System.out.println(usuarioRequestDto);
-        usuarioService.criarUsuario(usuarioRequestDto);
-//        return new ResponseEntity<>("Usuário criado com sucesso.", HttpStatus.CREATED);
-        return new ModelAndView("redirect:/");
-    }
+    
 //
-    @PostMapping("/login")
+    @PostMapping()
     public ModelAndView logar(@ModelAttribute AuthenticationDTO dto) {
         var senha = new UsernamePasswordAuthenticationToken(dto.usuario(),dto.senha());
 

@@ -156,7 +156,7 @@ body {
 
    
 }
-.continue-button button {
+.continue-button input {
     width: 50%;
     margin-top: 2.5rem;
     border: none;
@@ -164,9 +164,10 @@ body {
     padding: 0.62rem;
     border-radius: 10px;
     cursor: pointer;
+
 }
 
-.continue-button button:hover {
+.continue-button input:hover {
     background-color: #E42929;
 }
 

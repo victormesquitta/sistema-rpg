@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +8,11 @@
     
     <link rel="stylesheet" href="/static/style/login.css">
     
-    <title>Login Dark/Light Mode</title>
+    <title>Login Dice & Rise</title>
 </head>
 <body>   
     <main id="container">
-        <form id="login_form">
+        <form id="login_form" th:action="@{/login}" th:object="${usuario}" method="post">
             <!-- FORM HEADER -->
             <div id="form_header">
                 <h1>Login</h1>
@@ -30,7 +30,7 @@
                         <div class="input-field">
                             
                             <box-icon name='user' type='solid' color='#737171' class="fa-solid fa-user" ></box-icon>
-                            <input type="text" id="name" name="name">
+                            <input type="text" id="name" th:field="*{usuario}" name="name">
                         </div>
                     </label>
                 </div>
@@ -43,16 +43,11 @@
                         <div class="input-field">
                             
                             <box-icon name='key' type='solid' color='#737171'class="fa-solid fa-key" ></box-icon>
-                            <input type="password" id="password" name="password">
+                            <input type="password" id="password" th:field="*{senha}" name="password">
                         </div>
                     </label>
                 
-                    <!-- FORGOT PASSWORD -->
-                    <div id="forgot_password">
-                        <a href="#">
-                            Forgot your password?
-                        </a>
-                    </div>
+
                 </div>
             </div>
             <div id="social_media">
@@ -78,8 +73,5 @@
             </button>
         </form>
     </main>
-
-    <!-- JAVASCRIPT -->
-    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
