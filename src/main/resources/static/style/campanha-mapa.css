@@ -63,6 +63,10 @@ body.dark{
     width: 88px;
 }
 
+.ancora-home{
+    text-decoration: none;
+}
+
     /*   ====Resuable CSS====   */
 .sidebar .text{
     font-size: 16px;
@@ -112,6 +116,7 @@ body.dark{
 
 .sidebar header{
     position: relative;
+    cursor: pointer;
 }
 
 .sidebar .image-text img{
@@ -127,7 +132,6 @@ body.dark{
 header .image-text .header-text{
     display: flex;
     flex-direction: column;
-
 }
 
 .header-text{
@@ -235,7 +239,6 @@ body.dark .sidebar li a:hover .icon, body.dark .sidebar li a:hover .text{
     width: 60px;
     display: flex;
     align-items: center;
-
 } 
 
 .menu-bar .mode i{
@@ -290,12 +293,16 @@ body.dark .menu-bar .mode i.moon{
     transition: var(--tran-03);
 }
 
-body.dark .switch::before{
-    left: 24px;
+.sidebar.close ~ .main{
+    left: 88px;
+    width: calc(100% - 88px);
 }
 
-.home{
+.main{
     position: relative;
+    display: flex;
+    flex-direction: column;
+    
     left: 250px;
     height: 100vh;
     width: calc(100% - 250px);
@@ -303,132 +310,24 @@ body.dark .switch::before{
     transition: var(--tran-05);
 }
 
-.home .text{
+.main .text{
     font-size: 30px;
     font-weight: 500;
     color: var(--text-color);
-    padding: 8px 40px;
-}
-
-.sidebar.close ~ .home{
-    left: 88px;
-    width: calc(100% - 88px);
-}
-
-
-
-
-
-
-
-
-/*  
-
-body{
-    background-color: rgb(20, 15, 15);
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0;
-    height: 100vh;
-    font-size: 16px;
-    font-weight: 400;
-    font-family: var(--font);
-    
-}
-
-a{
-    color: #fff;
-}
-
-.coluna-esq{
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 17.5vw;
-    background-color: green;
-    border-radius: 0 20px 20px 0;
-}
-
-.div-home{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 12.5%;
-
-}
-
-.ancora-home{
-    display: flex;
-    align-items: center;
-    padding-left: 35px;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-}
-
-.logo{
-    height: 55%;
-    border-radius: 10px;
-}
-
-.titulo-home{
-    font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
-    padding-left: 25px;
-}
-
-.secoes{
-    display: flex;
-    width: 100%;
+    padding: 2% 80px;
     height: 10%;
-    background-color: pink;
-    border: 1px solid #fc3b3b;
-    box-sizing: border-box;
-}
 
-.secao{
-    width: 20%;
-    height: 100%;
-    background-color: blueviolet;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
 }
-.logo-ancora{
+.div-mapa{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-}
-
-.icon{
-    height: 40%;
-}
-
-#logo{
-    border-radius: 10px;
-} 
-
-.restante{
-    width: 100%;
-    height: 67.5%;
-    background-color: #fc3b3b;
+    height: 90%;
 }
 
 
-.div-participante{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 10%;
+.img-mapa{
+    height: 80vh;
+    border-radius: 15px;
 }
 
-.foto-participante{
-    margin-left: 35px;
-    height: 40%;
-    border-radius: 50%;
-}
-
-.nome-participante{
-    padding-left: 20px;
-    font-size: 1.25rem;
-} */
