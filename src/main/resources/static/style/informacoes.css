@@ -12,8 +12,7 @@ a {
   color: #fff;
 }
 body {
-  /* background-image: url(imagens/DALL·E\ 2023-11-23\ 14.07.57\ -\ A\ mystical\ landscape\ at\ twilight\,\ featuring\ an\ array\ of\ jagged\ mountains\ shrouded\ in\ mist.\ In\ the\ sky\ above\ the\ highest\ peak\,\ a\ supernatural\ phenomeno.png); */
-  /* background: color(srgb red green blue); */
+  
   background-color: black;
   margin: 0; /* Remover as margens padrão */
   height: 100vh;
@@ -26,23 +25,10 @@ body {
   background-color: #04141b;
   display: flex;
   justify-content: space-between;
-  /* padding-left: 2rem; */
-  width: 100%;
-  box-shadow: 0 1px 30px #191919;
-  position: fixed;
-  z-index: 2;  
-  top: 0;
-  height: 10vh;
-}
-
-.navegacao{
-  
-}
-
-.logo {
-  margin: 5px;
   padding-left: 2rem;
-
+}
+.imagem {
+  margin: 5px;
 }
 .menu-lista {
   display: flex;
@@ -52,7 +38,7 @@ body {
 
 .list-link {
   list-style-type: none;
-  padding: 20px;
+  padding: 10px;
   font-size: 15px;
   font-weight: 200;
   /* font-family: 'Inter', sans-serif; */
@@ -60,11 +46,6 @@ body {
 
 .cabecalho__list-link {
   text-decoration: none;
-
-}
-
-.cabecalho__list-link:hover{
-  text-decoration: underline;
 }
 
 .container {
@@ -74,10 +55,7 @@ body {
   scroll-snap-align: start;
   background-size: cover; /* Certifica que a imagem de fundo cobre toda a seção */
   background-position: center;
-  margin: 10vh 0 0 0;
-  z-index: 1;
 }
-
 .container__principal {
   margin: 6em;
 }
@@ -114,31 +92,25 @@ body {
   margin-top: 6em;
 }
 
-.rodape {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background:#04141b;
-  color: rgb(235, 235, 235);
-  /* margin: 1em; */
-  padding: 3em;
-  /* border-radius: 5px; */
-}
-
-
-
-#container__principal--section {
-  background-image: url(/static/images/home/background-1.png);
-  background-clip: border-box;
- 
+#container__titulo--section{
+  background-image: url(/static/images/informações/3.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #container__principal--section2 {
-  background-image: url(/static/images/home/background-2.png);
-  /* backdrop-filter: blur(10px); */
+  background-image: url(/static/images/informações/1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #container__principal--section3 {
-  background-image: url(/static/images/home/background-3.png);
-  /* backdrop-filter: blur(10px); */
+  background-image: url(/static/images/informações/7.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#container__principal--section4 {
+  background-image: url(/static/images/informações/4.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #cabecalho__botao--font{
@@ -149,6 +121,54 @@ body {
   padding: 1em;
   text-align: center;
   margin-top: 1em;
-  margin-right: 1em;
-  margin-left: 1em;
+}
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#04141b;
+    color: rgb(235, 235, 235);
+    padding: 3em;
+}
+
+#container__principal--section, 
+#container__principal--section2, 
+#container__principal--section3, 
+#container__principal--section4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* other styles */
+}
+
+.container_titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust the height as needed */
+    color: #fff;
+}
+
+.container__principal--titulo .titulo_principal_home {
+    font-size: 5em; /* Adjust as needed */
+    text-align: center; /* Center the text */
+    padding-bottom: 0.5em;
+}
+
+.container__principal--titulo h4 {
+    font-size: 1.8em; /* Adjust as needed */
+    text-align: center; /* Center the text */
+    padding-bottom: 1em;
+    /* font-weight: ; */
+}
+
+.container__principal--titulo .container__descricao1 {
+    font-size: 1.2em; /* Adjust as needed */
+    text-align: center; /* Center the text */
+    margin: 0 7em;
+}
+
+.book-icon{
+    color: rgb(255, 255, 255);
 }

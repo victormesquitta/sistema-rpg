@@ -25,8 +25,6 @@ public class ListaCampanhasController {
         this.participanteService = participanteService;
         this.campanhaService = campanhaService;
     }
-
-
     @GetMapping()
     public String listarCampanhas(Model model) {
         List<CampanhaResponseDTO> listaCampanhas = campanhaService.listarCampanhasResponse();
@@ -58,8 +56,8 @@ public class ListaCampanhasController {
 //    public String criacaoCampanha(@RequestBody @Valid CampanhaRequestDTO campanhaRequestDto) {
 //        return "criacao-campanha";
 //    }
-    @PostMapping("entrar-campanha")
-    public String entrarCampanha(Model model) {
-        return "campanha";
-    }
+//    @PostMapping("entrar-campanha")
+//    public String entrarCampanha(Model model) {
+//        return "campanha-home";
+//    }
 }

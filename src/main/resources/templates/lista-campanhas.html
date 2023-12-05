@@ -43,7 +43,7 @@
                         </form>
                     </td>
                     <td>
-                        <form th:action="@{/campanha}" method="get">
+                        <form th:action="@{/campanha/{codCampanha}(codCampanha=${campanha.codCampanha})}" method="get">
                             <input type="hidden" name="codCampanha" th:value="${campanha.codCampanha}" />
                             <button id="detalhe" type="submit">Entrar na Campanha</button>
                         </form>

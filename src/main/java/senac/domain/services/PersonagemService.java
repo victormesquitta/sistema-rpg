@@ -4,13 +4,18 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import senac.domain.dtos.requests.PersonagemRequestDTO;
+import senac.domain.dtos.responses.ParticipanteResponseDTO;
 import senac.domain.dtos.responses.PersonagemResponseDTO;
 import senac.domain.mappers.ParticipanteMapper;
 import senac.domain.mappers.PersonagemMapper;
+import senac.domain.models.CampanhaModel;
 import senac.domain.models.ParticipanteModel;
 import senac.domain.models.PersonagemModel;
+import senac.domain.repositories.CampanhaRepository;
 import senac.domain.repositories.PersonagemRepository;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,18 +23,53 @@ import java.util.stream.Collectors;
 public class PersonagemService {
 
     private final PersonagemRepository personagemRepository;
+    private final CampanhaRepository campanhaRepository;
     private final ParticipanteService participanteService;
     private final ParticipanteMapper participanteMapper;
     private final PersonagemMapper personagemMapper;
 
     @Autowired
-    public PersonagemService(PersonagemRepository personagemRepository, ParticipanteService participanteService, ParticipanteMapper participanteMapper, PersonagemMapper personagemMapper) {
+    public PersonagemService(PersonagemRepository personagemRepository, CampanhaRepository campanhaRepository, ParticipanteService participanteService, ParticipanteMapper participanteMapper, PersonagemMapper personagemMapper) {
         this.personagemRepository = personagemRepository;
+        this.campanhaRepository = campanhaRepository;
         this.participanteService = participanteService;
         this.participanteMapper = participanteMapper;
         this.personagemMapper = personagemMapper;
     }
 
+    public List<PersonagemResponseDTO> listarPersonagensPorCampanha(Integer codCampanha) {
+        List<PersonagemResponseDTO> personagens = new ArrayList<>();
+
+        for(PersonagemResponseDTO personagem : listarPersonagensResponse()){
+            ParticipanteResponseDTO participante = participanteService.obterParticipantePorIdResponse(personagem.getCodParticipante());
+            if(participante.getCodCampanha() == codCampanha){
+                personagens.add(personagem);
+            }
+        }
+
+        return personagens;
+    }
+
+//    public List<PersonagemRequestDTO> obterPersonagensDaCampanha(Integer codCampanha) {
+//        Optional<CampanhaModel> campanhaOptional = campanhaRepository.findById(codCampanha);
+//
+//        if (campanhaOptional.isPresent()) {
+//            CampanhaModel campanha = campanhaOptional.get();
+//            List<ParticipanteModel> participantes = campanha.getParticipantes();
+//            List<PersonagemRequestDTO> personagens = new ArrayList<>();
+//
+//            for (ParticipanteModel participante : participantes) {
+//                personagens.addAll(participante.getPersonagens().stream()
+//                        .map(PersonagemRequestDTO::new) // Converter PersonagemModel para PersonagemRequestDTO
+//                        .toList());
+//            }
+//
+//            return personagens;
+//        } else {
+//            // Lógica para tratamento de erro (campanha não encontrada)
+//            return Collections.emptyList();
+//        }
+//    }
 
 
     public List<PersonagemResponseDTO> listarPersonagensResponse() {
