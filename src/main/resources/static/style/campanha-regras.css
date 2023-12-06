@@ -293,15 +293,9 @@ body.dark .menu-bar .mode i.moon{
     transition: var(--tran-03);
 }
 
-.sidebar.close ~ .main{
-    left: 88px;
-    width: calc(100% - 88px);
-}
 
 .main{
     position: relative;
-    display: flex;
-    flex-direction: column;
     left: 250px;
     height: 100vh;
     width: calc(100% - 250px);
@@ -313,9 +307,8 @@ body.dark .menu-bar .mode i.moon{
     font-size: 30px;
     font-weight: 500;
     color: var(--text-color);
+    padding-bottom: 25px;
     padding: 2% 80px;
-    height: 10%;
-
 }
 
 .sidebar.close ~ .main{
@@ -325,6 +318,7 @@ body.dark .menu-bar .mode i.moon{
 
 .container-cards{
     display: flex;
+    margin-bottom: 20px;
     padding: 2% 80px;
 }
 

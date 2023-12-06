@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import senac.domain.dtos.responses.*;
 import senac.domain.services.*;
 
@@ -143,6 +145,21 @@ public class CampanhaController {
         model.addAttribute("rolagens", listaRolagens);
         model.addAttribute("donos", listaDonosRolagens);
         return "campanha-rolagens";
+    }
+
+    @GetMapping("/{codCampanha}/rolar-dados")
+    public String rolarDados(@PathVariable Integer codCampanha, Model model){
+        CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+        model.addAttribute("campanha", campanhaResponseDTO);
+
+        return "campanha-rolar-dados";
+    }
+
+    @PostMapping("/{codCampanha}/salvar-dados")
+    public ModelAndView salvarDados(@PathVariable Integer codCampanha, Model model){
+        CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+        model.addAttribute("campanha", campanhaResponseDTO);
+        return new ModelAndView("redirect:/campanha/{codCampanha}/salvar-dados");
     }
 
 }

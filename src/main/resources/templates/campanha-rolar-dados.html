@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/static/style/campanha-rolagens.css" rel="stylesheet">
+    <link href="/static/style/campanha-rolar-dados.css" rel="stylesheet">
     <link rel="shortcut icon" href="/static/images/logo/logo_com_fundo.jpg" type="image/x-icon">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Rolagens</title>
@@ -19,7 +19,6 @@
                 </div>
                 <div class="text header-text">
                     <span class="name">Dice&Rise</span>
-                    <span class="profession">Web Developer</span>
                 </div>
             </a>
             <box-icon class="bx bx-chevron-right toggle" name='chevron-right'></box-icon>
@@ -84,8 +83,17 @@
         <div class="text">Rolagens</div>
         <div class="container-cards">
             <div class="card">
+                <div class="div-dados">
+                    <a class="ancora-dado" href="">D4<img class="img-dados" src="/static/images/rolagens/d4.png" alt=""></a>
+                    <a class="ancora-dado" href="">D6<img class="img-dados" src="/static/images/rolagens/d6.png" alt=""></a>
+                    <a class="ancora-dado" href="">D8<img class="img-dados" src="/static/images/rolagens/d8.png" alt=""></a>
+                    <a class="ancora-dado" href="">D10<img class="img-dados" src="/static/images/rolagens/d10.png" alt=""></a>
+                    <a class="ancora-dado" href="">D12<img class="img-dados" src="/static/images/rolagens/d12.png" alt=""></a>
+                    <a class="ancora-dado" href="">D20<img class="img-dados" src="/static/images/rolagens/d20.png" alt=""></a>
+                    <a class="ancora-dado" href="">D100<img class="img-dados" src="/static/images/rolagens/d100.png" alt=""></a>
+                </div>
                 <div class="div-button-rolagem">
-                    <a th:href="@{/campanha/{codCampanha}/rolar-dados(codCampanha=${campanha.codCampanha})}" class="button-rolagem">Rolagem</a>    
+                    <a th:href="@{/campanha/{codCampanha}/rolar-dado(codCampanha=${campanha.codCampanha})}" class="button-rolagem">Rolagem</a>    
                 </div>
                 <div class="div-rolagens" th:each="rolagem, iterStat : ${rolagens}">
                     <img class="foto-personagem" src="/static/images/personagens/foto-perfil-personagem.jpg" alt="foto do personagem">

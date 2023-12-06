@@ -293,29 +293,31 @@ body.dark .menu-bar .mode i.moon{
     transition: var(--tran-03);
 }
 
-.home{
+.main{
     position: relative;
     left: 250px;
     height: 100vh;
     width: calc(100% - 250px);
     background: var(--body-color);
     transition: var(--tran-05);
-    padding: 2% 80px;
 }
 
-.home .text{
+.main .text{
     font-size: 30px;
     font-weight: 500;
     color: var(--text-color);
+    padding-bottom: 25px;
+    padding: 2% 80px;
 }
 
-.sidebar.close ~ .home{
+.sidebar.close ~ .main{
     left: 88px;
     width: calc(100% - 88px);
 }
 
 .container-cards{
     display: flex;
+    margin-bottom: 20px;
     padding: 2% 80px;
 }
 
@@ -332,9 +334,39 @@ body.dark .menu-bar .mode i.moon{
     /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
 }
 
+.div-button-rolagem{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.button-rolagem{
+    margin-top: 2%;
+    margin-right: 3.5%;
+    width: 8vw;
+    height: 5vh;
+    border: 1.5px solid #ccc;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    background-color: rgb(129, 253, 118);
+}
+
+.button-rolagem:hover{
+    background-color: #04141b;
+    color: #ffffff;
+}
+
+
+
 .div-rolagens{
     display: flex;
-    flex-direction: column;
+    align-items: center;
     margin: 50px;
     padding: 50px;
     border: 1px solid #ccc;
@@ -343,17 +375,44 @@ body.dark .menu-bar .mode i.moon{
     /* background-color: #695CFE; */
 }
 
-.titulo-rolagem{
-    font-size: 1.8rem;
-    margin-bottom: 25px;
+.info-rolagem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 50px;
 }
+
+.info-rolagem h2{
+    font-size: 1rem;
+}
+
 .foto-e-nome-personagem{
     /* height: 30%; */
     margin-bottom: 40px;
 }
 .nome-personagem{
     font-size: 1rem;
+    
 }
+.rolagem-data{
+    font-size: 1rem;
+}
+.rolagem-resultRolagem{
+    font-size: 1rem;
+}
+
+.rolagem-tipoDado{
+    font-size: 1rem;
+}
+.rolagem-tipoRolagem{
+    font-size: 1rem;
+}
+
+.rolagem-qtdRolagens{
+    font-size: 1rem;
+}
+
+
 
 .foto-personagem{
     max-width: 10%;
