@@ -99,7 +99,7 @@ img{
     box-sizing: border-box;
     margin-bottom: 20px;
     min-width: 45%;
-    max-height: 45vh;
+    max-height: 60vh;
     /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
 }
 
@@ -172,3 +172,29 @@ img{
 button{
     cursor: pointer;
   }
+
+  #detalhe{
+    
+        background-color: red; 
+        border: none; 
+        color: white; 
+        padding: 8px; 
+        text-align: center; 
+        text-decoration: none; 
+        display: flex; 
+        font-size: 14px; 
+        margin: 4px 2px; 
+        cursor: pointer; 
+        border-radius: 8px; 
+        transition-duration: 0.4s;
+        justify-content: center;
+        align-items: center;
+    }
+
+.detalhe__botão{
+
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    /* height: 200px; */
+}
