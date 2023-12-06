@@ -30,28 +30,22 @@
                         <img src="/static/images/campanha/campanha_background.png" alt="Imagem 1" class="imgcampanha">
                     </a>
                     <p th:text="${campanha.nome}"></p>  
-                  
+                  <div class="detalhe__botão">
                         <form th:action="@{/lista-de-campanhas/{codCampanha}(codCampanha=${campanha.codCampanha})}" method="get">
                             <input type="hidden" name="codCampanha" th:value="${campanha.codCampanha}" />
-                            <div class="detalhe__botão">
                             <button id="detalhe" type="submit">Detalhes</button>
-                        </div>
                         </form>
                     
                         <form th:action="@{/lista-de-campanhas/deletarCampanha}" method="post">
                             <input type="hidden" name="codCampanha" th:value="${campanha.codCampanha}" />
-                            <div class="detalhe__botão">
                             <button id="detalhe" type="submit">Apagar</button>
-                            </div>
                         </form>
                     
                         <form th:action="@{/campanha/{codCampanha}(codCampanha=${campanha.codCampanha})}" method="get">
                             <input type="hidden" name="codCampanha" th:value="${campanha.codCampanha}" />
-                            <div class="detalhe__botão">
                             <button id="detalhe" type="submit">Entrar na Campanha</button>
-                        </div>
                         </form>
-                  
+                    </div>
                 </div>
             </div>
         </section>

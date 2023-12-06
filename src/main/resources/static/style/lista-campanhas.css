@@ -99,7 +99,7 @@ img{
     box-sizing: border-box;
     margin-bottom: 20px;
     min-width: 45%;
-    max-height: 60vh;
+    max-height: 45vh;
     /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
 }
 
@@ -196,5 +196,6 @@ button{
     display: flex;
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
-    /* height: 200px; */
+    gap: 1em;
+    margin: 0.5em;
 }
