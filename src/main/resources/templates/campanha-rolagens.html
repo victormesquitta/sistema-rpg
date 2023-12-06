@@ -84,14 +84,18 @@
         <div class="text">Rolagens</div>
         <div class="container-cards">
             <div class="card">
-                <div class="div-regras" th:each="regra, iterStat : ${regras}">
-                    <h1 class="titulo-regra" th:text="${regra.nome}"></h1>
-                    <div class="foto-e-nome-participante">
-                        <img class="foto-participante" src="/static/images/participantes/foto_participante_default.png" alt="foto do participante">
-                        <h2 class="nome-participante" th:text="${donos[iterStat.index]}"></h2>
-                        <p class="regra-data" th:text="${regra.data}"></p>
+                <div class="div-rolagens" th:each="rolagem, iterStat : ${rolagens}">
+                    <h1 class="titulo-rolagem" th:text="${rolagem.nome}"></h1>
+                    <div class="foto-e-nome-personagem">
+                        <img class="foto-personagem" src="/static/images/personagens/foto-perfil-personagem.jpg" alt="foto do personagem">
+                        <h2 class="nome-personagem" th:text="${donos[iterStat.index]}"></h2>
+                        <p class="rolagem-data" th:text="${rolagem.data}"></p>
+                        <p class="rolagem-resultRolagem" th:text="${rolagem.resultRolagem}"></p>
+                        <p class="rolagem-tipoDado" th:text="${rolagem.tipoDado}"></p>
+                        <p class="rolagem-tipoRolagem" th:text="${rolagem.tipoRolagem}"></p>
+                        <p class="rolagem-qtdRolagens" th:text="${rolagem.qtdRolagens}"></p>
                     </div>
-                    <p class="descricao" th:text="${regra.descricao}"></p>
+                    <p class="descricao" th:text="${rolagem.descricao}"></p>
                 </div>
             </div>
         </div>

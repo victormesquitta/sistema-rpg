@@ -314,3 +314,63 @@ body.dark .menu-bar .mode i.moon{
     width: calc(100% - 88px);
 }
 
+.container-cards{
+    display: flex;
+    padding: 2% 80px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-right:1%;
+    min-height: 80vh;
+    width: 100%;
+    /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
+}
+
+.div-rolagens{
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    /* background-color: #695CFE; */
+}
+
+.titulo-rolagem{
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+.foto-e-nome-personagem{
+    /* height: 30%; */
+    margin-bottom: 40px;
+}
+.nome-personagem{
+    font-size: 1rem;
+}
+
+.foto-personagem{
+    max-width: 10%;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.descricao{
+    text-align: justify;
+    width: 90%;
+}
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#04141b;
+    color: rgb(235, 235, 235);
+    padding: 3em;
+}

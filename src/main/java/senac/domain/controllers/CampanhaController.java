@@ -28,9 +28,10 @@ public class CampanhaController {
     private final EquipamentoService equipamentoService;
     private final MagiaService magiaService;
     private final RegrasService regrasService;
+    private final RolagemService rolagemService;
 
     @Autowired
-    public CampanhaController(ParticipanteService participanteService, PersonagemService personagemService, CampanhaService campanhaService, ProficienciaService proficienciaService, OutraProficienciaService outraProficienciaService, PericiasService periciasService, AtributosService atributosService, TalentoTracoService talentoTracoService, MoedasService moedasService, AtaquesConjuracaoService ataquesConjuracaoService, EquipamentoService equipamentoService, MagiaService magiaService, RegrasService regrasService) {
+    public CampanhaController(ParticipanteService participanteService, PersonagemService personagemService, CampanhaService campanhaService, ProficienciaService proficienciaService, OutraProficienciaService outraProficienciaService, PericiasService periciasService, AtributosService atributosService, TalentoTracoService talentoTracoService, MoedasService moedasService, AtaquesConjuracaoService ataquesConjuracaoService, EquipamentoService equipamentoService, MagiaService magiaService, RegrasService regrasService, RolagemService rolagemService) {
         this.participanteService = participanteService;
         this.personagemService = personagemService;
         this.campanhaService = campanhaService;
@@ -44,6 +45,7 @@ public class CampanhaController {
         this.equipamentoService = equipamentoService;
         this.magiaService = magiaService;
         this.regrasService = regrasService;
+        this.rolagemService = rolagemService;
     }
     @GetMapping("/{codCampanha}")
     public String obterCampanha(@PathVariable Integer codCampanha, Model model) {
@@ -130,7 +132,16 @@ public class CampanhaController {
     @GetMapping("/{codCampanha}/rolagens")
     public String obterRolagens(@PathVariable Integer codCampanha, Model model){
         CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+        List<RolagemResponseDTO> listaRolagens = rolagemService.listarRolagensResponse();
+        List<String> listaDonosRolagens = new ArrayList<>();
+        for(RolagemResponseDTO rolagem:listaRolagens){
+            Integer codPersonagem = rolagem.getCodPersonagem();
+            String nomePersonagem = personagemService.obterPersonagemPorIdResponse(codPersonagem).getNome();
+            listaDonosRolagens.add(nomePersonagem);
+        }
         model.addAttribute("campanha", campanhaResponseDTO);
+        model.addAttribute("rolagens", listaRolagens);
+        model.addAttribute("donos", listaDonosRolagens);
         return "campanha-rolagens";
     }
 

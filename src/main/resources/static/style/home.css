@@ -110,7 +110,7 @@ body {
 }
 
 .container__imagem {
-  width: 82%;
+  width: 50%;
   margin: 5em;
   margin-top: 6em;
   border-radius: 20px;
@@ -133,14 +133,20 @@ body {
 #container__principal--section {
   background-image: url(/static/images/home/background-1.png);
   background-clip: border-box;
+  display: flex;
+  align-items: center;
  
 }
 #container__principal--section2 {
   background-image: url(/static/images/home/background-2.png);
+  display: flex;
+  align-items: center;
   /* backdrop-filter: blur(10px); */
 }
 #container__principal--section3 {
   background-image: url(/static/images/home/background-3.png);
+  display: flex;
+  align-items: center;
   /* backdrop-filter: blur(10px); */
 }
 
