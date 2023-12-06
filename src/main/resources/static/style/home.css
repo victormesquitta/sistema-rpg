@@ -113,6 +113,8 @@ body {
   width: 82%;
   margin: 5em;
   margin-top: 6em;
+  border-radius: 20px;
+  border: 5px solid #ccc;
 }
 
 .rodape {
