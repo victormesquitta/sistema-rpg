@@ -25,7 +25,7 @@
         <div class="container">
             <div class="caixa-formulario">
             <h2 class="h2">Formulário de Nova Campanha</h2>
-     <form class="formulario" th:action="@{/criacao-campanha}" th:object="${criacao-campanha}" method="post">
+     <form class="formulario" th:action="@{/criacao-campanha}" th:object="${campanha}" method="post">
         <label for="titulo">Nome da Campanha:</label>
         <input type="text" id="titulo" th:field="*{nome}" name="titulo" required>
 
@@ -36,7 +36,7 @@
         <textarea id="descricao" name="descricao" th:field="*{descricao}" rows="4" required></textarea>
 
         <label for="datacriacao">Data de Criação:</label>
-        <input type="text" id="datacriacao" th:field="*{datacriacao}" name="datacriacao" required>
+        <input type="date" id="datacriacao" th:field="*{dataCriacao}" name="datacriacao" required>
 
 
         <label for="imagem">Imagem:</label>
