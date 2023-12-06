@@ -80,8 +80,20 @@
             </div>
         </div>
     </nav>
-    <section class="home">
-        <div class="text">Regras</div>
+    <section class="main">
+        <h1 class="text">Regras</h1>
+        <div class="div-participantes">
+            <div class="lista_participantes" th:each="participante : ${participantes}">
+                <img class="foto_participante" src="/static/images/participantes/foto_participante_default.png" alt="foto do participante">
+                <div class="infos_participante">
+                    <h3 class="nome_participante" th:text="${participante.nome}"></h3>
+                    <h5 class="role_participante" th:text="${participante.cargo}"></h5>
+                </div>
+            </div>
+        </div>
+        <footer class="rodape" >
+            <p>© 2023 Dice & Rise</p>
+        </footer>
     </section>
 </body>
 <script src="/static/script/campanha.js"></script>

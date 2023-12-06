@@ -6,12 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import senac.domain.dtos.responses.CampanhaResponseDTO;
-import senac.domain.dtos.responses.ParticipanteResponseDTO;
-import senac.domain.dtos.responses.PersonagemResponseDTO;
-import senac.domain.services.CampanhaService;
-import senac.domain.services.ParticipanteService;
-import senac.domain.services.PersonagemService;
+import senac.domain.dtos.responses.*;
+import senac.domain.services.*;
 
 import java.util.List;
 
@@ -19,13 +15,33 @@ import java.util.List;
 @RequestMapping("/campanha")
 public class CampanhaController {
     private final ParticipanteService participanteService;
-    private final PersonagemService personagemService;
     private final CampanhaService campanhaService;
+    private final PersonagemService personagemService;
+    private final ProficienciaService proficienciaService;
+    private final OutraProficienciaService outraProficienciaService;
+    private final PericiasService periciasService;
+    private final AtributosService atributosService;
+    private final TalentoTracoService talentoTracoService;
+    private final MoedasService moedasService;
+    private final AtaquesConjuracaoService ataquesConjuracaoService;
+    private final EquipamentoService equipamentoService;
+    private final MagiaService magiaService;
+
     @Autowired
-    public CampanhaController(ParticipanteService participanteService, PersonagemService personagemService, CampanhaService campanhaService) {
+    public CampanhaController(ParticipanteService participanteService, PersonagemService personagemService, CampanhaService campanhaService, ProficienciaService proficienciaService, OutraProficienciaService outraProficienciaService, PericiasService periciasService, AtributosService atributosService, TalentoTracoService talentoTracoService, MoedasService moedasService, AtaquesConjuracaoService ataquesConjuracaoService, EquipamentoService equipamentoService, MagiaService magiaService) {
         this.participanteService = participanteService;
         this.personagemService = personagemService;
         this.campanhaService = campanhaService;
+        this.proficienciaService = proficienciaService;
+        this.outraProficienciaService = outraProficienciaService;
+        this.periciasService = periciasService;
+        this.atributosService = atributosService;
+        this.talentoTracoService = talentoTracoService;
+        this.moedasService = moedasService;
+        this.ataquesConjuracaoService = ataquesConjuracaoService;
+        this.equipamentoService = equipamentoService;
+        this.magiaService = magiaService;
+
     }
     @GetMapping("/{codCampanha}")
     public String obterCampanha(@PathVariable Integer codCampanha, Model model) {
@@ -56,8 +72,26 @@ public class CampanhaController {
     public String obterPersonagem(@PathVariable Integer codCampanha, @PathVariable String nome, @PathVariable Integer codPersonagem, Model model){
         CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
         PersonagemResponseDTO personagemResponseDTO = personagemService.obterPersonagemPorIdResponse(codPersonagem);
+        ProficienciaResponseDTO proficienciaResponseDTO = proficienciaService.obterProficienciaPorIdResponse(codPersonagem);
+        OutraProficienciaResponseDTO outraProficienciaResponseDTO = outraProficienciaService.obterOutraProficienciaPorIdResponse(codPersonagem);
+        PericiasResponseDTO periciasResponseDTO = periciasService.obterPericiaPorIdResponse(codPersonagem);
+        AtributosResponseDTO atributosResponseDTO = atributosService.obterAtributoPorIdResponse(codPersonagem);
+        TalentoTracoResponseDTO talentoTracoResponseDTO = talentoTracoService.obterTalentoTracoPorIdResponse(codPersonagem);
+        MoedasResponseDTO moedasResponseDTO = moedasService.obterMoedaPorIdResponse(codPersonagem);
+        AtaquesConjuracaoResponseDTO ataquesConjuracaoResponseDTO = ataquesConjuracaoService.obterAtaqueConjuracaoPorIdResponse(codPersonagem);
+        EquipamentoResponseDTO equipamentoResponseDTO = equipamentoService.obterEquipamentoPorIdResponse(codPersonagem);
+        MagiaResponseDTO magiaResponseDTO = magiaService.obterMagiaPorIdResponse(codPersonagem);
         model.addAttribute("personagem", personagemResponseDTO);
         model.addAttribute("campanha", campanhaResponseDTO);
+        model.addAttribute("proficiencias", proficienciaResponseDTO);
+        model.addAttribute("outraproficiencias", outraProficienciaResponseDTO);
+        model.addAttribute("pericias", periciasResponseDTO);
+        model.addAttribute("atributos", atributosResponseDTO);
+        model.addAttribute("talentotracos", talentoTracoResponseDTO);
+        model.addAttribute("moedas", moedasResponseDTO);
+        model.addAttribute("ataquesconjuracoes", ataquesConjuracaoResponseDTO);
+        model.addAttribute("equipamentos", equipamentoResponseDTO);
+        model.addAttribute("magias", magiaResponseDTO);
         return "campanha-personagem";
     }
 

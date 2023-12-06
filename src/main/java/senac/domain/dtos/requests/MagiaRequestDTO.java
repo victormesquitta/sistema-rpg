@@ -11,6 +11,10 @@ public class MagiaRequestDTO {
     @NotNull(message = "O campo 'codPersonagem' é obrigatório.")
     private Integer codPersonagem;
 
+    @NotBlank(message = "O campo 'material' é obrigatório.")
+    @Size(max = 30, message = "O campo 'material' deve ter no máximo {max} caracteres.")
+    private String material;
+
     @NotBlank(message = "O campo 'tempoConjuracao' é obrigatório.")
     @Size(max = 30, message = "O campo 'tempoConjuracao' deve ter no máximo {max} caracteres.")
     private String tempoConjuracao;

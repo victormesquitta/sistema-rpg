@@ -293,23 +293,67 @@ body.dark .menu-bar .mode i.moon{
     transition: var(--tran-03);
 }
 
-.home{
+.sidebar.close ~ .main{
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+.main{
     position: relative;
+    display: flex;
+    flex-direction: column;
     left: 250px;
     height: 100vh;
     width: calc(100% - 250px);
     background: var(--body-color);
     transition: var(--tran-05);
-    padding: 2% 80px;
 }
 
-.home .text{
+.main .text{
     font-size: 30px;
     font-weight: 500;
     color: var(--text-color);
+    padding: 2% 80px;
+    height: 10%;
+
 }
 
-.sidebar.close ~ .home{
-    left: 88px;
-    width: calc(100% - 88px);
+.div-participantes{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-left: 10%;
+}
+
+.lista_participantes{
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    height: 20vh;
+}
+
+.foto_participante{
+    border-radius: 50%;
+    height: 100%;
+}
+
+.infos_participante{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 80%;
+    padding-left: 30px;
+}
+
+.nome_participante{
+    font-size: 1.8rem;
+}
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#04141b;
+    color: rgb(235, 235, 235);
+    padding: 3em;
 }

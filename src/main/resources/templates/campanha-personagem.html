@@ -84,24 +84,220 @@
         <div class="text" th:text="${personagem.nome}"></div>
         <div class="container-cards">
             <div class="card">
-                <div class="coluna-1">
-                    <div class="div-img-personagem">
-                        <img class="foto-personagem" src="/static/images/personagens/foto_participante_default.png" alt="">
-                        <input type="file" name="" id="">
+                <div class="dentro-card">
+                    <div class="div-personagem">
+                        <img class="foto-personagem" src="/static/images/personagens/foto-perfil-personagem.jpg" alt="">
+                        <p th:text="${personagem.nome}"></p>
+                        <p th:text="${personagem.classe}"></p>
+                        <p th:text="${personagem.raca}"></p>
+                        <p th:text="${personagem.antecedente}"></p>
+                        <p th:text="${personagem.nivel}"></p>
+                        <p th:text="${personagem.xp}"></p>
+                        <p th:text="${personagem.bonusProficiencia}"></p>
+                        <p th:text="${personagem.inspiracao}"></p>
+                        <p th:text="${personagem.sabedoriaPassiva}"></p>
+                        <p th:text="${personagem.ca}"></p>
+                        <p th:text="${personagem.iniciativa}"></p>
+                        <p th:text="${personagem.deslocamento}"></p>
+                        <p th:text="${personagem.hp}"></p>
+                        <p th:text="${personagem.hpTemp}"></p>
+                        <p th:text="${personagem.tracosPersonalidade}"></p>
+                        <p th:text="${personagem.ideais}"></p>
+                        <p th:text="${personagem.vinculos}"></p>
+                        <p th:text="${personagem.fraquezas}"></p>
+                        <p th:text="${personagem.corOlhos}"></p>
+                        <p th:text="${personagem.altura}"></p>
+                        <p th:text="${personagem.peso}"></p>
+                        <p th:text="${personagem.pele}"></p>
+                        <p th:text="${personagem.cabelos}"></p>
+                        <p th:text="${personagem.aparencia}"></p>
+                        <p th:text="${personagem.aliadosOrg}"></p>
+                        <p th:text="${personagem.outrasCaracteristicas}"></p>
+                        <p th:text="${personagem.historia}"></p>
+                        <p th:text="${personagem.tesouro}"></p>
+                        <p th:text="${personagem.habilidadeConjuracao}"></p>
+                        <p th:text="${personagem.cdResistMagia}"></p>
+                        <p th:text="${personagem.bonusAtaqueMagia}"></p>
                     </div>
-                    <div class="div-text-info">
-                        <label for="">Nome</label>
-                        <input type="text">
+                    <div class="div-proficiencias" >
+                        <div class="proficiencia" th:each="proficiencia : ${proficiencias}">
+                            <p th:text="${proficiencia.ferramenta}"></p>
+                            <p th:text="${proficiencia.tipoProficiencia}"></p>
+                            <p th:text="${proficiencia.atributoRelacionado}"></p>
+                            <p th:text="${proficiencia.modificador}"></p>
+                            <p th:text="${proficiencia.valorTotProficiencia}"></p>
+                        </div>
                     </div>
-                    <div class="coluna-2">
-
+                    <div class="div-outraproficiencias">
+                        <div class="outraproficiencia" th:each="outraproficiencia : ${outraproficiencias}">
+                            <p th:text="${outraproficiencia.tipo}"></p>
+                            <p th:text="${outraproficiencia.proficiencia}"></p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="">
-                    
+                    <div class="div-pericias">
+                        <div>
+                            <p>Atletismo</p>
+                            <p th:text="${pericias.atletismo}"></p>
+                        </div>
+                        <div>
+                            <p>Acrobacia</p>
+                            <p th:text="${pericias.acrobacia}"></p>
+                        </div>
+                        <div>
+                            <p>Furtividade</p>
+                            <p th:text="${pericias.furtividade}"></p>
+                        </div>
+                        <div>
+                            <p>Prestidigitação</p>
+                            <p th:text="${pericias.prestidigitacao}"></p>
+                        </div>
+                        <div>
+                            <p>Arcanismo</p>
+                            <p th:text="${pericias.arcanismo}"></p>
+                        </div>
+                        <div>
+                            <p>História</p>
+                            <p th:text="${pericias.historia}"></p>
+                        </div>
+                        <div>
+                            <p>Investigação</p>
+                            <p th:text="${pericias.investigacao}"></p>
+                        </div>
+                        <div>
+                            <p>Natureza</p>
+                            <p th:text="${pericias.natureza}"></p>
+                        </div>
+                        <div>
+                            <p>Religião</p>
+                            <p th:text="${pericias.religiao}"></p>
+                        </div>
+                        <div>
+                            <p>Intuição</p>
+                            <p th:text="${pericias.intuicao}"></p>
+                        </div>
+                        <div>
+                            <p>Lidar com Animais</p>
+                            <p th:text="${pericias.lidarComAnimais}"></p>
+                        </div>
+                        <div>
+                            <p>Medicina</p>
+                            <p th:text="${pericias.medicina}"></p>
+                        </div>
+                        <div>
+                            <p>Percepção</p>
+                            <p th:text="${pericias.percepcao}"></p>
+                        </div>
+                        <div>
+                            <p>Sobrevivência</p>
+                            <p th:text="${pericias.sobrevivencia}"></p>
+                        </div>
+                        <div>
+                            <p>Atuação</p>
+                            <p th:text="${pericias.atuacao}"></p>
+                        </div>
+                        <div>
+                            <p>Enganação</p>
+                            <p th:text="${pericias.enganacao}"></p>
+                        </div>
+                        <div>
+                            <p>Intimidação</p>
+                            <p th:text="${pericias.intimidacao}"></p>
+                        </div>
+                        <div>
+                            <p>Persuasão</p>
+                            <p th:text="${pericias.persuasao}"></p>
+                        </div>
+                    </div>
+                    <div class="div-atributos">
+                        <div>
+                            <p>Força</p>
+                            <p th:text="${atributos.forca}"></p>
+                        </div>
+                        <div>
+                            <p>Inteligência</p>
+                            <p th:text="${atributos.inteligencia}"></p>
+                        </div>
+                        <div>
+                            <p>Destreza</p>
+                            <p th:text="${atributos.destreza}"></p>
+                        </div>
+                        <div>
+                            <p>Constituição</p>
+                            <p th:text="${atributos.constituicao}"></p>
+                        </div>
+                        <div>
+                            <p>Carisma</p>
+                            <p th:text="${atributos.carisma}"></p>
+                        </div>
+                        <div>
+                            <p>Sabedoria</p>
+                            <p th:text="${atributos.sabedoria}"></p>
+                        </div>
+                    </div>
+                    <div class="div-talentotracos" >
+                        <div class="talentotraco" th:each="talentotraco : ${talentotracos}">
+                            <p th:text="${talentotraco.nome}"></p>
+                            <p th:text="${talentotraco.fonte}"></p>
+                            <p th:text="${talentotraco.tipoFonte}"></p>
+                            <p th:text="${talentotraco.descricao}"></p>
+                        </div>
+                    </div>
+                    <div class="div-moedas">
+                        <div>
+                            <p>PO</p>
+                            <p th:text="${moedas.po}"></p>
+                        </div>
+                        <div>
+                            <p>PP</p>
+                            <p th:text="${moedas.pp}"></p>
+                        </div>
+                        <div>
+                            <p>PC</p>
+                            <p th:text="${moedas.pc}"></p>
+                        </div>
+                        <div>
+                            <p>PL</p>
+                            <p th:text="${moedas.pl}"></p>
+                        </div>
+                        <div>
+                            <p>DA</p>
+                            <p th:text="${moedas.da}"></p>
+                        </div>
+                    </div>
+                    <div class="div-ataquesconjuracoes" >
+                        <div class="ataquesconjuracao" th:each="ataquesconjuracao : ${ataquesconjuracoes}">
+                            <p th:text="${ataquesconjuracao.nome}"></p>
+                            <p th:text="${ataquesconjuracao.bonusAtaque}"></p>
+                            <p th:text="${ataquesconjuracao.dano}"></p>
+                            <p th:text="${ataquesconjuracao.tipoDano}"></p>
+                            <p th:text="${ataquesconjuracao.origem}"></p>
+                        </div>
+                    </div>
+                    <div class="div-equipamentos">
+                        <div class="equipamento" th:each="equipamento : ${equipamentos}">
+                            <p th:text="${equipamento.nome}"></p>
+                            <p th:text="${equipamento.quantidade}"></p>
+                            <p th:text="${equipamento.peso}"></p>
+                        </div>
+                    </div>
+                    <div class="div-magias">
+                        <div class="magia" th:each="magia : ${magias}">
+                            <p th:text="${magia.material}"></p>
+                            <p th:text="${magia.tempoConjuracao}"></p>
+                            <p th:text="${magia.alcance}"></p>
+                            <p th:text="${magia.componente}"></p>
+                            <p th:text="${magia.duracao}"></p>
+                            <p th:text="${magia.descricao}"></p>
+                            <p th:text="${magia.nivelMagia}"></p>
+                            <p th:text="${magia.tipoMagia}"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <footer class="rodape" >
+            <p>© 2023 Dice & Rise</p>
+        </footer>
     </section>
 </body>
 <script src="/static/script/campanha.js"></script>

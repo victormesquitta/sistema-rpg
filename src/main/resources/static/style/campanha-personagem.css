@@ -295,10 +295,12 @@ body.dark .menu-bar .mode i.moon{
 
 .main{
     position: relative;
+    display: flex;
+    flex-direction: column;
     left: 250px;
     height: 100vh;
     width: calc(100% - 250px);
-    padding: 2% 80px;
+
     background: var(--body-color);
     transition: var(--tran-05);
 }
@@ -307,7 +309,9 @@ body.dark .menu-bar .mode i.moon{
     font-size: 30px;
     font-weight: 500;
     color: var(--text-color);
-    padding-bottom: 25px;
+    padding: 2% 80px; 
+    height: 10%;
+
 }
 
 .sidebar.close ~ .main{
@@ -317,21 +321,29 @@ body.dark .menu-bar .mode i.moon{
 
 .container-cards{
     display: flex;
+    padding: 2% 80px; 
 }
 
 .card {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-sizing: border-box;
     margin-right:1%;
-    height: 20vh;
-    width: 15%;
+    min-height: 80vh;
+    width: 100%;
     /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
+}
+
+.coluna-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 20%;
+    height: 40%;
+    margin: 10px;
 }
 
 /* .card p{
@@ -339,25 +351,6 @@ body.dark .menu-bar .mode i.moon{
 
 } */
 
-.ancora-foto-personagem{
-    height: 60%;
-    padding-bottom: 20px;
-}
-
-.foto-personagem{
-    height: 100%;
-    border-radius: 50%;
-}
-
-#card-add{
-    text-decoration: none;
-    color: #15191A;
-}
-
-#card-add p {
-    font-size: 0.8rem;
-    font-weight: 800;
-}
 
 .icon-circle{
     font-size: 70px;
@@ -365,9 +358,143 @@ body.dark .menu-bar .mode i.moon{
     margin-bottom: 15px;
 }
 
-.div-add-personagem{
+.div-img-personagem{
     display: flex;
-    flex-direction: column  ;
+    background-color: #695CFE;
+    /* width: 100%;
+    height: 40%; */
+}
+
+.foto-personagem{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.dentro-card{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.div-personagem{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: red;
+}
+
+.div-proficiencias{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgb(200, 255, 0);
+}
+
+.proficiencia{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.div-outraproficiencias{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgb(0, 255, 13);
+}
+
+.div-outraproficiencia{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.div-pericias{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgb(0, 238, 255);
+}
+
+.div-atributos{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgb(0, 102, 255);
+}
+
+.div-talentotracos{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgb(47, 0, 255);
+}
+
+.talentotraco{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.div-moedas{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgb(140, 0, 255);  
+}
+
+.div-ataquesconjuracoes{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgb(225, 0, 255);
+    
+}
+
+.ataquesconjuracao{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.div-equipamentos{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgb(255, 0, 200);
+    
+}
+
+.equipamento{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+.div-magias{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: rgb(255, 0, 119);
+    
+}
+
+.magia{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+
+.rodape {
+    display: flex;
     justify-content: center;
     align-items: center;
+    background:#04141b;
+    color: rgb(235, 235, 235);
+    padding: 3em;
 }
