@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,22 +25,22 @@
         <div class="container">
             <div class="caixa-formulario">
             <h2 class="h2">Formulário de Nova Campanha</h2>
-     <form class="formulario" action="/processar-formulario" method="post">
+     <form class="formulario" th:action="@{/criacao-campanha}" th:object="${criacao-campanha}" method="post">
         <label for="titulo">Nome da Campanha:</label>
-        <input type="text" id="titulo" name="titulo" required>
+        <input type="text" id="titulo" th:field="*{nome}" name="titulo" required>
 
         <label for="titulo">Senha da Campanha:</label>
-        <input type="password" id="titulo" name="titulo" required>
+        <input type="password" id="titulo" th:field="*{senha}" name="titulo"  required>
 
         <label for="descricao">Descrição:</label>
-        <textarea id="descricao" name="descricao" rows="4" required></textarea>
+        <textarea id="descricao" name="descricao" th:field="*{descricao}" rows="4" required></textarea>
 
         <label for="datacriacao">Data de Criação:</label>
-        <input type="text" id="datacriacao" name="datacriacao" required>
+        <input type="text" id="datacriacao" th:field="*{datacriacao}" name="datacriacao" required>
 
 
         <label for="imagem">Imagem:</label>
-        <input type="file" id="imagem" name="imagem" accept="image/*" required>
+        <input type="file" id="imagem" name="imagem" accept="image/*">
 
         <input type="submit" value="Criar Campanha">
     </form>

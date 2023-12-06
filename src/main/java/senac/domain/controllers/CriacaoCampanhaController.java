@@ -22,12 +22,13 @@ public class CriacaoCampanhaController {
         this.campanhaService = campanhaService;
     }
 
-    @GetMapping()
-    public String cricaoCampanha() {
+    @GetMapping
+    public String init (Model model) {
+        model.addAttribute("campanha", new CampanhaRequestDTO());
         return "criacao-campanha";
     }
 
-    @PostMapping
+    @PostMapping()
     public String criarCampanha(CampanhaRequestDTO campanhaRequestDto){
         participanteService.criarPrimeiroParticipante(campanhaService.criarCampanha(campanhaRequestDto));
         return "lista-de-campanhas";
