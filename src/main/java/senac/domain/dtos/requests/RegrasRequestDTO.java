@@ -10,9 +10,6 @@ import java.time.LocalDate;
 
 @Data
 public class RegrasRequestDTO {
-    @NotNull(message = "A data não pode ser nula")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDate data;
     @NotBlank(message = "O nome não pode estar em branco")
     @Size(max = 200, message = "O nome deve ter no máximo 200 caracteres")
     String nome;

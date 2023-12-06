@@ -335,6 +335,34 @@ body.dark .menu-bar .mode i.moon{
     /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
 }
 
+.div-button-regras{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.button-regra{
+    margin-top: 2%;
+    margin-right: 3.5%;
+    width: 8vw;
+    height: 5vh;
+    border: 1.5px solid #ccc;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    background-color: rgb(129, 253, 118);
+}
+
+.button-regra:hover{
+    background-color: #04141b;
+    color: #ffffff;
+}
+
 .div-regras{
     display: flex;
     flex-direction: column;

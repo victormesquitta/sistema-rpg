@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/static/style/campanha-regras.css" rel="stylesheet">
+    <link href="/static/style/campanha-criar-regras.css" rel="stylesheet">
     <link rel="shortcut icon" href="/static/images/logo/logo_com_fundo.jpg" type="image/x-icon">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Regras</title>
+    <title>Rolagens</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -19,7 +19,6 @@
                 </div>
                 <div class="text header-text">
                     <span class="name">Dice&Rise</span>
-                    <span class="profession">Web Developer</span>
                 </div>
             </a>
             <box-icon class="bx bx-chevron-right toggle" name='chevron-right'></box-icon>
@@ -83,25 +82,28 @@
     <section class="main">
         <div class="text">Regras</div>
         <div class="container-cards">
-            <div class="card">
+            <form class="card" th:action="@{/campanha/{codCampanha}/salvar-regras(codCampanha=${campanha.codCampanha})}" th:object="${regras}" method="post">
+                <div class="info-regras " >
+                    <label for="codParticipante">Código do Participantes:</label>
+                    <input type="number" id="codParticipante" name="codParticipante">
+                </div>
+                <div class="info-regras">
+                    <label for="nome">Titulo da Regra:</label>
+                    <input type="text" id="nome" name="nome">
+                </div>  
+                <div id="textarea" class="info-regras">
+                    <label for="codParticipante">Descrição das Regra:</label>
+                    <textarea name="descricao" id="" cols="100" rows="10"></textarea>
+                </div>
                 <div class="div-button-regras">
-                    <a th:href="@{/campanha/{codCampanha}/criar-regras(codCampanha=${campanha.codCampanha})}" class="button-regra">Criar Regras</a>    
+                    <input class="button-regras" type="submit" value="Criar Regras">
                 </div>
-                <div class="div-regras" th:each="regra, iterStat : ${regras}">
-                    <h1 class="titulo-regra" th:text="${regra.nome}"></h1>
-                    <div class="foto-e-nome-participante">
-                        <img class="foto-participante" src="/static/images/participantes/foto_participante_default.png" alt="foto do participante">
-                        <h2 class="nome-participante" th:text="${donos[iterStat.index]}"></h2>
-                        <p class="regra-data" th:text="${regra.data}"></p>
-                    </div>
-                    <p class="descricao" th:text="${regra.descricao}"></p>
-                </div>
-            </div>
+            </form>
         </div>
         <footer class="rodape" >
             <p>© 2023 Dice & Rise</p>
         </footer>
     </section>
+    <script src="/static/script/campanha.js"></script>
 </body>
-<script src="/static/script/campanha.js"></script>
 </html>

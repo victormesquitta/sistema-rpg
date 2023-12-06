@@ -12,6 +12,8 @@ import senac.domain.models.PersonagemModel;
 import senac.domain.models.RolagemModel;
 import senac.domain.repositories.RolagensRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -80,16 +82,17 @@ public class RolagemService {
     public void criarRolagem(RolagemRequestDTO rolagemRequestDTO) {
         PersonagemModel personagemModel = personagemService.obterPersonagemModelPorId(rolagemRequestDTO.getCodPersonagem());
         RolagemModel rolagemModel = rolagemMapper.toEntity(rolagemRequestDTO);
+        System.out.println(rolagemRequestDTO);
         rolagemModel.setPersonagemModel(personagemModel);
 
         //set resultado da rolagem e os valore gerados
         calculaRolagem(rolagemModel);
+        rolagemModel.setData(LocalDateTime.now());
 
         rolagensRepository.save(rolagemModel);
     }
     public TipoDado converteTipoDado(String tipoDado){
         // aceita tanto letra minuscula quanto maiuscula - D20/d20
-        String dado = tipoDado.substring(0, 1).toUpperCase();
         return switch (tipoDado) {
             case "D4" -> TipoDado.D4;
             case "D6" -> TipoDado.D6;
@@ -97,6 +100,12 @@ public class RolagemService {
             case "D12" -> TipoDado.D12;
             case "D20" -> TipoDado.D20;
             case "D100" -> TipoDado.D100;
+            case "d4" -> TipoDado.D4;
+            case "d6" -> TipoDado.D6;
+            case "d8" -> TipoDado.D8;
+            case "d12" -> TipoDado.D12;
+            case "d20" -> TipoDado.D20;
+            case "d100" -> TipoDado.D100;
             default -> throw new RuntimeException("Opção de dado inválida!");
         };
     }

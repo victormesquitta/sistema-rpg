@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import senac.domain.dtos.requests.RegrasRequestDTO;
 import senac.domain.dtos.requests.RolagemRequestDTO;
 import senac.domain.dtos.responses.*;
 import senac.domain.services.*;
@@ -132,6 +133,21 @@ public class CampanhaController {
         return "campanha-regras";
     }
 
+    @GetMapping("/{codCampanha}/criar-regras")
+    public String criarRegras(@PathVariable Integer codCampanha, Model model){
+        CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+        model.addAttribute("campanha", campanhaResponseDTO);
+        return "campanha-criar-regras";
+    }
+
+    @PostMapping("/{codCampanha}/salvar-regras")
+    public ModelAndView salvarRegras(@PathVariable Integer codCampanha, Model model, RegrasRequestDTO regrasRequestDTO){
+        CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+        regrasService.criarRegras(regrasRequestDTO);
+        model.addAttribute("campanha", campanhaResponseDTO);
+        return new ModelAndView("redirect:/campanha/{codCampanha}/regras");
+    }
+
     @GetMapping("/{codCampanha}/rolagens")
     public String obterRolagens(@PathVariable Integer codCampanha, Model model){
         CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
@@ -152,7 +168,6 @@ public class CampanhaController {
     public String rolarDados(@PathVariable Integer codCampanha, Model model){
         CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
         model.addAttribute("campanha", campanhaResponseDTO);
-
         return "campanha-rolar-dados";
     }
 

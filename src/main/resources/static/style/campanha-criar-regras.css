@@ -331,8 +331,8 @@ body.dark .menu-bar .mode i.moon{
     box-sizing: border-box;
     margin-right:1%;
     min-height: 65vh;
-    width: 100%;
-    align-items: center;
+    width: 60%;
+
 
     /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
 }
@@ -346,6 +346,7 @@ body.dark .menu-bar .mode i.moon{
     justify-content: center;
     align-items: center;
     width: 100%;
+    background-color: red;
 }
 
 .div-dados input{
@@ -370,16 +371,13 @@ body.dark .menu-bar .mode i.moon{
     margin-bottom: 10px;
 }
 
-
-
-
-.div-button-rolagem{
+.div-button-regras{
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.button-rolagem{
+.button-regras{
     margin-top: 2%;
     margin-right: 3.5%;
     width: 8vw;
@@ -396,7 +394,7 @@ body.dark .menu-bar .mode i.moon{
     background-color: rgb(129, 253, 118);
 }
 
-.button-rolagem:hover{
+.button-regras:hover{
     background-color: #04141b;
     color: #ffffff;
 }
@@ -425,43 +423,16 @@ body.dark .menu-bar .mode i.moon{
     font-size: 1rem;
 }
 
-.foto-e-nome-personagem{
-    /* height: 30%; */
-    margin-bottom: 40px;
-}
-.nome-personagem{
-    font-size: 1rem;
-    
-}
-.rolagem-data{
-    font-size: 1rem;
-}
-.rolagem-resultRolagem{
-    font-size: 1rem;
-}
-
-.rolagem-tipoDado{
-    font-size: 1rem;
-}
-.rolagem-tipoRolagem{
-    font-size: 1rem;
-}
-
-.rolagem-qtdRolagens{
-    font-size: 1rem;
-}
-
-
-
-.foto-personagem{
-    max-width: 10%;
-    border-radius: 50%;
-    margin-bottom: 20px;
-}
-
 .descricao{
     text-align: justify;
     width: 90%;
+}
+
+.info-regras{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 40px;
 }
 
 .rodape {
@@ -471,4 +442,32 @@ body.dark .menu-bar .mode i.moon{
     background:#04141b;
     color: rgb(235, 235, 235);
     padding: 3em;
+}
+
+input:focus{
+    background:rgb(231, 245, 250);
+    border: 0.1px solid rgb(197, 209, 216);
+    outline: none !important;
+}
+
+input{
+    padding-left: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+textarea:focus{
+    background:rgb(231, 245, 250);
+    border: 0.1px solid rgb(197, 209, 216);
+    outline: none !important;
+}
+
+textarea{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
 }

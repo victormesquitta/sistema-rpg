@@ -12,6 +12,8 @@ import senac.domain.models.ParticipanteModel;
 import senac.domain.models.RegrasModel;
 import senac.domain.repositories.RegrasRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -89,6 +91,7 @@ public class RegrasService {
 
         RegrasModel regrasModel = regrasMapper.toEntity(regrasRequestDTO);
         regrasModel.setParticipanteModel(participanteExistente);
+        regrasModel.setData(LocalDate.now());
         regrasRepository.save(regrasModel);
     }
 
