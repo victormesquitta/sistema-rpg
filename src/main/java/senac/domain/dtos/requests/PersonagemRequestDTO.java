@@ -12,7 +12,6 @@ public class PersonagemRequestDTO {
     @NotNull(message = "O participante não pode ser nulo")
     private Integer codParticipante;
 
-    @NotBlank(message = "O nome não pode estar em branco")
     @Size(max = 255, message = "O nome deve ter no máximo 255 caracteres")
     private String nome;
 
@@ -28,13 +27,10 @@ public class PersonagemRequestDTO {
     @Size(max = 20, message = "O antecedente deve ter no máximo 20 caracteres")
     private String antecedente;
 
-    @NotNull(message = "O nível não pode ser nulo")
     private Integer nivel;
 
-    @NotNull(message = "A experiência (xp) não pode ser nula")
     private Integer xp;
 
-    @NotNull(message = "O bônus de proficiência não pode ser nulo")
     private Integer bonusProficiencia;
 
     @Size(max = 45, message = "A inspiração deve ter no máximo 45 caracteres")
@@ -43,19 +39,14 @@ public class PersonagemRequestDTO {
     @Size(max = 45, message = "A sabedoria passiva deve ter no máximo 45 caracteres")
     private String sabedoriaPassiva;
 
-    @NotNull(message = "O CA (Classe de Armadura) não pode ser nulo")
     private Integer ca;
 
-    @NotNull(message = "A iniciativa não pode ser nula")
     private Integer iniciativa;
 
-    @NotNull(message = "O deslocamento não pode ser nulo")
     private Float deslocamento;
 
-    @NotNull(message = "Os pontos de vida (HP) não podem ser nulos")
     private Integer hp;
 
-    @NotNull(message = "Os pontos de vida temporários (HP Temp) não podem ser nulos")
     private Integer hpTemp;
 
     @Size(max = 200, message = "Os traços de personalidade devem ter no máximo 200 caracteres")

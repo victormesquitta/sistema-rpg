@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import senac.domain.dtos.requests.PersonagemRequestDTO;
 import senac.domain.dtos.requests.RegrasRequestDTO;
 import senac.domain.dtos.requests.RolagemRequestDTO;
 import senac.domain.dtos.responses.*;
+import senac.domain.models.PersonagemModel;
 import senac.domain.services.*;
 
 import java.util.ArrayList;
@@ -108,6 +110,17 @@ public class CampanhaController {
         CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
         model.addAttribute("campanha", campanhaResponseDTO);
         return "campanha-criar-personagem";
+    }
+
+    @PostMapping("/{codCampanha}/salvar-personagem")
+    public ModelAndView salvarPersonagem(@PathVariable Integer codCampanha, Model model, PersonagemRequestDTO personagemRequestDTO){
+        CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+        PersonagemModel personagemModel = personagemService.criarPersonagem(personagemRequestDTO);
+        atributosService.criarAtributosComPersonagem(personagemModel);
+        moedasService.criarMoedaComPersonagem(personagemModel);
+        periciasService.criarPericiasComPersonagem(personagemModel);
+        model.addAttribute("campanha", campanhaResponseDTO);
+        return new ModelAndView("redirect:/campanha/{codCampanha}/regras");
     }
 
     @GetMapping("/{codCampanha}/mapa")
