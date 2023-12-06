@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import senac.domain.dtos.requests.RolagemRequestDTO;
 import senac.domain.dtos.responses.*;
 import senac.domain.services.*;
 
@@ -155,11 +156,12 @@ public class CampanhaController {
         return "campanha-rolar-dados";
     }
 
-    @PostMapping("/{codCampanha}/salvar-dados")
-    public ModelAndView salvarDados(@PathVariable Integer codCampanha, Model model){
-        CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
-        model.addAttribute("campanha", campanhaResponseDTO);
-        return new ModelAndView("redirect:/campanha/{codCampanha}/salvar-dados");
+    @PostMapping("/{codCampanha}/salvar-rolagem")
+    public ModelAndView salvarDados(@PathVariable Integer codCampanha, Model model, RolagemRequestDTO rolagemRequestDTO){
+            CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+            rolagemService.criarRolagem(rolagemRequestDTO);
+            model.addAttribute("campanha", campanhaResponseDTO);
+        return new ModelAndView("redirect:/campanha/{codCampanha}/rolagens");
     }
 
 }

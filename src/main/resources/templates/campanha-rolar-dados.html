@@ -82,19 +82,37 @@
     <section class="main">
         <div class="text">Rolagens</div>
         <div class="container-cards">
-            <div class="card">
+            <form class="card" th:action="@{/campanha/{codCampanha}/salvar-rolagem(codCampanha=${campanha.codCampanha})}" th:object="${rolagem}" method="post">
                 <div class="div-dados">
-                    <a class="ancora-dado" href="">D4<img class="img-dados" src="/static/images/rolagens/d4.png" alt=""></a>
-                    <a class="ancora-dado" href="">D6<img class="img-dados" src="/static/images/rolagens/d6.png" alt=""></a>
-                    <a class="ancora-dado" href="">D8<img class="img-dados" src="/static/images/rolagens/d8.png" alt=""></a>
-                    <a class="ancora-dado" href="">D10<img class="img-dados" src="/static/images/rolagens/d10.png" alt=""></a>
-                    <a class="ancora-dado" href="">D12<img class="img-dados" src="/static/images/rolagens/d12.png" alt=""></a>
-                    <a class="ancora-dado" href="">D20<img class="img-dados" src="/static/images/rolagens/d20.png" alt=""></a>
-                    <a class="ancora-dado" href="">D100<img class="img-dados" src="/static/images/rolagens/d100.png" alt=""></a>
+                    <div class="ancora-dado">D4<img class="img-dados" src="/static/images/rolagens/d4.png" alt="d4"><input type="radio" name="tipoDado" value="d4" checked></div>
+                    <div class="ancora-dado">D6<img class="img-dados" src="/static/images/rolagens/d6.png" alt="d6"><input type="radio" name="tipoDado" value="d6"></div>
+                    <div class="ancora-dado">D8<img class="img-dados" src="/static/images/rolagens/d8.png"alt="d8"><input type="radio" name="tipoDado" value="d8"></div>
+                    <div class="ancora-dado">D10<img class="img-dados" src="/static/images/rolagens/d10.png" alt="d10"><input type="radio" name="tipoDado" value="d10"></div>
+                    <div class="ancora-dado">D12<img class="img-dados" src="/static/images/rolagens/d12.png" alt="d12"><input type="radio" name="tipoDado" value="d12"></div>
+                    <div class="ancora-dado">D20<img class="img-dados" src="/static/images/rolagens/d20.png" alt="d20"><input type="radio" name="tipoDado" value="d20"></div>
+                    <div class="ancora-dado">D100<img class="img-dados" src="/static/images/rolagens/d100.png" alt="d100"><input type="radio" name="tipoDado" value="d20"></div>
+                </div>
+                <div>
+                    <label for="codPersonagem">Código do Personagem:</label>
+                    <input type="number" id="codPersonagem" name="codPersonagem">
+                </div>
+                <div>
+                    <label for="tipoAcao">Tipo de Rolagem:</label>
+                    <select name="tipoAcao">
+                        <option value="Ataque" selected>Ataque</option>
+                        <option value="Iniciativa">Iniciativa</option>
+                        <option value="Conjuração de Magia">Conjuração de Magia</option>
+                      </select>
+                </div>
+                <div>
+                    <label for="qtdRolagens">Qtd de rolagens:</label>
+                    <input type="number" id="qtdRolagens" name="qtdRolagens">
                 </div>
                 <div class="div-button-rolagem">
-                    <a th:href="@{/campanha/{codCampanha}/rolar-dado(codCampanha=${campanha.codCampanha})}" class="button-rolagem">Rolagem</a>    
+                    <input class="button-rolagem" type="submit" value="Rolar dados">
                 </div>
+            </form>
+                
                 <div class="div-rolagens" th:each="rolagem, iterStat : ${rolagens}">
                     <img class="foto-personagem" src="/static/images/personagens/foto-perfil-personagem.jpg" alt="foto do personagem">
                     <div class="info-rolagem">
@@ -126,12 +144,11 @@
                         <p class="rolagem-qtdRolagens" th:text="${rolagem.qtdRolagens}"></p>
                     </div>  
                 </div>
-            </div>
+            
         </div>
         <footer class="rodape" >
             <p>© 2023 Dice & Rise</p>
         </footer>
     </section>
 </body>
-<script src="/static/script/campanha.js"></script>
 </html>

@@ -330,10 +330,15 @@ body.dark .menu-bar .mode i.moon{
     border-radius: 8px;
     box-sizing: border-box;
     margin-right:1%;
-    min-height: 80vh;
+    min-height: 65vh;
     width: 100%;
-    
+    align-items: center;
+
     /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
+}
+
+.card div{
+    margin-bottom: 20px;
 }
 
 .div-dados{
@@ -344,6 +349,11 @@ body.dark .menu-bar .mode i.moon{
     background-color: red;
 }
 
+.div-dados input{
+    cursor: pointer;
+    height: 25px;
+}
+
 .ancora-dado{
     font-size: 2rem;
     font-weight: 600;
@@ -351,15 +361,14 @@ body.dark .menu-bar .mode i.moon{
     text-align: center;
     justify-content: center;
     flex-direction: column;
-    cursor: auto;
     margin: 25px;
     text-decoration: none;
     color: #000;
 }
 
 .img-dados{
-    cursor: pointer;
     height: 15vh;
+    margin-bottom: 10px;
 }
 
 
