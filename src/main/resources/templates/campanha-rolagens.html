@@ -6,7 +6,7 @@
     <link href="/static/style/campanha-rolagens.css" rel="stylesheet">
     <link rel="shortcut icon" href="/static/images/logo/logo_com_fundo.jpg" type="image/x-icon">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Regras</title>
+    <title>Rolagens</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -80,8 +80,24 @@
             </div>
         </div>
     </nav>
-    <section class="home">
+    <section class="main">
         <div class="text">Rolagens</div>
+        <div class="container-cards">
+            <div class="card">
+                <div class="div-regras" th:each="regra, iterStat : ${regras}">
+                    <h1 class="titulo-regra" th:text="${regra.nome}"></h1>
+                    <div class="foto-e-nome-participante">
+                        <img class="foto-participante" src="/static/images/participantes/foto_participante_default.png" alt="foto do participante">
+                        <h2 class="nome-participante" th:text="${donos[iterStat.index]}"></h2>
+                        <p class="regra-data" th:text="${regra.data}"></p>
+                    </div>
+                    <p class="descricao" th:text="${regra.descricao}"></p>
+                </div>
+            </div>
+        </div>
+        <footer class="rodape" >
+            <p>© 2023 Dice & Rise</p>
+        </footer>
     </section>
 </body>
 <script src="/static/script/campanha.js"></script>

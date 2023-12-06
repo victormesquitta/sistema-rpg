@@ -81,13 +81,17 @@
         </div>
     </nav>
     <section class="main">
-        <h1 class="text">Regras</h1>
-        <div class="div-participantes">
-            <div class="lista_participantes" th:each="participante : ${participantes}">
-                <img class="foto_participante" src="/static/images/participantes/foto_participante_default.png" alt="foto do participante">
-                <div class="infos_participante">
-                    <h3 class="nome_participante" th:text="${participante.nome}"></h3>
-                    <h5 class="role_participante" th:text="${participante.cargo}"></h5>
+        <div class="text">Regras</div>
+        <div class="container-cards">
+            <div class="card">
+                <div class="div-regras" th:each="regra, iterStat : ${regras}">
+                    <h1 class="titulo-regra" th:text="${regra.nome}"></h1>
+                    <div class="foto-e-nome-participante">
+                        <img class="foto-participante" src="/static/images/participantes/foto_participante_default.png" alt="foto do participante">
+                        <h2 class="nome-participante" th:text="${donos[iterStat.index]}"></h2>
+                        <p class="regra-data" th:text="${regra.data}"></p>
+                    </div>
+                    <p class="descricao" th:text="${regra.descricao}"></p>
                 </div>
             </div>
         </div>

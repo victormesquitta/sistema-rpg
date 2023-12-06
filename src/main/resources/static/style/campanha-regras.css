@@ -318,35 +318,61 @@ body.dark .menu-bar .mode i.moon{
 
 }
 
-.div-participantes{
+.sidebar.close ~ .main{
+    left: 88px;
+    width: calc(100% - 88px);
+}
+
+.container-cards{
+    display: flex;
+    padding: 2% 80px;
+}
+
+.card {
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    padding-left: 10%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-right:1%;
+    min-height: 80vh;
+    width: 100%;
+    /* Garante que as bordas e o preenchimento não aumentem a largura real do card */
 }
 
-.lista_participantes{
+.div-regras{
     display: flex;
-    align-items: center;
-    padding: 40px;
-    height: 20vh;
-}
-
-.foto_participante{
-    border-radius: 50%;
-    height: 100%;
-}
-
-.infos_participante{
-    display: flex;
-    justify-content: center;
     flex-direction: column;
-    height: 80%;
-    padding-left: 30px;
+    margin: 50px;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    /* background-color: #695CFE; */
 }
 
-.nome_participante{
+.titulo-regra{
     font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+.foto-e-nome-participante{
+    /* height: 30%; */
+    margin-bottom: 40px;
+}
+.nome-participante{
+    font-size: 1rem;
+}
+
+.foto-participante{
+    max-width: 10%;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.descricao{
+    text-align: justify;
+    width: 90%;
 }
 
 .rodape {

@@ -79,6 +79,7 @@ body {
 .container__descricao {
   font-size: 1em;
   color: aliceblue;
+  text-align: justify;
 }
 
 .container__botao {

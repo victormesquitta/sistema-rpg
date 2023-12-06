@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import senac.domain.dtos.responses.*;
 import senac.domain.services.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,9 +27,10 @@ public class CampanhaController {
     private final AtaquesConjuracaoService ataquesConjuracaoService;
     private final EquipamentoService equipamentoService;
     private final MagiaService magiaService;
+    private final RegrasService regrasService;
 
     @Autowired
-    public CampanhaController(ParticipanteService participanteService, PersonagemService personagemService, CampanhaService campanhaService, ProficienciaService proficienciaService, OutraProficienciaService outraProficienciaService, PericiasService periciasService, AtributosService atributosService, TalentoTracoService talentoTracoService, MoedasService moedasService, AtaquesConjuracaoService ataquesConjuracaoService, EquipamentoService equipamentoService, MagiaService magiaService) {
+    public CampanhaController(ParticipanteService participanteService, PersonagemService personagemService, CampanhaService campanhaService, ProficienciaService proficienciaService, OutraProficienciaService outraProficienciaService, PericiasService periciasService, AtributosService atributosService, TalentoTracoService talentoTracoService, MoedasService moedasService, AtaquesConjuracaoService ataquesConjuracaoService, EquipamentoService equipamentoService, MagiaService magiaService, RegrasService regrasService) {
         this.participanteService = participanteService;
         this.personagemService = personagemService;
         this.campanhaService = campanhaService;
@@ -41,7 +43,7 @@ public class CampanhaController {
         this.ataquesConjuracaoService = ataquesConjuracaoService;
         this.equipamentoService = equipamentoService;
         this.magiaService = magiaService;
-
+        this.regrasService = regrasService;
     }
     @GetMapping("/{codCampanha}")
     public String obterCampanha(@PathVariable Integer codCampanha, Model model) {
@@ -112,7 +114,16 @@ public class CampanhaController {
     @GetMapping("/{codCampanha}/regras")
     public String obterRegras(@PathVariable Integer codCampanha, Model model){
         CampanhaResponseDTO campanhaResponseDTO = campanhaService.obterCampanhaPorIdResponse(codCampanha);
+        List<RegrasResponseDTO> listaRegras = regrasService.listarRegrasResponse();
+        List<String> listaDonosRegras = new ArrayList<>();
+        for(RegrasResponseDTO regra:listaRegras){
+            Integer codParticipante = regra.getCodParticipante();
+            String nomeParticipante = participanteService.obterParticipantePorIdResponse(codParticipante).getNome();
+            listaDonosRegras.add(nomeParticipante);
+        }
         model.addAttribute("campanha", campanhaResponseDTO);
+        model.addAttribute("regras", listaRegras);
+        model.addAttribute("donos", listaDonosRegras);
         return "campanha-regras";
     }
 
