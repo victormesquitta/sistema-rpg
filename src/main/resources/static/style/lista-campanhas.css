@@ -172,3 +172,30 @@ img{
 button{
     cursor: pointer;
   }
+
+  #detalhe{
+    
+        background-color: red; 
+        border: none; 
+        color: white; 
+        padding: 8px; 
+        text-align: center; 
+        text-decoration: none; 
+        display: flex; 
+        font-size: 14px; 
+        margin: 4px 2px; 
+        cursor: pointer; 
+        border-radius: 8px; 
+        transition-duration: 0.4s;
+        justify-content: center;
+        align-items: center;
+    }
+
+.detalhe__botão{
+
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 1em;
+    margin: 0.5em;
+}
